@@ -1,12 +1,13 @@
 {
-  "name": "data",
+  "name": "@factorioui/data",
   "type": "module",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Lukas Bach <contact@lukasbach.com>",
   "homepage": "",
   "license": "MIT",
-  "main": "lib/data.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -15,19 +16,20 @@
     "lib"
   ],
   "scripts": {
-    "reparse": "tsx ./src/scripts/reparse.ts"
+    "build": "tsc && tsx ./src/scripts/reparse.ts"
   },
   "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.1",
     "@types/spritesmith": "^3.4.5",
     "fs-extra": "^11.2.0",
     "glob": "^11.0.0",
     "spritesmith": "^3.5.1",
     "tsx": "^4.19.2",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.10.1"
+    "typescript": "latest"
   },
   "volta": {
     "node": "22.12.0"

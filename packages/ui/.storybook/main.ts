@@ -20,6 +20,10 @@ const config: StorybookConfig = {
     getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-interactions"),
   ],
+  staticDirs: [
+    // getAbsolutePath("@factorioui/data/data")
+    "../../data/data",
+  ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},

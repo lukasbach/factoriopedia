@@ -1,5 +1,5 @@
 {
-  "name": "factorioui",
+  "name": "@factorioui/components",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Lukas Bach <contact@lukasbach.com>",
@@ -20,6 +20,7 @@
     "tailwind:watch": "tailwindcss -i \"./src/ìnput.css\" -o \"./src/output.css\" --watch"
   },
   "dependencies": {
+    "@factorioui/data": "^0.0.0",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-separator": "^1.1.0",
     "react": "18.3.1",

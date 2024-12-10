@@ -9,9 +9,15 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [(Story) => (
+    <FactorioDataProvider path="/" loader={<div>Loading...</div>}>
+      <Story />
+    </FactorioDataProvider>
+  )],
 };
 
 import "../src/output.css";
+import {FactorioDataProvider} from "../src/components/data-provider";
 document.body.style.background = "#414040";
 
 export default preview;

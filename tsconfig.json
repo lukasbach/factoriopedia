@@ -10,7 +10,7 @@
       "ES2024",
       "DOM"
     ],
-    "outDir": "lib",
+    "outDir": "${configDir}/lib",
     "strict": true,
     "declaration": true,
     "jsx": "react-jsx"

@@ -2,7 +2,7 @@ import { FC, HTMLProps, PropsWithChildren } from "react";
 import { combine } from "../utils";
 
 type SurfaceProperties = {
-  inset?: boolean;
+  shadow?: "btn1";
   color?: "dark" | "medium" | "light";
 };
 
@@ -15,16 +15,16 @@ export const Surface: FC<
     } & SurfaceProperties &
       HTMLProps<HTMLDivElement>
   >
-> = ({ inset, color, hover, active, isActive, ...props }) => {
-  const currentProps = isActive ? active : { inset, color };
+> = ({ shadow, color, hover, active, isActive, ...props }) => {
+  const currentProps = isActive && active ? active : { shadow, color };
   return (
     <div
+      {...props}
       className={combine(
         props.className ?? "",
-        [currentProps.inset, `shadow-inset-1`],
+        [currentProps.shadow === "btn1", `shadow-btn1`],
         [currentProps.color === "dark", `bg-bgDark`],
       )}
-      {...props}
     />
   );
 };

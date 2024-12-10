@@ -5,6 +5,7 @@ import * as url from "node:url";
 import { glob } from "glob";
 import Spritesmith from "spritesmith";
 import { FactorioType } from "../types/structures.js";
+import { DumpType } from "../types/dump";
 
 const targetFolder = path.join(
   path.dirname(url.fileURLToPath(import.meta.url)),
@@ -35,107 +36,6 @@ const entries: any[] = Object.entries(data).reduce(
   [],
 );
 
-const relevantTypes = [
-  "item",
-  "recipe",
-  "quality",
-  "fluid",
-  "tile",
-  "space-location",
-  "asteroid-chunk",
-  "recipe-category",
-  "container",
-  "simple-entity",
-  "furnace",
-  "fish",
-  "boiler",
-  "electric-pole",
-  "generator",
-  "offshore-pump",
-  "inserter",
-  "pipe",
-  "radar",
-  "lamp",
-  "arrow",
-  "pipe-to-ground",
-  "assembling-machine",
-  "cliff",
-  "wall",
-  "lab",
-  "car",
-  "gate",
-  "solar-panel",
-  "accumulator",
-  "electric-energy-interface",
-  "land-mine",
-  "logistic-container",
-  "rocket-silo",
-  "rocket-silo-rocket",
-  "cargo-landing-pad",
-  "roboport",
-  "storage-tank",
-  "pump",
-  "beacon",
-  "reactor",
-  "heat-pipe",
-  "spider-vehicle",
-  "infinity-container",
-  "infinity-pipe",
-  "burner-generator",
-  "heat-interface",
-  "transport-belt",
-  "underground-belt",
-  "splitter",
-  "loader",
-  "loader-1x1",
-  "custom-input",
-  "mining-drill",
-  "resource",
-  "turret",
-  "ammo-turret",
-  "electric-turret",
-  "artillery-turret",
-  "unit",
-  "unit-spawner",
-  "straight-rail",
-  "rail-ramp",
-  "elevated-straight-rail",
-  "rail-support",
-  "locomotive",
-  "cargo-wagon",
-  "fluid-wagon",
-  "artillery-wagon",
-  "train-stop",
-  "rail-signal",
-  "rail-chain-signal",
-  "tree",
-  "combat-robot",
-  "construction-robot",
-  "logistic-robot",
-  "repair-tool",
-  "blueprint",
-  "tool",
-  "module",
-  "ammop",
-  "gun",
-  "armor",
-  "item-group",
-  "item-subgroup",
-  "ammo-category",
-  "fuel-category",
-  "resource-category",
-  "module-category",
-  "equipment-grid",
-  "equipment-category",
-  "technology",
-  "achievement",
-  "airborne-pollutant",
-  "tutorial",
-  "planet",
-  "asteroid",
-  "surface",
-];
-
 const targetItems: Record<string, any> = {};
 const categoryMap: Record<string, string[]> = {};
 
@@ -154,7 +54,7 @@ for (const locale of await glob(
   path.posix.join(scriptOutputFolder, "*-locale.json"),
 )) {
   const localeData = await fs.readJson(locale);
-  const localeName = path.basename(locale).split("-")[0];
+  const localeName = path.basename(locale).replace(/-locale.json$/, "");
   locales[localeName] = localeData;
 }
 
@@ -185,6 +85,7 @@ const sprites = [
 ];
 
 const spriteMap: Record<string, any> = {};
+const spriteMapSizes: Record<string, any> = {};
 for (const spriteList of sprites) {
   const groupName = path.dirname(spriteList);
   const spriteProm = Promise.withResolvers<Spritesmith.SpritesmithResult>();
@@ -201,24 +102,30 @@ for (const spriteList of sprites) {
     path.join(targetFolder, `${groupName}.png`),
     spriteResult.image,
   );
-  spriteMap[groupName] = Object.entries(spriteResult.coordinates).reduce(
-    (acc, [name, { x, y, width, height }]) => {
-      acc[path.basename(name)] = { x, y, width, height };
-      return acc;
-    },
-    {} as Record<string, any>,
+  spriteMap[groupName] = Object.fromEntries(
+    Object.entries(spriteResult.coordinates).map(
+      ([name, { x, y, width, height }]) => {
+        return [path.basename(name), { x, y, width, height }];
+      },
+      {} as Record<string, any>,
+    ),
   );
+  spriteMapSizes[groupName] = {
+    width: spriteResult.properties.width,
+    height: spriteResult.properties.height,
+  };
 }
 
 await fs.writeJson(
   path.join(targetFolder, "data.json"),
-  {
+  DumpType.parse({
     entries: targetItems,
     categories: categoryMap,
     locales,
     spriteMap,
-  },
+    spriteMapSizes,
+  }),
   {
-    // spaces: 2,
+    spaces: 2,
   },
 );

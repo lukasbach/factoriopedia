@@ -71,9 +71,21 @@ const SpaceLocationType = BaseType.extend({
     .nullish(),
 });
 
+const ItemGroupType = BaseType.extend({
+  type: z.literal("item-group"),
+});
+
+const ItemSubgroupType = BaseType.extend({
+  type: z.literal("item-subgroup"),
+  group: z.string(),
+  order: z.string(),
+});
+
 export const FactorioType = z.discriminatedUnion("type", [
   ItemType,
   RecipeType,
   QualityType,
   SpaceLocationType,
+  ItemGroupType,
+  ItemSubgroupType,
 ]);
