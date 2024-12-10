@@ -1,0 +1,42 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@lukasbach/eslint-config-deps": "^1.0.7",
+    "eslint": "8",
+    "lerna": "^8.1.9",
+    "typescript": "latest"
+  },
+  "volta": {
+    "node": "22.12.0",
+    "npm": "10.9.2"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "tsc"
+  },
+  "eslintConfig": {
+    "extends": "@lukasbach/base/react",
+    "parserOptions": {
+      "project": "./tsconfig.lint.json"
+    },
+    "rules": {
+      "react/destructuring-assignment": "off"
+    },
+    "ignorePatterns": [
+      "lib",
+      "dist",
+      "*.js"
+    ]
+  },
+  "type": "module",
+  "exports": "./lib/index.js",
+  "typings": "lib/index.d.ts",
+  "engines": {
+    "node": ">=22"
+  }
+}

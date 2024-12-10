@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "ES2024",
+      "DOM"
+    ],
+    "outDir": "lib",
+    "strict": true,
+    "declaration": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["packages"]
+}

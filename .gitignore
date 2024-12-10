@@ -1,0 +1,17 @@
+node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+node_modules
+yarn-error.log
+
+lib
+
+packages/data/script-output
+*storybook.log
+.iml
+.idea

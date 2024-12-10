@@ -1,0 +1,46 @@
+{
+  "name": "factorioui",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Lukas Bach <contact@lukasbach.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/ui.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "node ./__tests__/ui.test.js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "tailwind:watch": "tailwindcss -i \"./src/ìnput.css\" -o \"./src/output.css\" --watch"
+  },
+  "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.2",
+    "@radix-ui/react-separator": "^1.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "3.2.2",
+    "@storybook/addon-essentials": "8.4.7",
+    "@storybook/addon-interactions": "8.4.7",
+    "@storybook/addon-onboarding": "8.4.7",
+    "@storybook/blocks": "8.4.7",
+    "@storybook/react": "8.4.7",
+    "@storybook/react-vite": "8.4.7",
+    "@storybook/test": "8.4.7",
+    "@types/prop-types": "^15",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "prop-types": "15.8.1",
+    "storybook": "8.4.7"
+  }
+}
