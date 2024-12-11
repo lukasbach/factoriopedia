@@ -51,10 +51,9 @@ export const GroupButtons = () => (
 
 export const ItemsInGroup = () => (
   <div>
-    {console.log(useGroupEntries("intermediate-products"))}
-    {useGroupEntries("intermediate-products").map((subgroup) => (
+    {Object.values(useGroupEntries("intermediate-products")).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
-        {subgroup.entries.map((item) => (
+        {subgroup.map((item) => (
           <Surface
             key={item.name}
             shadow="btn-small"
@@ -62,7 +61,7 @@ export const ItemsInGroup = () => (
             hover={{ color: "orangeLight" }}
             active={{ color: "orangeDark" }}
             className="inline-block p-0.5 flex items-center justify-center rounded"
-            title={item.locale}
+            title={item.name}
           >
             <FactorioImage
               image={item.name}

@@ -1,28 +1,54 @@
 import { useMemo } from "react";
+import { FactorioType } from "@factorioui/data/src";
+import { DumpType } from "@factorioui/data";
 import { useFactorioData } from "../components/data-provider";
 
+const resolveJointItemEntries = (props: {
+  data: DumpType;
+  group?: string;
+  types: (keyof DumpType["entries"])[];
+}) => {
+  const entries: Record<string, FactorioType[]> = Object.fromEntries(
+    Object.values(props.data.entries["item-subgroup"])
+      .filter((subgroup) => !props.group || subgroup.group === props.group)
+      .map((subgroup) => [subgroup.name, []]),
+  );
+  const ids: string[] = [];
+
+  for (const type of props.types) {
+    const addEntries = Object.values(props.data.entries[type]).filter(
+      (entry) => !ids.includes(entry.name),
+    );
+
+    for (const entry of addEntries) {
+      if (entries[entry.subgroup]) {
+        entries[entry.subgroup].push(entry);
+        ids.push(entry.name);
+      }
+    }
+  }
+
+  for (const [key, entry] of Object.entries(entries)) {
+    if (entry.length === 0) {
+      delete entries[key];
+    } else {
+      entry.sort((a, b) =>
+        a.order && b.order ? a.order.localeCompare(b.order) : 1,
+      );
+    }
+  }
+  return entries;
+};
+
 export const useGroupEntries = (group: string) => {
-  const { entries, locales } = useFactorioData();
+  const data = useFactorioData();
   return useMemo(
     () =>
-      Object.values(entries["item-subgroup"])
-        .filter((subgroup) => subgroup.group === group)
-        .map((subgroup) => ({
-          ...subgroup,
-          entries: [
-            ...Object.values(entries.item),
-            // ...Object.values(entries.recipe),
-            ...Object.values(entries.tool),
-          ]
-            .filter((item) => item.subgroup === subgroup.name)
-            // .sort((a, b) =>
-            //   a.order && b.order ? a.order.localeCompare(b.order) : 1,
-            // )
-            .map((item) => ({
-              ...item,
-              locale: locales.item.names[item.name],
-            })),
-        })),
-    [entries, group],
+      resolveJointItemEntries({
+        data,
+        group,
+        types: ["item", "tool", "recipe"],
+      }),
+    [data, group],
   );
 };

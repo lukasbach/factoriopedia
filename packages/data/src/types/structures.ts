@@ -97,3 +97,5 @@ export const FactorioType = z.discriminatedUnion("type", [
   ItemSubgroupType,
   ToolType,
 ]);
+
+export type FactorioType = z.infer<typeof FactorioType>;
