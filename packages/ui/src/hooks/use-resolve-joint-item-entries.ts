@@ -5,27 +5,25 @@ import { useFactorioData } from "../components/data-provider";
 type ResolvementProps = {
   data: DumpType;
   group?: string;
-  types: (keyof DumpType["entries"])[];
+  types: string[];
 };
 
 const resolveJointItemEntries = (props: ResolvementProps) => {
   const entries: Record<string, FactorioType[]> = Object.fromEntries(
-    Object.values(props.data.entries["item-subgroup"])
-      .filter((subgroup) => !props.group || subgroup.group === props.group)
-      .map((subgroup) => [subgroup.name, []]),
+    Object.values(props.data.types["item-subgroup"])
+      .filter(
+        (subgroup) =>
+          !props.group || props.data.entries[subgroup].group === props.group,
+      )
+      .map((subgroup) => [subgroup, []]),
   );
-  const ids: string[] = [];
 
   for (const type of props.types) {
-    const addEntries = Object.values(props.data.entries[type]).filter(
-      (entry) => !ids.includes(entry.name),
-    );
-
-    for (const entry of addEntries) {
-      if (entries[entry.subgroup]) {
-        entries[entry.subgroup].push(entry);
-        ids.push(entry.name);
-      }
+    for (const name of Object.values(props.data.types[type])) {
+      const entry = props.data.entries[name];
+      if (!((entry.subgroup ?? "") in entries)) continue;
+      if (entries[entry.subgroup as string].includes(entry)) continue;
+      entries[entry.subgroup as string].push(entry);
     }
   }
 

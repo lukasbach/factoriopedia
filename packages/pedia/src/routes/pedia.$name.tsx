@@ -14,13 +14,13 @@ const PediaSearchSchema = z.object({
   group: z.string().optional(),
 });
 
-export const Route = createFileRoute("/pedia/$type/$name")({
+export const Route = createFileRoute("/pedia/$name")({
   component: Page,
   validateSearch: PediaSearchSchema,
 });
 
 function Page() {
-  const { type, name } = Route.useParams();
+  const { name } = Route.useParams();
   const { group } = Route.useSearch();
   const navigate = Route.useNavigate();
   return (
@@ -35,7 +35,7 @@ function Page() {
             gridWidth={6}
             selectedGroup={group}
             onSelectGroup={(group) =>
-              navigate({ params: { type, name }, search: { group } })
+              navigate({ params: { name }, search: { group } })
             }
           />
         </div>
@@ -48,18 +48,16 @@ function Page() {
           <EntityGrid
             gridWidth={12}
             gridHeight={14}
-            activeItem={{ type, name } as any}
-            onClick={(type, name) =>
-              navigate({ params: { type, name }, search: { group } })
+            activeItem={name}
+            onClick={(name) =>
+              navigate({ params: { name }, search: { group } })
             }
             items={Object.values(
               useResolveJointItemEntries({
                 group,
                 types: ["item", "tool", "recipe"],
               }),
-            ).map((subgroup) =>
-              subgroup.map((item) => ({ type: item.type, name: item.name })),
-            )}
+            ).map((subgroup) => subgroup.map((item) => item.name))}
           />
         </Surface>
       </Surface>
@@ -72,8 +70,8 @@ function Page() {
           shadow="deepinset"
           className="py-2 px-2 text-textBeige font-bold flex items-center gap-2"
         >
-          <FactorioImage image={name} category={type} width={24} />
-          <LocaleName type={type} name={name} />
+          <FactorioImage image={name} width={24} />
+          <LocaleName name={name} />
         </Surface>
         <Surface
           color="blackLight"
@@ -82,6 +80,7 @@ function Page() {
         >
           <EntitySection.Main name={name} />
           <EntitySection.Recipe name={name} />
+          {/* <EntitySection.Debug name={name} /> */}
         </Surface>
       </Surface>
     </Surface>

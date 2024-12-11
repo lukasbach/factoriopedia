@@ -12,17 +12,22 @@ const resolveCategory = (
 };
 
 export const FactorioImage: FC<{
-  category?: string;
-  categoryFallback?: string[];
   image: string;
   width?: number;
-}> = ({ image, category, width, categoryFallback }) => {
+}> = ({ image, width }) => {
   const dataPath = useFactorioDataPath();
   const data = useFactorioData();
   const imageKey = `${image}.png`;
   const resolvedCategory = resolveCategory(
-    category ?? "item",
-    categoryFallback ?? ["item", "recipe", "space-location"],
+    "item",
+    [
+      "recipe",
+      "space-location",
+      "space-connection",
+      "fluid",
+      "asteroid-chunk",
+      "item-group",
+    ],
     data.spriteMap,
     imageKey,
   );
@@ -30,10 +35,11 @@ export const FactorioImage: FC<{
   const spritesheetSize = data.spriteMapSizes[resolvedCategory];
 
   if (!imageData || !spritesheetSize) {
-    throw new Error(`Image data not found for ${category ?? "item"}.${image}`);
+    return null; // TODO
+    // throw new Error(`Image data not found for ${resolvedCategory}.${image}`);
   }
 
-  const url = `${dataPath}${dataPath === "/" ? "" : "/"}${resolvedCategory ?? "item"}.png`;
+  const url = `${dataPath}${dataPath === "/" ? "" : "/"}${resolvedCategory}.png`;
   const scale = !width ? 1 : width / imageData.width;
 
   return (

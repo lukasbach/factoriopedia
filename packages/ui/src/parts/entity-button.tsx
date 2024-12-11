@@ -1,17 +1,15 @@
 import { FC } from "react";
-import { DumpType } from "@factorioui/data";
 import { EntityTooltip } from "./entity-tooltip";
 import { Surface } from "../components/surface";
 import { FactorioImage } from "../components/factorio-image";
 
 export const EntityButton: FC<{
-  type: keyof DumpType["entries"];
   name: string;
   onClick?: () => void;
   isActive?: boolean;
-}> = ({ type, name, onClick, isActive }) => {
+}> = ({ name, onClick, isActive }) => {
   return (
-    <EntityTooltip type={type} name={name}>
+    <EntityTooltip name={name}>
       <Surface<HTMLButtonElement>
         key={name}
         as={onClick ? "button" : "div"}
@@ -23,12 +21,7 @@ export const EntityButton: FC<{
         active={onClick ? { color: "orangeDark" } : {}}
         className="p-0.5 m-0.5 inline-flex items-center justify-center rounded"
       >
-        <FactorioImage
-          image={name}
-          category={type}
-          categoryFallback={["item", "recipe", "space-location"]}
-          width={30}
-        />
+        <FactorioImage image={name} width={30} />
       </Surface>
     </EntityTooltip>
   );

@@ -14,21 +14,14 @@ const meta = {
 export default meta;
 
 export const WithHardcodedContents = () => {
-  const [selected, setSelected] = useState<any>(undefined);
+  const [selected, setSelected] = useState<string | undefined>(undefined);
   return (
     <>
       <EntityGrid
         gridWidth={8}
         activeItem={selected}
-        onClick={(type, name) => setSelected({ type, name })}
-        items={[
-          [
-            { type: "planet", name: "nauvis" },
-            { type: "planet", name: "vulcanus" },
-            { type: "planet", name: "gleba" },
-            { type: "planet", name: "fulgora" },
-          ],
-        ]}
+        onClick={setSelected}
+        items={[["nauvis", "vulcanus", "gleba", "fulgora"]]}
       />
       {JSON.stringify(selected)}
     </>
@@ -57,9 +50,7 @@ export const AllItemsInGroup = () => {
             group: selectedGroup,
             types: ["item", "tool", "recipe"],
           }),
-        ).map((subgroup) =>
-          subgroup.map((item) => ({ type: item.type, name: item.name })),
-        )}
+        ).map((subgroup) => subgroup.map((item) => item.name))}
       />
       <TooltipRoot />
     </div>

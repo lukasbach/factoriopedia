@@ -1,41 +1,9 @@
 import { z } from "zod";
-import {
-  AmmoType,
-  CapsuleType,
-  FusionGeneratorType,
-  FusionReactorType,
-  GunType,
-  ItemGroupType,
-  ItemSubgroupType,
-  ItemType,
-  ModuleType,
-  PlanetType,
-  QualityType,
-  RecipeType,
-  RepairToolType,
-  SpaceLocationType,
-  ToolType,
-} from "./structures";
+import { FactorioType } from "./structures";
 
 export const DumpType = z.object({
-  // entries: z.record(z.record(FactorioType)),
-  entries: z.object({
-    item: z.record(ItemType),
-    recipe: z.record(RecipeType),
-    quality: z.record(QualityType),
-    "space-location": z.record(SpaceLocationType),
-    "item-group": z.record(ItemGroupType),
-    "item-subgroup": z.record(ItemSubgroupType),
-    tool: z.record(ToolType),
-    planet: z.record(PlanetType),
-    capsule: z.record(CapsuleType),
-    "repair-tool": z.record(RepairToolType),
-    module: z.record(ModuleType),
-    gun: z.record(GunType),
-    ammo: z.record(AmmoType),
-    "fusion-reactor": z.record(FusionGeneratorType),
-    "fusion-generator": z.record(FusionReactorType),
-  }),
+  entries: z.record(FactorioType),
+  types: z.record(z.string().array()),
   locales: z.record(
     z.object({
       names: z.record(z.string()),

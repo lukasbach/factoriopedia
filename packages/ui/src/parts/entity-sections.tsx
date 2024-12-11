@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BaseType, ItemType, RecipeType } from "@factorioui/data";
+import { FactorioType } from "@factorioui/data";
 import {
   ContentSection,
   ContentSectionStat,
@@ -14,27 +14,23 @@ type Props = {
 };
 
 const makeSection =
-  <T extends BaseType>(
-    type: T["type"] | undefined,
-    Component: FC<Props & { entity: T }>,
-  ) =>
+  (type: string | undefined, Component: FC<Props & { entity: FactorioType }>) =>
   (props: Props) => {
     const { entries } = useFactorioData();
-    const Componentx = Component as FC<Props>;
-    if (!type) return <Componentx {...props} />;
-    const entry = (entries as any)[type]?.[props.name];
+    const entry = entries[props.name];
+    if (type && !entry.types.includes(type)) return null;
     if (!entry) return null;
     return <Component {...props} entity={entry} />;
   };
 
-const ItemInfo = makeSection<ItemType>("item", ({ entity }) => {
+const ItemInfo = makeSection("item", ({ entity }) => {
   return (
     <>
       <ContentSectionStat label="Stack size">
         {entity.stack_size}
       </ContentSectionStat>
       <ContentSectionStat label="Rocket capacity">
-        {entity.weight ? 1000000 / entity.weight : "?"}
+        {entity.weight ? 1000000 / entity.weight : entity.stack_size}
       </ContentSectionStat>
     </>
   );
@@ -43,14 +39,14 @@ const ItemInfo = makeSection<ItemType>("item", ({ entity }) => {
 const Main = makeSection(undefined, ({ variant, name }) => {
   return (
     <ContentSection variant={variant}>
-      <LocaleDescription type="item" name={name} />
+      <LocaleDescription name={name} />
       <hr />
       <ItemInfo name={name} />
     </ContentSection>
   );
 });
 
-const Recipe = makeSection<RecipeType>("recipe", ({ entity }) => {
+const Recipe = makeSection("recipe", ({ entity }) => {
   return (
     <ContentSection variant="flat">
       <p>Ingredients</p>

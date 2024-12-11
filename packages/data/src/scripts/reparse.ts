@@ -4,7 +4,8 @@ import path from "node:path";
 import * as url from "node:url";
 import { glob } from "glob";
 import Spritesmith from "spritesmith";
-import { FactorioType } from "../types/structures.js";
+import deepmerge from "deepmerge";
+import { DumpType } from "../types/dump";
 
 const targetFolder = path.join(
   path.dirname(url.fileURLToPath(import.meta.url)),
@@ -25,12 +26,18 @@ const data = await fs.readJson(
 );
 
 const entries: Record<string, any> = {};
+const types: Record<string, string[]> = {};
 const locales: Record<string, any> = {};
 const spriteMap: Record<string, any> = {};
 const spriteMapSizes: Record<string, any> = {};
 
-for (const type of [...FactorioType._def.optionsMap.keys()] as string[]) {
-  entries[type] = data[type];
+for (const [type, typeContent] of Object.entries(data)) {
+  types[type] ??= [];
+  for (const [name, entity] of Object.entries(typeContent as any)) {
+    entries[name] = deepmerge(entries[name] || {}, entity as any);
+    entries[name].types = [...(entries[name].types || []), type];
+    types[type].push(name);
+  }
 }
 
 for (const locale of await glob(
@@ -93,11 +100,16 @@ for (const spriteList of sprites) {
 
 const outData = {
   entries,
+  types,
   locales,
   spriteMap,
   spriteMapSizes,
 };
 // TODO DumpType.parse
-await fs.writeJson(path.join(targetFolder, "data.json"), outData, {
-  spaces: 2,
-});
+await fs.writeJson(
+  path.join(targetFolder, "data.json"),
+  DumpType.parse(outData),
+  {
+    spaces: 2,
+  },
+);

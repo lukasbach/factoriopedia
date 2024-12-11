@@ -1,8 +1,8 @@
 import type { Meta } from "@storybook/react";
 import { Surface } from "./surface";
 import { FactorioImage } from "./factorio-image";
-import { useItemGroups } from "../hooks/use-item-groups";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
+import { useEntriesOfType } from "../hooks/use-entries-of-type";
 
 const meta = {
   title: "Components/Surface",
@@ -34,7 +34,7 @@ export const ItemPlates = () => (
 
 export const GroupButtons = () => (
   <div className="flex">
-    {useItemGroups().map((group) => (
+    {useEntriesOfType("item-group").map((group) => (
       <Surface
         key={group.name}
         shadow="btn-large"

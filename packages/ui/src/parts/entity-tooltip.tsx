@@ -1,5 +1,4 @@
 import { FC, PropsWithChildren, useId } from "react";
-import { DumpType } from "@factorioui/data";
 import { tooltip } from "../components/tooltip";
 import { TooltipSection } from "../components/tooltip-section";
 import { useFactorioData } from "../components/data-provider";
@@ -16,20 +15,21 @@ const TooltipStat = ({
   </p>
 );
 
-export const EntityTooltip: FC<
-  PropsWithChildren<{ type: keyof DumpType["entries"]; name: string }>
-> = ({ type, name, children }) => {
+export const EntityTooltip: FC<PropsWithChildren<{ name: string }>> = ({
+  name,
+  children,
+}) => {
   const { entries, locales } = useFactorioData();
-  const entry = entries[type][name];
+  const entry = entries[name];
   const id = useId();
 
   return (
     <span
       {...tooltip(
-        useLocaleName(type, name),
+        useLocaleName(name),
         <>
-          <TooltipSection>{useLocaleDescription(type, name)}</TooltipSection>
-          {entry.type === "planet" && (
+          <TooltipSection>{useLocaleDescription(name)}</TooltipSection>
+          {entry.types.includes("planet") && (
             <TooltipSection>
               <TooltipStat label="Day night cycle">
                 {(entry.surface_properties?.["day-night-cycle"] ?? 1) / 60 / 60}{" "}

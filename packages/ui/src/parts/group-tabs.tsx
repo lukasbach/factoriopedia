@@ -1,15 +1,15 @@
 import { FC } from "react";
-import { useItemGroups } from "../hooks/use-item-groups";
 import { Surface } from "../components/surface";
 import { FactorioImage } from "../components/factorio-image";
 import { ButtonGrid } from "../components/button-grid";
+import { useEntriesOfType } from "../hooks/use-entries-of-type";
 
 export const GroupTabs: FC<{
   gridWidth: number;
   selectedGroup: string | undefined;
   onSelectGroup: (group: string) => void;
 }> = ({ gridWidth, onSelectGroup, selectedGroup }) => {
-  const groups = useItemGroups();
+  const groups = useEntriesOfType("item-group");
   return (
     <ButtonGrid gridWidth={gridWidth} itemWidth={80} itemHeight={96}>
       {groups.map((group) => (
