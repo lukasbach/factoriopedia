@@ -88,6 +88,30 @@ export const ToolType = BaseType.extend({
   weight: z.number(),
 });
 
+export const PlanetType = BaseType.extend({
+  type: z.literal("planet"),
+  gravity_pull: z.number(),
+  distance: z.number(),
+  magnitude: z.number(),
+  solar_power_in_space: z.number(),
+  surface_properties: z.object({
+    "day-night-cycle": z.number().nullish(),
+    gravity: z.number().nullish(),
+    "magnetic-field": z.number().nullish(),
+    pressure: z.number().nullish(),
+    "solar-power": z.number().nullish(),
+  }),
+  asteroid_spawn_influence: z.number(),
+  asteroid_spawn_definitions: z.array(
+    z.object({
+      asteroid: z.string(),
+      probability: z.number(),
+      speed: z.number(),
+      type: z.string().nullish(),
+    }),
+  ),
+});
+
 export const FactorioType = z.discriminatedUnion("type", [
   ItemType,
   RecipeType,
@@ -96,6 +120,7 @@ export const FactorioType = z.discriminatedUnion("type", [
   ItemGroupType,
   ItemSubgroupType,
   ToolType,
+  PlanetType,
 ]);
 
 export type FactorioType = z.infer<typeof FactorioType>;

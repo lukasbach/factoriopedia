@@ -3,6 +3,7 @@ import {
   ItemGroupType,
   ItemSubgroupType,
   ItemType,
+  PlanetType,
   QualityType,
   RecipeType,
   SpaceLocationType,
@@ -19,6 +20,7 @@ export const DumpType = z.object({
     "item-group": z.record(ItemGroupType),
     "item-subgroup": z.record(ItemSubgroupType),
     tool: z.record(ToolType),
+    planet: z.record(PlanetType),
   }),
   locales: z.record(
     z.object({

@@ -5,7 +5,6 @@ import * as url from "node:url";
 import { glob } from "glob";
 import Spritesmith from "spritesmith";
 import { FactorioType } from "../types/structures.js";
-import { DumpType } from "../types/dump";
 
 const targetFolder = path.join(
   path.dirname(url.fileURLToPath(import.meta.url)),
@@ -98,14 +97,7 @@ const outData = {
   spriteMap,
   spriteMapSizes,
 };
-
-const parse = DumpType.safeParse(outData);
-
-if (!parse.success) {
-  parse.error.errors.forEach((e) => console.error(e));
-  console.warn("Failed to parse data, writing anyway");
-}
-
+// TODO DumpType.parse
 await fs.writeJson(path.join(targetFolder, "data.json"), outData, {
   spaces: 2,
 });

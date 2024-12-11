@@ -3,11 +3,13 @@ import { FactorioType } from "@factorioui/data/src";
 import { DumpType } from "@factorioui/data";
 import { useFactorioData } from "../components/data-provider";
 
-const resolveJointItemEntries = (props: {
+type ResolvementProps = {
   data: DumpType;
   group?: string;
   types: (keyof DumpType["entries"])[];
-}) => {
+};
+
+const resolveJointItemEntries = (props: ResolvementProps) => {
   const entries: Record<string, FactorioType[]> = Object.fromEntries(
     Object.values(props.data.entries["item-subgroup"])
       .filter((subgroup) => !props.group || subgroup.group === props.group)
@@ -40,15 +42,17 @@ const resolveJointItemEntries = (props: {
   return entries;
 };
 
-export const useGroupEntries = (group: string) => {
+export const useResolveJointItemEntries = (
+  props: Omit<ResolvementProps, "data">,
+) => {
   const data = useFactorioData();
   return useMemo(
     () =>
       resolveJointItemEntries({
         data,
-        group,
-        types: ["item", "tool", "recipe"],
+        group: props.group,
+        types: props.types,
       }),
-    [data, group],
+    [data, props.group, props.types],
   );
 };

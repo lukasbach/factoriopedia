@@ -2,7 +2,7 @@ import type { Meta } from "@storybook/react";
 import { Surface } from "./surface";
 import { FactorioImage } from "./factorio-image";
 import { useItemGroups } from "../hooks/use-item-groups";
-import { useGroupEntries } from "../hooks/use-group-entries";
+import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 
 const meta = {
   title: "Components/Surface",
@@ -51,7 +51,12 @@ export const GroupButtons = () => (
 
 export const ItemsInGroup = () => (
   <div>
-    {Object.values(useGroupEntries("intermediate-products")).map((subgroup) => (
+    {Object.values(
+      useResolveJointItemEntries({
+        group: "intermediate-products",
+        types: ["item", "tool", "recipe"],
+      }),
+    ).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
         {subgroup.map((item) => (
           <Surface
