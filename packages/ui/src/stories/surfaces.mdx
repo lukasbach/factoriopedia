@@ -1,0 +1,31 @@
+import {Meta, Story} from '@storybook/blocks';
+
+import * as ExampleComponentStories from '../components/surface.stories';
+import {Surface} from "../components/surface";
+import {FactorioImage} from "../components/factorio-image";
+import {FactorioDataProvider} from "../components/data-provider";
+
+# asdads
+
+asdfasdf
+
+<FactorioDataProvider path="/" loader={<div>Loading...</div>}>
+    <div className="flex gap-1">
+        <Surface
+            shadow="btn1"
+            color="blackLight"
+            hover={{ color: "orangeLight" }}
+            active={{ color: "orangeDark" }}
+            className="inline-block w-8 h-8 flex items-center justify-center rounded"
+        >
+            <FactorioImage image="iron-plate" width={24} />
+        </Surface>
+        <Surface
+            shadow="btn1"
+            color="orangeLight"
+            className="inline-block w-8 h-8 flex items-center justify-center rounded"
+        >
+            <FactorioImage image="iron-plate" width={24} />
+        </Surface>
+    </div>
+</FactorioDataProvider>

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const BaseType = z.object({
+export const BaseType = z.object({
   type: z.string(),
   name: z.string(),
   icon: z.string().nullish(),
@@ -11,7 +11,7 @@ const BaseType = z.object({
   subgroup: z.string().nullish(),
 });
 
-const ItemType = BaseType.extend({
+export const ItemType = BaseType.extend({
   type: z.literal("item"),
   stack_size: z.number(),
   fuel_value: z.string().nullish(),
@@ -21,7 +21,7 @@ const ItemType = BaseType.extend({
   weight: z.number().nullish(),
 });
 
-const RecipeType = BaseType.extend({
+export const RecipeType = BaseType.extend({
   type: z.literal("recipe"),
   ingredients: z
     .array(
@@ -48,14 +48,14 @@ const RecipeType = BaseType.extend({
   unlock_results: z.boolean().nullish(),
 });
 
-const QualityType = BaseType.extend({
+export const QualityType = BaseType.extend({
   type: z.literal("quality"),
   level: z.number(),
   color: z.any(),
   next: z.string().nullish(),
 });
 
-const SpaceLocationType = BaseType.extend({
+export const SpaceLocationType = BaseType.extend({
   type: z.literal("space-location"),
   gravity_pull: z.number().nullish(),
   distance: z.number().nullish(),
@@ -71,11 +71,11 @@ const SpaceLocationType = BaseType.extend({
     .nullish(),
 });
 
-const ItemGroupType = BaseType.extend({
+export const ItemGroupType = BaseType.extend({
   type: z.literal("item-group"),
 });
 
-const ItemSubgroupType = BaseType.extend({
+export const ItemSubgroupType = BaseType.extend({
   type: z.literal("item-subgroup"),
   group: z.string(),
   order: z.string(),

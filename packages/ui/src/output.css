@@ -570,8 +570,8 @@ video {
   width: 2rem;
 }
 
-.w-6 {
-  width: 1.5rem;
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .items-center {
@@ -582,13 +582,50 @@ video {
   justify-content: center;
 }
 
-.bg-red-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+.gap-1 {
+  gap: 0.25rem;
 }
 
-.align-middle {
-  vertical-align: middle;
+.gap-0\.5 {
+  gap: 0.125rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.bg-blackDark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(36 35 36 / var(--tw-bg-opacity, 1));
+}
+
+.bg-blackLight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 63 64 / var(--tw-bg-opacity, 1));
+}
+
+.bg-blackMedium {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 48 49 / var(--tw-bg-opacity, 1));
+}
+
+.bg-grayLight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(142 142 142 / var(--tw-bg-opacity, 1));
+}
+
+.bg-orangeDark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 171 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-orangeLight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 190 100 / var(--tw-bg-opacity, 1));
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .shadow {
@@ -597,8 +634,134 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-btn1 {
-  --tw-shadow: inset 0px -2px 7px 0px #000000, 0px 2px 4px 1px rgba(0,0,0,0.77), inset 0px 1px 4px -1px rgba(255,255,255,0.8);;
-  --tw-shadow-colored: inset 0px -2px 7px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 1px 4px -1px var(--tw-shadow-color);
+.shadow-btn-large {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 2px 4px 1px rgba(0,0,0,0.3), inset 0px 2px 2px -1px rgba(255,255,255,0.5);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 2px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-btn-small {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 2px 4px 1px rgba(0,0,0,0.3), inset 0px 1px 2px -1px rgba(255,255,255,0.5);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-deepinset {
+  --tw-shadow: inset 0px 2px 4px 2px rgba(0,0,0,1);;
+  --tw-shadow-colored: inset 0px 2px 4px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-orangeglow {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 1px 3px 2px rgba(255,171,0,0.3), inset 0px 1px 2px 0px rgba(255,255,255,0.8);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 1px 3px 2px var(--tw-shadow-color), inset 0px 1px 2px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:bg-blackDark:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(36 35 36 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-blackLight:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 63 64 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-blackMedium:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 48 49 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-grayLight:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(142 142 142 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-orangeDark:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 171 0 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-orangeLight:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 190 100 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:shadow-btn-large:hover {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 2px 4px 1px rgba(0,0,0,0.3), inset 0px 2px 2px -1px rgba(255,255,255,0.5);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 2px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:shadow-btn-small:hover {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 2px 4px 1px rgba(0,0,0,0.3), inset 0px 1px 2px -1px rgba(255,255,255,0.5);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:shadow-deepinset:hover {
+  --tw-shadow: inset 0px 2px 4px 2px rgba(0,0,0,1);;
+  --tw-shadow-colored: inset 0px 2px 4px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:shadow-orangeglow:hover {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 1px 3px 2px rgba(255,171,0,0.3), inset 0px 1px 2px 0px rgba(255,255,255,0.8);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 1px 3px 2px var(--tw-shadow-color), inset 0px 1px 2px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.active\:bg-blackDark:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(36 35 36 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-blackLight:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 63 64 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-blackMedium:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 48 49 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-grayLight:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(142 142 142 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-orangeDark:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 171 0 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-orangeLight:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 190 100 / var(--tw-bg-opacity, 1));
+}
+
+.active\:shadow-btn-large:active {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 2px 4px 1px rgba(0,0,0,0.3), inset 0px 2px 2px -1px rgba(255,255,255,0.5);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 2px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.active\:shadow-btn-small:active {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 2px 4px 1px rgba(0,0,0,0.3), inset 0px 1px 2px -1px rgba(255,255,255,0.5);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 2px 4px 1px var(--tw-shadow-color), inset 0px 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.active\:shadow-deepinset:active {
+  --tw-shadow: inset 0px 2px 4px 2px rgba(0,0,0,1);;
+  --tw-shadow-colored: inset 0px 2px 4px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.active\:shadow-orangeglow:active {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 1px 3px 2px rgba(255,171,0,0.3), inset 0px 1px 2px 0px rgba(255,255,255,0.8);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 1px 3px 2px var(--tw-shadow-color), inset 0px 1px 2px 0px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }

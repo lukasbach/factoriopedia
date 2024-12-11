@@ -1,9 +1,23 @@
 import { z } from "zod";
-import { FactorioType } from "./structures";
+import {
+  ItemGroupType,
+  ItemSubgroupType,
+  ItemType,
+  QualityType,
+  RecipeType,
+  SpaceLocationType,
+} from "./structures";
 
 export const DumpType = z.object({
-  entries: z.record(FactorioType),
-  categories: z.record(z.array(z.string())),
+  // entries: z.record(z.record(FactorioType)),
+  entries: z.object({
+    item: z.record(ItemType),
+    recipe: z.record(RecipeType),
+    quality: z.record(QualityType),
+    "space-location": z.record(SpaceLocationType),
+    "item-group": z.record(ItemGroupType),
+    "item-subgroup": z.record(ItemSubgroupType),
+  }),
   locales: z.record(
     z.object({
       names: z.record(z.string()),

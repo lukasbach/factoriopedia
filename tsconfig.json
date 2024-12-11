@@ -7,7 +7,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "lib": [
-      "ES2024",
       "DOM"
     ],
     "outDir": "${configDir}/lib",

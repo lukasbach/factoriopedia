@@ -25,31 +25,15 @@ const data = await fs.readJson(
   path.join(scriptOutputFolder, "data-raw-dump.json"),
 );
 
-const entries: any[] = Object.entries(data).reduce(
-  (acc: any, [category, items]: any) => {
-    return acc.concat(
-      Object.entries(items).map(([name, item]) => {
-        return { category, name, item };
-      }),
-    );
-  },
-  [],
-);
+const entries: Record<string, any> = {};
+const locales: Record<string, any> = {};
+const spriteMap: Record<string, any> = {};
+const spriteMapSizes: Record<string, any> = {};
 
-const targetItems: Record<string, any> = {};
-const categoryMap: Record<string, string[]> = {};
-
-for (const item of entries) {
-  if (![...FactorioType._def.optionsMap.keys()].includes(item.category)) {
-    continue;
-  }
-
-  categoryMap[item.category] ??= [];
-  categoryMap[item.category].push(item.name);
-  targetItems[item.name] = FactorioType.parse(item.item);
+for (const type of [...FactorioType._def.optionsMap.keys()] as string[]) {
+  entries[type] = data[type];
 }
 
-const locales: Record<string, any> = {};
 for (const locale of await glob(
   path.posix.join(scriptOutputFolder, "*-locale.json"),
 )) {
@@ -57,14 +41,6 @@ for (const locale of await glob(
   const localeName = path.basename(locale).replace(/-locale.json$/, "");
   locales[localeName] = localeData;
 }
-
-await fs.writeJson(
-  path.join(targetFolder, "data.json"),
-  { items: targetItems, categories: categoryMap, locales },
-  {
-    // spaces: 2,
-  },
-);
 
 const sprites = [
   "virtual-signal/*.png",
@@ -84,20 +60,20 @@ const sprites = [
   "asteroid-chunk/*.png",
 ];
 
-const spriteMap: Record<string, any> = {};
-const spriteMapSizes: Record<string, any> = {};
 for (const spriteList of sprites) {
   const groupName = path.dirname(spriteList);
-  const spriteProm = Promise.withResolvers<Spritesmith.SpritesmithResult>();
-  Spritesmith.run(
-    {
-      src: await glob(path.posix.join(scriptOutputFolder, spriteList)),
+  const src = await glob(path.posix.join(scriptOutputFolder, spriteList));
+  const spriteResult = await new Promise<Spritesmith.SpritesmithResult>(
+    (resolve, reject) => {
+      Spritesmith.run(
+        {
+          src,
+        },
+        (err, result) => (err ? reject(err) : resolve(result)),
+      );
     },
-    (err, result) =>
-      err ? spriteProm.reject(err) : spriteProm.resolve(result),
   );
 
-  const spriteResult = await spriteProm.promise;
   await fs.writeFile(
     path.join(targetFolder, `${groupName}.png`),
     spriteResult.image,
@@ -116,16 +92,20 @@ for (const spriteList of sprites) {
   };
 }
 
-await fs.writeJson(
-  path.join(targetFolder, "data.json"),
-  DumpType.parse({
-    entries: targetItems,
-    categories: categoryMap,
-    locales,
-    spriteMap,
-    spriteMapSizes,
-  }),
-  {
-    spaces: 2,
-  },
-);
+const outData = {
+  entries,
+  locales,
+  spriteMap,
+  spriteMapSizes,
+};
+
+const parse = DumpType.safeParse(outData);
+
+if (!parse.success) {
+  parse.error.errors.forEach((e) => console.error(e));
+  console.warn("Failed to parse data, writing anyway");
+}
+
+await fs.writeJson(path.join(targetFolder, "data.json"), outData, {
+  spaces: 2,
+});
