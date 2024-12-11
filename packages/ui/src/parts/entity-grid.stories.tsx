@@ -1,6 +1,9 @@
 import type { Meta } from "@storybook/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { EntityGrid } from "./entity-grid";
+import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
+import { Surface } from "../components/surface";
+import { GroupTabs } from "./group-tabs";
 
 const meta = {
   title: "Parts/Entity Grid",
@@ -28,5 +31,34 @@ export const WithHardcodedContents = () => {
       />
       {JSON.stringify(selected)}
     </>
+  );
+};
+
+export const AllItemsInGroup = () => {
+  const [selectedGroup, setSelectedGroup] = useState<string>(
+    "intermediate-products",
+  );
+  return (
+    <div>
+      <Surface color="blackLight" shadow="topglow-2" className="p-2">
+        <GroupTabs
+          gridWidth={6}
+          selectedGroup={selectedGroup}
+          onSelectGroup={setSelectedGroup}
+        />
+        {selectedGroup}
+      </Surface>
+      <EntityGrid
+        gridWidth={10}
+        items={Object.values(
+          useResolveJointItemEntries({
+            group: selectedGroup,
+            types: ["item", "tool", "recipe"],
+          }),
+        ).map((subgroup) =>
+          subgroup.map((item) => ({ type: item.type, name: item.name })),
+        )}
+      />
+    </div>
   );
 };

@@ -11,12 +11,7 @@ export const GroupTabs: FC<{
 }> = ({ gridWidth, onSelectGroup, selectedGroup }) => {
   const groups = useItemGroups();
   return (
-    <ButtonGrid
-      gridWidth={gridWidth}
-      gridHeight={4}
-      itemWidth={96}
-      itemHeight={110}
-    >
+    <ButtonGrid gridWidth={gridWidth} itemWidth={80} itemHeight={96}>
       {groups.map((group) => (
         <Surface<HTMLButtonElement>
           as="button"
@@ -25,7 +20,7 @@ export const GroupTabs: FC<{
           color="grayLight"
           hover={{ color: "orangeDark", shadow: "orangeglow" }}
           active={{ color: "orangeLight", shadow: "deepinset" }}
-          className="p-3 flex w-[96px] h-[110px] items-center justify-center"
+          className="p-3 flex w-[80px] h-[96px] items-center justify-center"
           isActive={selectedGroup === group.name}
           onClick={() => onSelectGroup(group.name)}
         >

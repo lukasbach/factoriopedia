@@ -9,6 +9,7 @@ export const BaseType = z.object({
   enabled: z.boolean().nullish(),
   order: z.string().nullish(),
   subgroup: z.string().nullish(),
+  default_import_location: z.string().nullish(),
 });
 
 export const ItemType = BaseType.extend({
@@ -112,6 +113,53 @@ export const PlanetType = BaseType.extend({
   ),
 });
 
+export const CapsuleType = BaseType.extend({
+  type: z.literal("capsule"),
+  stack_size: z.number(),
+  weight: z.number(),
+  capsule_action: z.object({
+    attack_parameters: z.object({
+      ammo_category: z.string(),
+      cooldown: z.number(),
+      projectile_creation_distance: z.number(),
+    }),
+  }),
+});
+
+export const RepairToolType = BaseType.extend({
+  type: z.literal("repair-tool"),
+  durability: z.number(),
+});
+
+export const ModuleType = BaseType.extend({
+  type: z.literal("module"),
+  tier: z.number(),
+  effect: z.object({
+    quality: z.number().nullish(),
+    speed: z.number().nullish(),
+    consumption: z.number().nullish(),
+    pollution: z.number().nullish(),
+  }),
+});
+
+export const GunType = BaseType.extend({
+  type: z.literal("gun"),
+  attack_parameters: z.object({
+    type: z.string(),
+    ammo_category: z.string(),
+    cooldown: z.number(),
+    movement_slow_down_factor: z.number(),
+    projectile_creation_distance: z.number(),
+    range: z.number(),
+  }),
+});
+
+export const AmmoType = BaseType.extend({
+  type: z.literal("ammo"),
+  ammo_category: z.string(),
+  magazine_size: z.number(),
+});
+
 export const FactorioType = z.discriminatedUnion("type", [
   ItemType,
   RecipeType,
@@ -121,6 +169,11 @@ export const FactorioType = z.discriminatedUnion("type", [
   ItemSubgroupType,
   ToolType,
   PlanetType,
+  CapsuleType,
+  RepairToolType,
+  ModuleType,
+  GunType,
+  AmmoType,
 ]);
 
 export type FactorioType = z.infer<typeof FactorioType>;

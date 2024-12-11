@@ -1,11 +1,16 @@
 import { z } from "zod";
 import {
+  AmmoType,
+  CapsuleType,
+  GunType,
   ItemGroupType,
   ItemSubgroupType,
   ItemType,
+  ModuleType,
   PlanetType,
   QualityType,
   RecipeType,
+  RepairToolType,
   SpaceLocationType,
   ToolType,
 } from "./structures";
@@ -21,6 +26,11 @@ export const DumpType = z.object({
     "item-subgroup": z.record(ItemSubgroupType),
     tool: z.record(ToolType),
     planet: z.record(PlanetType),
+    capsule: z.record(CapsuleType),
+    "repair-pack": z.record(RepairToolType),
+    module: z.record(ModuleType),
+    gun: z.record(GunType),
+    ammo: z.record(AmmoType),
   }),
   locales: z.record(
     z.object({
