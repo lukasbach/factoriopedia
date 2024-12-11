@@ -20,7 +20,7 @@ export const GroupTabs: FC<{
           color="grayLight"
           hover={{ color: "orangeDark", shadow: "orangeglow" }}
           active={{ color: "orangeLight", shadow: "deepinset" }}
-          className="p-3 flex w-[80px] h-[96px] items-center justify-center"
+          className="flex w-[80px] h-[96px] items-center justify-center"
           isActive={selectedGroup === group.name}
           onClick={() => onSelectGroup(group.name)}
         >

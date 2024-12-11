@@ -2,6 +2,8 @@ import { z } from "zod";
 import {
   AmmoType,
   CapsuleType,
+  FusionGeneratorType,
+  FusionReactorType,
   GunType,
   ItemGroupType,
   ItemSubgroupType,
@@ -31,6 +33,8 @@ export const DumpType = z.object({
     module: z.record(ModuleType),
     gun: z.record(GunType),
     ammo: z.record(AmmoType),
+    "fusion-reactor": z.record(FusionGeneratorType),
+    "fusion-generator": z.record(FusionReactorType),
   }),
   locales: z.record(
     z.object({

@@ -1,6 +1,8 @@
 import { FC, PropsWithChildren } from "react";
 import { Surface } from "./surface";
 
+export type ContentSectionVariant = "dark" | "flat";
+
 export const ContentSectionStat = ({
   label,
   children,
@@ -12,7 +14,7 @@ export const ContentSectionStat = ({
 );
 
 export const ContentSection: FC<
-  PropsWithChildren<{ title?: string; variant?: "dark" | "flat" }>
+  PropsWithChildren<{ title?: string; variant?: ContentSectionVariant }>
 > = ({ children, title, variant }) => {
   if (variant === "flat") {
     return (

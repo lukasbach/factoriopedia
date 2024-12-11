@@ -10,6 +10,24 @@ export const BaseType = z.object({
   order: z.string().nullish(),
   subgroup: z.string().nullish(),
   default_import_location: z.string().nullish(),
+  energy_source: z
+    .object({
+      type: z.string(),
+    })
+    .nullish(),
+  power_input: z.string().nullish(),
+  max_fluid_usage: z.number().nullish(),
+  burner: z
+    .object({
+      type: z.string(),
+      fuel_categories: z.string().array(),
+      effectivity: z.number(),
+      fuel_inventory_size: z.number(),
+      emissions_per_minute: z.object({
+        pollution: z.number(),
+      }),
+    })
+    .nullish(),
 });
 
 export const ItemType = BaseType.extend({
@@ -160,6 +178,14 @@ export const AmmoType = BaseType.extend({
   magazine_size: z.number(),
 });
 
+export const FusionGeneratorType = BaseType.extend({
+  type: z.literal("fusion-generator"),
+});
+
+export const FusionReactorType = BaseType.extend({
+  type: z.literal("fusion-reactor"),
+});
+
 export const FactorioType = z.discriminatedUnion("type", [
   ItemType,
   RecipeType,
@@ -174,6 +200,22 @@ export const FactorioType = z.discriminatedUnion("type", [
   ModuleType,
   GunType,
   AmmoType,
+  FusionGeneratorType,
+  FusionReactorType,
 ]);
 
 export type FactorioType = z.infer<typeof FactorioType>;
+export type BaseType = z.infer<typeof BaseType>;
+export type ItemType = z.infer<typeof ItemType>;
+export type RecipeType = z.infer<typeof RecipeType>;
+export type QualityType = z.infer<typeof QualityType>;
+export type SpaceLocationType = z.infer<typeof SpaceLocationType>;
+export type ItemGroupType = z.infer<typeof ItemGroupType>;
+export type ItemSubgroupType = z.infer<typeof ItemSubgroupType>;
+export type ToolType = z.infer<typeof ToolType>;
+export type PlanetType = z.infer<typeof PlanetType>;
+export type CapsuleType = z.infer<typeof CapsuleType>;
+export type RepairToolType = z.infer<typeof RepairToolType>;
+export type ModuleType = z.infer<typeof ModuleType>;
+export type GunType = z.infer<typeof GunType>;
+export type AmmoType = z.infer<typeof AmmoType>;
