@@ -20,8 +20,8 @@ export const EntityGrid: FC<
       ref={ref}
       className="h-full"
       style={{
-        width: gridWidth ? `${gridWidth * itemWidth}px` : "100%",
-        height: gridHeight ? `${gridHeight * itemHeight}px` : "100%",
+        width: gridWidth ? `${gridWidth * itemWidth}px` : "inherit",
+        height: gridHeight ? `${gridHeight * itemHeight}px` : "inherit",
       }}
     >
       <Surface
@@ -42,7 +42,7 @@ export const EntityGrid: FC<
             ),
           )}
         </div>
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap">
+        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap content-start">
           {children}
         </div>
       </Surface>

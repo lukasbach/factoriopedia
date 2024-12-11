@@ -1,4 +1,4 @@
-import { FC, HTMLProps, PropsWithChildren } from "react";
+import { HTMLProps, PropsWithChildren } from "react";
 import { combine } from "../utils";
 
 type SurfaceProperties = {
@@ -29,29 +29,39 @@ type SurfaceProperties = {
   className="active:bg-blackDark active:bg-blackMedium active:bg-blackLight active:bg-grayLight active:bg-orangeDark active:bg-orangeLight"
  */
 
-export const Surface: FC<
-  PropsWithChildren<
-    {
-      hover?: SurfaceProperties;
-      active?: SurfaceProperties;
-      isActive?: boolean;
-    } & SurfaceProperties &
-      HTMLProps<HTMLDivElement>
-  >
-> = ({ shadow, color, hover, active, isActive, ...props }) => {
+export type SurfaceProps<T = HTMLDivElement> = PropsWithChildren<
+  {
+    hover?: SurfaceProperties;
+    active?: SurfaceProperties;
+    isActive?: boolean;
+    as?: string;
+  } & SurfaceProperties &
+    HTMLProps<T>
+>;
+
+export function Surface<T = HTMLDivElement>({
+  shadow,
+  color,
+  hover,
+  active,
+  isActive,
+  as,
+  ...props
+}: SurfaceProps<T>) {
   const currentProps = isActive && active ? active : { shadow, color };
+  const Comp = (as ?? "div") as any;
   return (
-    <div
+    <Comp
       {...props}
       className={combine(
         props.className ?? "",
         [!!currentProps.shadow, `shadow-${currentProps.shadow}`],
         [!!currentProps.color, `bg-${currentProps.color}`],
-        [!!hover?.color, `hover:bg-${hover?.color}`],
-        [!!hover?.shadow, `hover:shadow-${hover?.shadow}`],
+        [!isActive && !!hover?.color, `hover:bg-${hover?.color}`],
+        [!isActive && !!hover?.shadow, `hover:shadow-${hover?.shadow}`],
         [!!active?.color, `active:bg-${active?.color}`],
         [!!active?.shadow, `active:shadow-${active?.shadow}`],
       )}
     />
   );
-};
+}
