@@ -50,18 +50,29 @@ export const GroupButtons = () => (
 );
 
 export const ItemsInGroup = () => (
-  <div className="flex flex-wrap gap-0.5">
-    {useGroupEntries("intermediate-products").map((item) => (
-      <Surface
-        key={item.name}
-        shadow="btn-small"
-        color="blackLight"
-        hover={{ color: "orangeLight" }}
-        active={{ color: "orangeDark" }}
-        className="inline-block w-8 h-8 flex items-center justify-center rounded"
-      >
-        <FactorioImage image={item.name} width={24} />
-      </Surface>
+  <div>
+    {console.log(useGroupEntries("intermediate-products"))}
+    {useGroupEntries("intermediate-products").map((subgroup) => (
+      <div className="flex flex-wrap gap-0.5">
+        {subgroup.entries.map((item) => (
+          <Surface
+            key={item.name}
+            shadow="btn-small"
+            color="blackLight"
+            hover={{ color: "orangeLight" }}
+            active={{ color: "orangeDark" }}
+            className="inline-block p-0.5 flex items-center justify-center rounded"
+            title={item.locale}
+          >
+            <FactorioImage
+              image={item.name}
+              category="recipe"
+              categoryFallback={["item"]}
+              width={30}
+            />
+          </Surface>
+        ))}
+      </div>
     ))}
   </div>
 );

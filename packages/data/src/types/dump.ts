@@ -6,6 +6,7 @@ import {
   QualityType,
   RecipeType,
   SpaceLocationType,
+  ToolType,
 } from "./structures";
 
 export const DumpType = z.object({
@@ -17,6 +18,7 @@ export const DumpType = z.object({
     "space-location": z.record(SpaceLocationType),
     "item-group": z.record(ItemGroupType),
     "item-subgroup": z.record(ItemSubgroupType),
+    tool: z.record(ToolType),
   }),
   locales: z.record(
     z.object({

@@ -14,11 +14,11 @@ export const BaseType = z.object({
 export const ItemType = BaseType.extend({
   type: z.literal("item"),
   stack_size: z.number(),
+  weight: z.number().nullish(),
   fuel_value: z.string().nullish(),
   fuel_category: z.string().nullish(),
   place_result: z.string().nullish(),
   default_import_location: z.string().nullish(),
-  weight: z.number().nullish(),
 });
 
 export const RecipeType = BaseType.extend({
@@ -81,6 +81,13 @@ export const ItemSubgroupType = BaseType.extend({
   order: z.string(),
 });
 
+export const ToolType = BaseType.extend({
+  type: z.literal("tool"),
+  order: z.string(),
+  stack_size: z.number(),
+  weight: z.number(),
+});
+
 export const FactorioType = z.discriminatedUnion("type", [
   ItemType,
   RecipeType,
@@ -88,4 +95,5 @@ export const FactorioType = z.discriminatedUnion("type", [
   SpaceLocationType,
   ItemGroupType,
   ItemSubgroupType,
+  ToolType,
 ]);
