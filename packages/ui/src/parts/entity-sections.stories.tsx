@@ -10,11 +10,11 @@ export default meta;
 
 export const ItemEntitySections = () => {
   const { entries } = useFactorioData();
-  const entity = entries["fusion-reactor"]["fusion-reactor"];
   return (
     <div>
-      <EntitySection.Main entity={entity} />
-      <EntitySection.Debug entity={entity} />
+      <EntitySection.Main name="fusion-reactor" />
+      <EntitySection.Recipe name="fusion-reactor" />
+      <EntitySection.Debug name="fusion-reactor" />
     </div>
   );
 };

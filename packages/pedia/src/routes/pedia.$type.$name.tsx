@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import {
   EntityGrid,
+  EntitySection,
   FactorioImage,
   GroupTabs,
   LocaleName,
@@ -77,9 +78,10 @@ function Page() {
         <Surface
           color="blackLight"
           shadow="inset-1"
-          className="grow overflow-auto"
+          className="grow overflow-auto p-2"
         >
-          Hello
+          <EntitySection.Main name={name} />
+          <EntitySection.Recipe name={name} />
         </Surface>
       </Surface>
     </Surface>

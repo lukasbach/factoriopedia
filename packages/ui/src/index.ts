@@ -12,6 +12,7 @@ export * from "./parts/entity-tooltip";
 export * from "./parts/group-tabs";
 export * from "./parts/locale-name";
 export * from "./parts/locale-description";
+export * from "./parts/entity-sections";
 
 export * from "./hooks/use-item-groups";
 export * from "./hooks/use-resolve-joint-item-entries";
