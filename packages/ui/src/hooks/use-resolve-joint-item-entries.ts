@@ -1,6 +1,5 @@
 import { useMemo } from "react";
-import { FactorioType } from "@factorioui/data/src";
-import { DumpType } from "@factorioui/data";
+import { DumpType, FactorioType } from "@factorioui/data";
 import { useFactorioData } from "../components/data-provider";
 
 type ResolvementProps = {

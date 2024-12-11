@@ -27,7 +27,7 @@ export const DumpType = z.object({
     tool: z.record(ToolType),
     planet: z.record(PlanetType),
     capsule: z.record(CapsuleType),
-    "repair-pack": z.record(RepairToolType),
+    "repair-tool": z.record(RepairToolType),
     module: z.record(ModuleType),
     gun: z.record(GunType),
     ammo: z.record(AmmoType),
