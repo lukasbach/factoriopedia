@@ -22,7 +22,7 @@ export const FactorioImage: FC<{
   const imageKey = `${image}.png`;
   const resolvedCategory = resolveCategory(
     category ?? "item",
-    categoryFallback ?? [],
+    categoryFallback ?? ["item", "recipe", "space-location"],
     data.spriteMap,
     imageKey,
   );

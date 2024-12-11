@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import {
   EntityGrid,
+  FactorioImage,
   GroupTabs,
+  LocaleName,
   Surface,
   useResolveJointItemEntries,
 } from "@factorioui/components";
@@ -60,8 +62,25 @@ function Page() {
           />
         </Surface>
       </Surface>
-      <Surface color="blackDark" shadow="inset-1" className="grow">
-        asd
+      <Surface
+        color="blackDark"
+        shadow="inset-1"
+        className="grow flex flex-col"
+      >
+        <Surface
+          shadow="deepinset"
+          className="py-2 px-2 text-textBeige font-bold flex items-center gap-2"
+        >
+          <FactorioImage image={name} category={type} width={24} />
+          <LocaleName type={type} name={name} />
+        </Surface>
+        <Surface
+          color="blackLight"
+          shadow="inset-1"
+          className="grow overflow-auto"
+        >
+          Hello
+        </Surface>
       </Surface>
     </Surface>
   );
