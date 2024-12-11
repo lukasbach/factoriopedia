@@ -2,7 +2,14 @@ import { FC, HTMLProps, PropsWithChildren } from "react";
 import { combine } from "../utils";
 
 type SurfaceProperties = {
-  shadow?: "btn-small" | "orangeglow" | "deepinset" | "btn-large";
+  shadow?:
+    | "btn-small"
+    | "orangeglow"
+    | "deepinset"
+    | "btn-large"
+    | "topglow-1"
+    | "topglow-2"
+    | "inset-1";
   color?:
     | "blackDark"
     | "blackMedium"
