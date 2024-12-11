@@ -50,6 +50,7 @@ export const AllItemsInGroup = () => {
       </Surface>
       <EntityGrid
         gridWidth={10}
+        gridHeight={10}
         items={Object.values(
           useResolveJointItemEntries({
             group: selectedGroup,

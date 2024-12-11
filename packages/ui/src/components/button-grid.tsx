@@ -20,14 +20,14 @@ export const ButtonGrid: FC<
       ref={ref}
       className="h-full"
       style={{
-        width: gridWidth ? `${gridWidth * itemWidth}px` : "",
+        width: gridWidth ? `${gridWidth * itemWidth + 17}px` : "",
         height: gridHeight ? `${gridHeight * itemHeight}px` : "",
       }}
     >
       <Surface
         color="blackDark"
         shadow="inset-1"
-        className="rounded flex flex-wrap h-full relative"
+        className="rounded flex flex-wrap h-full relative overflow-y-scroll"
       >
         <div className="relative flex flex-wrap content-start z-[2]">
           {children}

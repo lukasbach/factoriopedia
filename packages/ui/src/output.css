@@ -686,6 +686,14 @@ video {
   gap: 0.25rem;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
