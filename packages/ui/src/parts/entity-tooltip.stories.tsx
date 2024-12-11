@@ -3,6 +3,7 @@ import { EntityTooltip } from "./entity-tooltip";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 import { Surface } from "../components/surface";
 import { FactorioImage } from "../components/factorio-image";
+import { TooltipRoot } from "../components/tooltip-root";
 
 const meta = {
   title: "Parts/Entity Tooltip",
@@ -13,6 +14,7 @@ export default meta;
 
 export const ItemsTooltips = () => (
   <div>
+    <TooltipRoot />
     {Object.values(
       useResolveJointItemEntries({
         types: ["planet", "space-location"],

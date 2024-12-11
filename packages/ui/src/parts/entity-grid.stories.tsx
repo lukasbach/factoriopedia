@@ -4,6 +4,7 @@ import { EntityGrid } from "./entity-grid";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 import { Surface } from "../components/surface";
 import { GroupTabs } from "./group-tabs";
+import { TooltipRoot } from "../components/tooltip-root";
 
 const meta = {
   title: "Parts/Entity Grid",
@@ -60,6 +61,7 @@ export const AllItemsInGroup = () => {
           subgroup.map((item) => ({ type: item.type, name: item.name })),
         )}
       />
+      <TooltipRoot />
     </div>
   );
 };

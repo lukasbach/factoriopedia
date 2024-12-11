@@ -1,6 +1,10 @@
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { FactorioDataProvider, Surface } from "@factorioui/components";
+import {
+  FactorioDataProvider,
+  Surface,
+  TooltipRoot,
+} from "@factorioui/components";
 
 export const Route = createRootRoute({
   component: () => (
@@ -12,6 +16,7 @@ export const Route = createRootRoute({
         <Outlet />
         <TanStackRouterDevtools />
       </Surface>
+      <TooltipRoot />
     </FactorioDataProvider>
   ),
 });

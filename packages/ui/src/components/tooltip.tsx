@@ -1,38 +1,26 @@
-import {
-  FC,
-  PropsWithChildren,
-  ReactNode,
-  createContext,
-  useContext,
-} from "react";
-import { ITooltip, Tooltip as ReactTooltip } from "react-tooltip";
+import { ReactNode, createContext, useContext } from "react";
+import ReactDOMServer from "react-dom/server";
 
 const IsInTooltipContext = createContext(false);
 const useIsInTooltip = () => useContext(IsInTooltipContext) || false;
 
-export const Tooltip: FC<
-  PropsWithChildren<{ header?: ReactNode | string } & ITooltip>
-> = ({ header, ...props }) => {
-  return (
-    <ReactTooltip
-      float
-      offset={24}
-      noArrow
-      className="!p-0 max-w-64"
-      place="bottom-end"
-      delayShow={300}
-      {...props}
-    >
+export const tooltip = (
+  text: string | ReactNode | null,
+  children?: ReactNode,
+) => {
+  return {
+    "data-tooltip-id": "factorio-ui-tooltip",
+    "data-tooltip-html": ReactDOMServer.renderToStaticMarkup(
       <IsInTooltipContext.Provider value>
         <div className="min-w-8">
-          {header && (
+          {text && (
             <div className="bg-textBeige text-black shadow-inset-1 min-w-32 p-0.5 px-2 font-bold mb-[1px]">
-              {header}
+              {text}
             </div>
           )}
-          {props.children}
+          {children}
         </div>
-      </IsInTooltipContext.Provider>
-    </ReactTooltip>
-  );
+      </IsInTooltipContext.Provider>,
+    ),
+  };
 };
