@@ -22,11 +22,10 @@ export const EntityTooltip: FC<
   const { entries, locales } = useFactorioData();
   const entry = entries[type][name];
   const id = useId();
-  console.log(entry);
 
   return (
     <>
-      <div data-tooltip-id={id}>{children}</div>
+      <span data-tooltip-id={id}>{children}</span>
       <Tooltip id={id} header={<LocaleName type={type} name={name} />}>
         <TooltipSection topmost>
           <LocaleDescription type={type} name={name} />

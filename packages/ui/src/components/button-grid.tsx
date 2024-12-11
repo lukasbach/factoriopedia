@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import { useMeasure } from "@react-hookz/web";
 import { Surface } from "./surface";
 
-export const EntityGrid: FC<
+export const ButtonGrid: FC<
   PropsWithChildren<{
     itemWidth: number;
     itemHeight: number;
@@ -20,8 +20,8 @@ export const EntityGrid: FC<
       ref={ref}
       className="h-full"
       style={{
-        width: gridWidth ? `${gridWidth * itemWidth}px` : "inherit",
-        height: gridHeight ? `${gridHeight * itemHeight}px` : "inherit",
+        width: gridWidth ? `${gridWidth * itemWidth}px` : "",
+        height: gridHeight ? `${gridHeight * itemHeight}px` : "",
       }}
     >
       <Surface
@@ -29,7 +29,10 @@ export const EntityGrid: FC<
         shadow="inset-1"
         className="rounded flex flex-wrap h-full relative"
       >
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap">
+        <div className="relative flex flex-wrap content-start z-[2]">
+          {children}
+        </div>
+        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap z-[1]">
           {Array.from({ length: actualGridWidth * actualGridHeight }).map(
             (_, index) => (
               <div
@@ -41,9 +44,6 @@ export const EntityGrid: FC<
               </div>
             ),
           )}
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap content-start">
-          {children}
         </div>
       </Surface>
     </div>

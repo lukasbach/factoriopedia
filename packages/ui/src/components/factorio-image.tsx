@@ -8,7 +8,7 @@ const resolveCategory = (
   item: string,
 ) => {
   const arr = [category, ...fallback];
-  return arr[arr.findIndex((key) => item in map[key])];
+  return arr[arr.findIndex((key) => item in (map[key] ?? {}))];
 };
 
 export const FactorioImage: FC<{

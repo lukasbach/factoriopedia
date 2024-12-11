@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useItemGroups } from "../hooks/use-item-groups";
 import { Surface } from "../components/surface";
 import { FactorioImage } from "../components/factorio-image";
-import { EntityGrid } from "../components/entity-grid";
+import { ButtonGrid } from "../components/button-grid";
 
 export const GroupTabs: FC<{
   gridWidth: number;
@@ -11,7 +11,7 @@ export const GroupTabs: FC<{
 }> = ({ gridWidth, onSelectGroup, selectedGroup }) => {
   const groups = useItemGroups();
   return (
-    <EntityGrid
+    <ButtonGrid
       gridWidth={gridWidth}
       gridHeight={4}
       itemWidth={96}
@@ -32,6 +32,6 @@ export const GroupTabs: FC<{
           <FactorioImage image={group.name} width={64} category="item-group" />
         </Surface>
       ))}
-    </EntityGrid>
+    </ButtonGrid>
   );
 };
