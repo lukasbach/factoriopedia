@@ -9,9 +9,10 @@ export const FactorioImage: FC<{
   const data = useFactorioData();
   const imageKey = `${image}.png`;
   const imageData = data.spriteMap[imageKey];
-  const spritesheetSize = data.spriteMapSizes[imageData.image];
+  const spritesheetSize = data.spriteMapSizes[imageData?.image];
 
   if (!imageData || !spritesheetSize) {
+    return <FactorioImage image="signal-deny" width={width} />;
     throw new Error(`Image data not found for ${image}`);
   }
 

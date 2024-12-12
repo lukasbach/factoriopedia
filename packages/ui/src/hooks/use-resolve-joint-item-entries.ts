@@ -18,13 +18,10 @@ const resolveJointItemEntries = (props: ResolvementProps) => {
       .map((subgroup) => [subgroup, []]),
   );
 
-  for (const type of props.types) {
-    for (const name of Object.values(props.data.types[type])) {
-      const entry = props.data.entries[name];
-      if (!((entry.subgroup ?? "") in entries)) continue;
-      if (entries[entry.subgroup as string].includes(entry)) continue;
-      entries[entry.subgroup as string].push(entry);
-    }
+  for (const entry of Object.values(props.data.entries)) {
+    if (!((entry.subgroup ?? "") in entries)) continue;
+    if (entries[entry.subgroup as string].includes(entry)) continue;
+    entries[entry.subgroup as string].push(entry);
   }
 
   for (const [key, entry] of Object.entries(entries)) {
