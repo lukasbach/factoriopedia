@@ -24,7 +24,7 @@ const makeSection =
     return <Component {...props} entity={entry} />;
   };
 
-const ItemInfo = makeSection("item", ({ entity }) => {
+const ItemInfo = makeSection(undefined, ({ entity }) => {
   return (
     <>
       <ContentSectionStat label="Stack size">
@@ -41,7 +41,7 @@ const Main = makeSection(undefined, ({ variant, name }) => {
   return (
     <ContentSection variant={variant}>
       <LocaleDescription name={name} />
-      <hr />
+      <hr className="border-blackLight my-2" />
       <ItemInfo name={name} />
     </ContentSection>
   );

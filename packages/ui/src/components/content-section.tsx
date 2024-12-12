@@ -6,12 +6,14 @@ export type ContentSectionVariant = "dark" | "flat";
 export const ContentSectionStat = ({
   label,
   children,
-}: PropsWithChildren<{ label: string }>) => (
-  <p className="flex items-center gap-2">
-    <span className="text-textBeige font-bold">{label}:</span>{" "}
-    <span>{children}</span>
-  </p>
-);
+  skip,
+}: PropsWithChildren<{ label: string; skip?: boolean }>) =>
+  skip || !children ? null : (
+    <p className="flex items-center gap-2">
+      <span className="text-textBeige font-bold">{label}:</span>{" "}
+      <span>{children}</span>
+    </p>
+  );
 
 export const ContentSection: FC<
   PropsWithChildren<{ title?: string; variant?: ContentSectionVariant }>
