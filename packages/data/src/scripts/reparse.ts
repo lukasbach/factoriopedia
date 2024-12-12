@@ -5,7 +5,9 @@ import * as url from "node:url";
 import { glob } from "glob";
 import Spritesmith from "spritesmith";
 import deepmerge from "deepmerge";
-import { DumpType } from "../types/dump";
+import { DumpType, FactorioType } from "../types/dump";
+import { ignoredTypes } from "./ignored-types";
+import { ignoredProperties } from "./ignored-properties";
 
 const targetFolder = path.join(
   path.dirname(url.fileURLToPath(import.meta.url)),
@@ -25,26 +27,55 @@ const data = await fs.readJson(
   path.join(scriptOutputFolder, "data-raw-dump.json"),
 );
 
-const entries: Record<string, any> = {};
-const types: Record<string, string[]> = {};
-let locales: Record<string, any> = {};
-let spriteMap: Record<string, any> = {};
-const spriteMapSizes: Record<string, any> = {};
+// TODO subgroup map
+
+const dump: DumpType = {
+  entries: {},
+  locales: { names: {}, descriptions: {} },
+  spriteMap: {},
+  spriteMapSizes: {},
+  typeMap: {},
+  subgroupMap: {},
+  groupMap: {},
+};
 
 for (const [type, typeContent] of Object.entries(data)) {
-  console.log(type);
-  types[type] ??= [];
-  for (const [name, entity] of Object.entries(typeContent as any)) {
-    entries[name] = deepmerge(entries[name] || {}, entity as any);
-    entries[name].types = [...(entries[name].types || []), type];
-    types[type].push(name);
+  if (ignoredTypes.includes(type)) continue;
+  dump.typeMap[type] ??= [];
+  for (const [name, entity] of Object.entries<any>(typeContent as any)) {
+    for (const ignorePattern of ignoredProperties) {
+      for (const property of Object.keys(entity)) {
+        if (ignorePattern.test(property)) {
+          delete entity[property];
+        }
+      }
+    }
+
+    dump.entries[name] ??= {} as any;
+    // dump.entries[name].merged = deepmerge(
+    //   dump.entries[name].merged || {},
+    //   entity as any,
+    // );
+    dump.entries[name].types ??= [];
+    dump.entries[name].types.push(type);
+    dump.entries[name][type] = entity as FactorioType;
+    dump.typeMap[type].push(name);
+
+    if ("subgroup" in entity) {
+      dump.subgroupMap[entity.subgroup] ??= [];
+      dump.subgroupMap[entity.subgroup].push({ name, type });
+    }
+    if (entity.type === "item-subgroup") {
+      dump.groupMap[entity.group] ??= [];
+      dump.groupMap[entity.group].push(name);
+    }
   }
 }
 
 for (const locale of await glob(
   path.posix.join(scriptOutputFolder, "*-locale.json"),
 )) {
-  locales = deepmerge(locales, await fs.readJson(locale));
+  dump.locales = deepmerge(dump.locales, await fs.readJson(locale));
 }
 
 const sprites = [
@@ -83,38 +114,20 @@ for (const spriteList of sprites) {
     path.join(targetFolder, `${groupName}.png`),
     spriteResult.image,
   );
-  spriteMap = {
-    ...spriteMap,
-    ...Object.fromEntries(
-      Object.entries(spriteResult.coordinates).map(
-        ([name, { x, y, width, height }]) => {
-          return [
-            path.basename(name),
-            { x, y, width, height, image: groupName },
-          ];
-        },
-        {} as Record<string, any>,
-      ),
+  dump.spriteMap[groupName] = Object.fromEntries(
+    Object.entries(spriteResult.coordinates).map(
+      ([name, { x, y, width, height }]) => {
+        return [path.basename(name), { x, y, width, height }];
+      },
+      {} as Record<string, any>,
     ),
-  };
-  spriteMapSizes[groupName] = {
+  );
+  dump.spriteMapSizes[groupName] = {
     width: spriteResult.properties.width,
     height: spriteResult.properties.height,
   };
 }
 
-const outData = {
-  entries,
-  types,
-  locales,
-  spriteMap,
-  spriteMapSizes,
-};
-// TODO DumpType.parse
-await fs.writeJson(
-  path.join(targetFolder, "data.json"),
-  DumpType.parse(outData),
-  {
-    spaces: 2,
-  },
-);
+await fs.writeJson(path.join(targetFolder, "data.json"), dump, {
+  spaces: 2,
+});

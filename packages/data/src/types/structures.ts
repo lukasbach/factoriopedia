@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const FactorioType = z.object({
+export const FactorioTypeX = z.object({
   types: z.string().array(),
   name: z.string(),
   hidden: z.boolean().nullish(),
@@ -185,4 +185,4 @@ export const FactorioType = z.object({
   energy_per_shield: z.string().nullish(),
 });
 
-export type FactorioType = z.infer<typeof FactorioType>;
+export type FactorioTypeX = z.infer<typeof FactorioTypeX>;

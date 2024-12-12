@@ -1,28 +1,30 @@
-import { z } from "zod";
-import { FactorioType } from "./structures";
+export type FactorioType = {
+  type: string;
+  name: string;
+  hidden: boolean;
+  order: string;
+  subgroup: string;
+  [key: string]: any;
+};
 
-export const DumpType = z.object({
-  entries: z.record(FactorioType),
-  types: z.record(z.string().array()),
-  locales: z.object({
-    names: z.record(z.string()),
-    descriptions: z.record(z.string()).nullish(),
-  }),
-  spriteMap: z.record(
-    z.object({
-      x: z.number(),
-      y: z.number(),
-      width: z.number(),
-      height: z.number(),
-      image: z.string(),
-    }),
-  ),
-  spriteMapSizes: z.record(
-    z.object({
-      width: z.number(),
-      height: z.number(),
-    }),
-  ),
-});
-
-export type DumpType = z.infer<typeof DumpType>;
+export type DumpType = {
+  entries: Record<
+    string,
+    {
+      merged: FactorioType;
+      types: string[];
+    } & { [type: string]: FactorioType }
+  >;
+  typeMap: Record<string, string[]>;
+  subgroupMap: Record<string, { name: string; type: string }[]>;
+  groupMap: Record<string, string[]>;
+  locales: {
+    names: Record<string, string>;
+    descriptions: Record<string, string>;
+  };
+  spriteMap: Record<
+    string,
+    Record<string, { x: number; y: number; width: number; height: number }>
+  >;
+  spriteMapSizes: Record<string, { width: number; height: number }>;
+};
