@@ -20,13 +20,13 @@ const PediaSearchSchema = z.object({
   group: z.string().catch("logistics"),
 });
 
-export const Route = createFileRoute("/pedia/$name")({
+export const Route = createFileRoute("/pedia/$type/$name")({
   component: Page,
   validateSearch: PediaSearchSchema,
 });
 
 function Page() {
-  const { name } = Route.useParams();
+  const { name, type } = Route.useParams();
   const { group } = Route.useSearch();
   const navigate = Route.useNavigate();
   return (
@@ -37,7 +37,7 @@ function Page() {
             gridWidth={6}
             selectedGroup={group}
             onSelectGroup={(group) =>
-              navigate({ params: { name }, search: { group } })
+              navigate({ params: { name, type }, search: { group } })
             }
           />
         </div>
@@ -50,13 +50,18 @@ function Page() {
           <EntityGrid
             gridWidth={12}
             gridHeight={14}
-            activeItem={name}
-            onClick={(name) =>
-              navigate({ params: { name }, search: { group } })
+            activeItem={{ name, type }}
+            onClick={({ name, type }) =>
+              navigate({ params: { name, type }, search: { group } })
             }
             items={useResolveJointItemEntries({
               group,
-            }).map((subgroup) => subgroup.map((item) => item.merged.name))}
+            }).map((subgroup) =>
+              subgroup.map(({ name, type }) => ({
+                name,
+                type,
+              })),
+            )}
           />
         </Surface>
       </Surface>
@@ -80,7 +85,6 @@ function Page() {
             <TabsContent value="pedia">
               <EntitySection.Main name={name} />
               <EntitySection.Recipe name={name} />
-              {/* <EntitySection.Debug name={name} /> */}
             </TabsContent>
             <TabsContent value="raw">
               <EntitySection.Debug name={name} />

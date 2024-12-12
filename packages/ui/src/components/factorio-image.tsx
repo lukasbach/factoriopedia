@@ -10,22 +10,25 @@ export const FactorioImage: FC<{
   const data = useFactorioData();
 
   let resolvedSpritesheet = useMemo(() => {
-    if (spritesheet) return spritesheet;
+    if (spritesheet && data.spriteMap[spritesheet]?.[`${image}.png`])
+      return spritesheet;
     return Object.entries(data.spriteMap).find(
       ([key, images]) => `${image}.png` in images,
     )?.[0];
   }, []);
 
-  if (!resolvedSpritesheet) {
+  if (
+    !resolvedSpritesheet ||
+    !data.spriteMap[resolvedSpritesheet][`${image}.png`]
+  ) {
     resolvedSpritesheet = "virtual-signal";
     image = "signal-deny";
   }
 
-  const imageKey = `${resolvedSpritesheet}.png`;
   const imageData = data.spriteMap[resolvedSpritesheet][`${image}.png`];
   const spritesheetSize = data.spriteMapSizes[resolvedSpritesheet];
 
-  const url = `${dataPath}${dataPath === "/" ? "" : "/"}${imageKey}`;
+  const url = `${dataPath}${dataPath === "/" ? "" : "/"}${resolvedSpritesheet}.png`;
   const scale = !width ? 1 : width / imageData.width;
 
   return (

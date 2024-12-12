@@ -2,10 +2,12 @@ import { FC } from "react";
 import { ButtonGrid } from "../components/button-grid";
 import { EntityButton } from "./entity-button";
 
+export type EntityIdentifier = { name: string; type: string };
+
 export const EntityGrid: FC<{
-  items: string[][];
-  activeItem?: string;
-  onClick?: (name: string) => void;
+  items: EntityIdentifier[][];
+  activeItem?: EntityIdentifier;
+  onClick?: (item: EntityIdentifier) => void;
   gridWidth?: number;
   gridHeight?: number;
 }> = ({ items, activeItem, onClick, gridHeight, gridWidth }) => {
@@ -16,14 +18,19 @@ export const EntityGrid: FC<{
       itemWidth={38}
       itemHeight={40}
     >
-      {items.map((group) => (
-        <div className="flex flex-wrap w-full">
+      {items.map((group, idx) => (
+        <div className="flex flex-wrap w-full" key={idx}>
           {group.map((item) => (
-            <div key={item}>
+            <div key={`${item.type}-${item.name}`}>
               <EntityButton
-                name={item}
+                name={item.name}
+                type={item.type}
                 onClick={() => onClick?.(item)}
-                isActive={activeItem === item}
+                isActive={
+                  activeItem &&
+                  activeItem.name === item.name &&
+                  activeItem.type === item.type
+                }
               />
             </div>
           ))}

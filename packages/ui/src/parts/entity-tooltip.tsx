@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useId } from "react";
+import { FC, PropsWithChildren } from "react";
 import { tooltip } from "../components/tooltip";
 import { TooltipSection } from "../components/tooltip-section";
 import { useFactorioData } from "../components/data-provider";
@@ -15,13 +15,11 @@ const TooltipStat = ({
   </p>
 );
 
-export const EntityTooltip: FC<PropsWithChildren<{ name: string }>> = ({
-  name,
-  children,
-}) => {
+export const EntityTooltip: FC<
+  PropsWithChildren<{ name: string; type: string }>
+> = ({ name, type, children }) => {
   const { entries } = useFactorioData();
-  const entry = entries[name];
-  const id = useId();
+  const entry = entries[name][type];
 
   return (
     <span
@@ -29,17 +27,17 @@ export const EntityTooltip: FC<PropsWithChildren<{ name: string }>> = ({
         useLocaleName(name),
         <>
           <TooltipSection>{useLocaleDescription(name)}</TooltipSection>
-          {entry.types.includes("planet") && (
+          {"planet" in entries[name] && (
             <TooltipSection>
               <TooltipStat label="Day night cycle">
                 {(entry.surface_properties?.["day-night-cycle"] ?? 1) / 60 / 60}{" "}
                 minutes
               </TooltipStat>
               <TooltipStat label="Solar power in atmosphere">
-                {entry.merged.solar_power_in_space} kW
+                {entry.solar_power_in_space} kW
               </TooltipStat>
               <TooltipStat label="Gravity">
-                {entry.merged.gravity_pull} m/s²
+                {entry.gravity_pull} m/s²
               </TooltipStat>
               <TooltipStat label="Pressure">
                 {entry.surface_properties?.pressure ?? 1000} hPa

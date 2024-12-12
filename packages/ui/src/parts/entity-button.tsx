@@ -5,12 +5,13 @@ import { FactorioImage } from "../components/factorio-image";
 
 export const EntityButton: FC<{
   name: string;
+  type: string;
   onClick?: () => void;
   isActive?: boolean;
   dark?: boolean;
-}> = ({ name, onClick, isActive, dark }) => {
+}> = ({ name, type, onClick, isActive, dark }) => {
   return (
-    <EntityTooltip name={name}>
+    <EntityTooltip name={name} type={type}>
       <Surface<HTMLButtonElement>
         key={name}
         as={onClick ? "button" : "div"}
@@ -22,7 +23,7 @@ export const EntityButton: FC<{
         active={onClick ? { color: "orangeDark" } : {}}
         className="p-0.5 m-0.5 inline-flex items-center justify-center rounded"
       >
-        <FactorioImage image={name} width={30} />
+        <FactorioImage image={name} spritesheet={type} width={30} />
       </Surface>
     </EntityTooltip>
   );

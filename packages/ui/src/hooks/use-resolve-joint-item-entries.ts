@@ -12,20 +12,24 @@ export const useResolveJointItemEntries = (props: ResolvementProps) => {
     () =>
       data.groupMap[props.group]
         .map((subgroup) => {
-          console.log(subgroup);
-          return (
-            data.subgroupMap[subgroup]
-              ?.map((entry) => {
-                return data.entries[entry.name];
-              })
-              .filter(
-                (entry) =>
-                  !props.types ||
-                  entry.types.some((type) => props.types?.includes(type)),
-              ) ?? []
-          );
+          return data.subgroupMap[subgroup]
+            ?.filter(
+              (entry) => !props.types || props.types.includes(entry.type),
+            )
+            ?.map((entry) => {
+              return {
+                entry: data.entries[entry.name],
+                name: entry.name,
+                type: entry.type,
+              };
+            });
+          // .filter(
+          //   (entry) =>
+          //     !props.types ||
+          //     entry.types.some((type) => props.types?.includes(type)),
+          // ) ?? []
         })
-        .filter((subgroup) => subgroup.length > 0),
+        .filter((subgroup) => subgroup && subgroup.length > 0),
     [data, props.group, props.types],
   );
 };
