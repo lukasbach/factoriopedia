@@ -66,7 +66,9 @@ const Recipe = makeSection("recipe", ({ entity }) => {
 const Debug = makeSection("", ({ variant, entity }) => {
   return (
     <ContentSection variant={variant} title="Debug Data">
-      <pre className="text-xs">{JSON.stringify(entity, null, 2)}</pre>
+      <pre className="text-xs max-h-[400px] overflow-auto">
+        {JSON.stringify(entity, null, 2)}
+      </pre>
     </ContentSection>
   );
 });
