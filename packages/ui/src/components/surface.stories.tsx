@@ -43,7 +43,7 @@ export const GroupButtons = () => (
         active={{ color: "orangeLight", shadow: "deepinset" }}
         className="inline-block p-3 flex items-center justify-center"
       >
-        <FactorioImage image={group.name} width={64} category="item-group" />
+        <FactorioImage image={group.name} width={64} />
       </Surface>
     ))}
   </div>
@@ -68,12 +68,7 @@ export const ItemsInGroup = () => (
             className="inline-block p-0.5 flex items-center justify-center rounded"
             title={item.name}
           >
-            <FactorioImage
-              image={item.name}
-              category="recipe"
-              categoryFallback={["item"]}
-              width={30}
-            />
+            <FactorioImage image={item.name} width={30} />
           </Surface>
         ))}
       </div>

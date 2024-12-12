@@ -22,7 +22,7 @@ export const ItemsTooltips = () => (
     ).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
         {subgroup.map((item) => (
-          <EntityTooltip type={item.type} name={item.name}>
+          <EntityTooltip name={item.name}>
             <Surface
               key={item.name}
               shadow="btn-small"
@@ -31,11 +31,7 @@ export const ItemsTooltips = () => (
               active={{ color: "orangeDark" }}
               className="inline-block p-0.5 flex items-center justify-center rounded"
             >
-              <FactorioImage
-                image={item.name}
-                category="space-location"
-                width={30}
-              />
+              <FactorioImage image={item.name} width={30} />
             </Surface>
           </EntityTooltip>
         ))}

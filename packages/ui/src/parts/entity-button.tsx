@@ -7,7 +7,8 @@ export const EntityButton: FC<{
   name: string;
   onClick?: () => void;
   isActive?: boolean;
-}> = ({ name, onClick, isActive }) => {
+  dark?: boolean;
+}> = ({ name, onClick, isActive, dark }) => {
   return (
     <EntityTooltip name={name}>
       <Surface<HTMLButtonElement>
@@ -15,8 +16,8 @@ export const EntityButton: FC<{
         as={onClick ? "button" : "div"}
         onClick={onClick}
         isActive={isActive}
-        shadow="btn-small"
-        color="blackLight"
+        shadow={dark ? "btn-large" : "btn-small"}
+        color={dark ? "blackMedium" : "blackLight"}
         hover={onClick ? { color: "orangeLight" } : {}}
         active={onClick ? { color: "orangeDark" } : {}}
         className="p-0.5 m-0.5 inline-flex items-center justify-center rounded"

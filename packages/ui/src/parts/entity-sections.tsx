@@ -7,6 +7,7 @@ import {
 } from "../components/content-section";
 import { LocaleDescription } from "./locale-description";
 import { useFactorioData } from "../components/data-provider";
+import { Ingredient } from "./ingredient";
 
 type Props = {
   variant?: ContentSectionVariant;
@@ -49,10 +50,15 @@ const Main = makeSection(undefined, ({ variant, name }) => {
 const Recipe = makeSection("recipe", ({ entity }) => {
   return (
     <ContentSection variant="flat">
-      <p>Ingredients</p>
+      <p className="mb-2 font-bold">Ingredients</p>
       {entity.ingredients?.map((ingredient) => (
-        <ContentSectionStat label={`${ingredient.amount} ${ingredient.name}`} />
+        <Ingredient name={ingredient.name} count={ingredient.amount} />
       ))}
+      <hr className="border-blackDark my-2 ml-12" />
+      <div className="ml-12">
+        <span className="font-bold">{entity.energy_required}s</span> Crafting
+        time
+      </div>
     </ContentSection>
   );
 });

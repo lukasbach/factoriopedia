@@ -24,7 +24,7 @@ export const GroupTabs: FC<{
           isActive={selectedGroup === group.name}
           onClick={() => onSelectGroup(group.name)}
         >
-          <FactorioImage image={group.name} width={64} category="item-group" />
+          <FactorioImage image={group.name} width={64} />
         </Surface>
       ))}
     </ButtonGrid>

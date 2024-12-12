@@ -13,6 +13,7 @@ export * from "./parts/group-tabs";
 export * from "./parts/locale-name";
 export * from "./parts/locale-description";
 export * from "./parts/entity-sections";
+export * from "./parts/ingredient";
 
 export * from "./hooks/use-entries-of-type";
 export * from "./hooks/use-resolve-joint-item-entries";

@@ -29,7 +29,7 @@ export const LargeButtonGrid = () => (
         active={{ color: "orangeLight", shadow: "deepinset" }}
         className="inline-block p-3 flex w-[96px] h-[110px] items-center justify-center"
       >
-        <FactorioImage image="production" width={64} category="item-group" />
+        <FactorioImage image="production" width={64} />
       </Surface>
       <Surface
         shadow="btn-large"
@@ -38,7 +38,7 @@ export const LargeButtonGrid = () => (
         active={{ color: "orangeLight", shadow: "deepinset" }}
         className="inline-block p-3 flex w-[96px] h-[110px] items-center justify-center"
       >
-        <FactorioImage image="production" width={64} category="item-group" />
+        <FactorioImage image="production" width={64} />
       </Surface>
     </ButtonGrid>
   </Surface>
@@ -54,7 +54,7 @@ export const GridWithoutHeight = () => (
         active={{ color: "orangeLight", shadow: "deepinset" }}
         className="inline-block p-3 flex w-[96px] h-[110px] items-center justify-center"
       >
-        <FactorioImage image="production" width={64} category="item-group" />
+        <FactorioImage image="production" width={64} />
       </Surface>
       <Surface
         shadow="btn-large"
@@ -63,7 +63,7 @@ export const GridWithoutHeight = () => (
         active={{ color: "orangeLight", shadow: "deepinset" }}
         className="inline-block p-3 flex w-[96px] h-[110px] items-center justify-center"
       >
-        <FactorioImage image="production" width={64} category="item-group" />
+        <FactorioImage image="production" width={64} />
       </Surface>
     </ButtonGrid>
   </Surface>
