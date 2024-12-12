@@ -32,6 +32,7 @@ let spriteMap: Record<string, any> = {};
 const spriteMapSizes: Record<string, any> = {};
 
 for (const [type, typeContent] of Object.entries(data)) {
+  console.log(type);
   types[type] ??= [];
   for (const [name, entity] of Object.entries(typeContent as any)) {
     entries[name] = deepmerge(entries[name] || {}, entity as any);

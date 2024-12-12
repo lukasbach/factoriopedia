@@ -10,7 +10,7 @@ export const FactorioType = z.object({
   default_import_location: z.string().nullish(),
   energy_source: z
     .object({
-      type: z.enum(["burner", "electric"]),
+      type: z.enum(["burner", "electric", "void", "heat"]),
 
       // electric
       buffer_capacity: z.string().nullish(),
@@ -140,11 +140,12 @@ export const FactorioType = z.object({
   resistances: z
     .object({
       type: z.string(),
-      decrease: z.number(),
-      percent: z.number(),
+      decrease: z.number().nullish(),
+      percent: z.number().nullish(),
     })
     .array()
-    .nullish(),
+    .nullish()
+    .catch([]),
 
   // belts
   speed: z.number().nullish(),
@@ -163,7 +164,7 @@ export const FactorioType = z.object({
   supply_area_distance: z.number().nullish(),
 
   // car
-  equipment_grid: z.string().nullish(),
+  equipment_grid: z.string().nullish().catch(undefined),
   trash_inventory_size: z.number().nullish(),
   braking_power: z.string().nullish(),
 
@@ -180,7 +181,7 @@ export const FactorioType = z.object({
   power: z.string().nullish(),
 
   // energy-shield-equipment
-  max_shield_value: z.string().nullish(),
+  max_shield_value: z.union([z.string(), z.number()]).nullish(),
   energy_per_shield: z.string().nullish(),
 });
 
