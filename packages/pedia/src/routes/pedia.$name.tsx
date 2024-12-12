@@ -57,7 +57,7 @@ function Page() {
             items={Object.values(
               useResolveJointItemEntries({
                 group,
-                types: ["item", "tool", "recipe"],
+                types: ["item", "tool", "recipe", "planet", "fluid"],
               }),
             ).map((subgroup) => subgroup.map((item) => item.name))}
           />

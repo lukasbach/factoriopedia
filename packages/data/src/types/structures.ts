@@ -10,7 +10,16 @@ export const FactorioType = z.object({
   default_import_location: z.string().nullish(),
   energy_source: z
     .object({
-      type: z.string(),
+      type: z.enum(["burner", "electric"]),
+
+      // electric
+      buffer_capacity: z.string().nullish(),
+      input_flow_limit: z.string().nullish(),
+
+      // burner
+      fuel_categories: z.string().array().nullish(),
+      fuel_inventory_size: z.number().nullish(),
+      effectivity: z.number().nullish(),
       emissions_per_minute: z
         .object({
           pollution: z.number().nullish(),
@@ -128,6 +137,51 @@ export const FactorioType = z.object({
   module_slots: z.number().nullish(),
   allowed_effects: z.string().array().nullish().catch(undefined),
   crafting_speed: z.number().nullish(),
+  resistances: z
+    .object({
+      type: z.string(),
+      decrease: z.number(),
+      percent: z.number(),
+    })
+    .array()
+    .nullish(),
+
+  // belts
+  speed: z.number().nullish(),
+  max_distance: z.number().nullish(),
+
+  // inserters
+  energy_per_movement: z.string().nullish(),
+  energy_per_rotation: z.string().nullish(),
+  extension_speed: z.number().nullish(),
+  rotation_speed: z.number().nullish(),
+  filter_count: z.number().nullish(),
+  hand_size: z.number().nullish(),
+
+  // poles
+  maximum_wire_distance: z.number().nullish(),
+  supply_area_distance: z.number().nullish(),
+
+  // car
+  equipment_grid: z.string().nullish(),
+  trash_inventory_size: z.number().nullish(),
+  braking_power: z.string().nullish(),
+
+  // equipment grid
+  width: z.number().nullish(),
+  height: z.number().nullish(),
+
+  // roboport equipment
+  charging_energy: z.string().nullish(),
+  robot_limit: z.number().nullish(),
+  construction_radius: z.number().nullish(),
+
+  // generator-equipment/solar-panel-equipment
+  power: z.string().nullish(),
+
+  // energy-shield-equipment
+  max_shield_value: z.string().nullish(),
+  energy_per_shield: z.string().nullish(),
 });
 
 export type FactorioType = z.infer<typeof FactorioType>;

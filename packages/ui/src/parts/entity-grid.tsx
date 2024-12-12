@@ -17,7 +17,7 @@ export const EntityGrid: FC<{
       itemHeight={40}
     >
       {items.map((group) => (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap w-full">
           {group.map((item) => (
             <div key={item}>
               <EntityButton
