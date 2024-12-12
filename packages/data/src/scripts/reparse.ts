@@ -27,7 +27,7 @@ const data = await fs.readJson(
 
 const entries: Record<string, any> = {};
 const types: Record<string, string[]> = {};
-const locales: Record<string, any> = {};
+let locales: Record<string, any> = {};
 const spriteMap: Record<string, any> = {};
 const spriteMapSizes: Record<string, any> = {};
 
@@ -43,9 +43,7 @@ for (const [type, typeContent] of Object.entries(data)) {
 for (const locale of await glob(
   path.posix.join(scriptOutputFolder, "*-locale.json"),
 )) {
-  const localeData = await fs.readJson(locale);
-  const localeName = path.basename(locale).replace(/-locale.json$/, "");
-  locales[localeName] = localeData;
+  locales = deepmerge(locales, await fs.readJson(locale));
 }
 
 const sprites = [

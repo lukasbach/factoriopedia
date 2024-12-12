@@ -19,7 +19,7 @@ export const EntityTooltip: FC<PropsWithChildren<{ name: string }>> = ({
   name,
   children,
 }) => {
-  const { entries, locales } = useFactorioData();
+  const { entries } = useFactorioData();
   const entry = entries[name];
   const id = useId();
 

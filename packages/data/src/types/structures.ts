@@ -11,9 +11,11 @@ export const FactorioType = z.object({
   energy_source: z
     .object({
       type: z.string(),
-      emissions_per_minute: z.object({
-        pollution: z.number(),
-      }),
+      emissions_per_minute: z
+        .object({
+          pollution: z.number().nullish(),
+        })
+        .nullish(),
     })
     .nullish(),
   power_input: z.string().nullish(),
@@ -124,7 +126,7 @@ export const FactorioType = z.object({
   ammo_category: z.string().nullish(),
   magazine_size: z.number().nullish(),
   module_slots: z.number().nullish(),
-  allowed_effects: z.string().array().nullish(),
+  allowed_effects: z.string().array().nullish().catch(undefined),
   crafting_speed: z.number().nullish(),
 });
 

@@ -4,12 +4,10 @@ import { FactorioType } from "./structures";
 export const DumpType = z.object({
   entries: z.record(FactorioType),
   types: z.record(z.string().array()),
-  locales: z.record(
-    z.object({
-      names: z.record(z.string()),
-      descriptions: z.record(z.string()).nullish(),
-    }),
-  ),
+  locales: z.object({
+    names: z.record(z.string()),
+    descriptions: z.record(z.string()).nullish(),
+  }),
   spriteMap: z.record(
     z.record(
       z.object({
