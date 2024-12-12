@@ -28,7 +28,7 @@ const data = await fs.readJson(
 const entries: Record<string, any> = {};
 const types: Record<string, string[]> = {};
 let locales: Record<string, any> = {};
-const spriteMap: Record<string, any> = {};
+let spriteMap: Record<string, any> = {};
 const spriteMapSizes: Record<string, any> = {};
 
 for (const [type, typeContent] of Object.entries(data)) {
@@ -82,14 +82,20 @@ for (const spriteList of sprites) {
     path.join(targetFolder, `${groupName}.png`),
     spriteResult.image,
   );
-  spriteMap[groupName] = Object.fromEntries(
-    Object.entries(spriteResult.coordinates).map(
-      ([name, { x, y, width, height }]) => {
-        return [path.basename(name), { x, y, width, height }];
-      },
-      {} as Record<string, any>,
+  spriteMap = {
+    ...spriteMap,
+    ...Object.fromEntries(
+      Object.entries(spriteResult.coordinates).map(
+        ([name, { x, y, width, height }]) => {
+          return [
+            path.basename(name),
+            { x, y, width, height, image: groupName },
+          ];
+        },
+        {} as Record<string, any>,
+      ),
     ),
-  );
+  };
   spriteMapSizes[groupName] = {
     width: spriteResult.properties.width,
     height: spriteResult.properties.height,

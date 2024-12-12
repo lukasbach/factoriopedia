@@ -9,14 +9,13 @@ export const DumpType = z.object({
     descriptions: z.record(z.string()).nullish(),
   }),
   spriteMap: z.record(
-    z.record(
-      z.object({
-        x: z.number(),
-        y: z.number(),
-        width: z.number(),
-        height: z.number(),
-      }),
-    ),
+    z.object({
+      x: z.number(),
+      y: z.number(),
+      width: z.number(),
+      height: z.number(),
+      image: z.string(),
+    }),
   ),
   spriteMapSizes: z.record(
     z.object({
