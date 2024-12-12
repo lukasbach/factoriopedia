@@ -5,16 +5,32 @@ import {
   Surface,
   TooltipRoot,
 } from "@factorioui/components";
+import { TabsTriggerVisual } from "@factorioui/components/src";
 
 export const Route = createRootRoute({
   component: () => (
     <FactorioDataProvider path="/" loader={<>Loading...</>}>
       <Surface
-        className="h-full flex items-center justify-center"
+        className="h-full flex flex-col items-center justify-center"
         color="blackDark"
       >
-        <Outlet />
-        <TanStackRouterDevtools />
+        <div className="w-[960px] px-4 min-h-7">
+          <TabsTriggerVisual href="#" active>
+            Factoriopedia
+          </TabsTriggerVisual>
+          <TabsTriggerVisual href="#">Tools</TabsTriggerVisual>
+          <TabsTriggerVisual href="#">Guides</TabsTriggerVisual>
+          <TabsTriggerVisual href="#">About</TabsTriggerVisual>
+        </div>
+
+        <Surface
+          color="blackMedium"
+          shadow="topglow-2"
+          className="w-[960px] rounded flex gap-2 p-2"
+        >
+          <Outlet />
+          <TanStackRouterDevtools />
+        </Surface>
       </Surface>
       <TooltipRoot />
     </FactorioDataProvider>

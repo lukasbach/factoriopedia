@@ -5,6 +5,7 @@ export * from "./components/surface";
 export * from "./components/tooltip";
 export * from "./components/tooltip-section";
 export * from "./components/tooltip-root";
+export * from "./components/tabs";
 
 export * from "./parts/entity-button";
 export * from "./parts/entity-grid";

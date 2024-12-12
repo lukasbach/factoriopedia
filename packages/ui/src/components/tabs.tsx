@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import * as React from "react";
+import { combine } from "../utils";
 
 export const TabsRoot: FC<
   Tabs.TabsProps & React.RefAttributes<HTMLDivElement>
@@ -13,6 +14,20 @@ export const TabsList: FC<
 > = (props) => {
   return <Tabs.TabsList {...props} />;
 };
+
+export const TabsTriggerVisual: FC<
+  PropsWithChildren<React.HTMLProps<HTMLAnchorElement> & { active?: boolean }>
+> = ({ active, ...props }) => (
+  <a
+    className={combine(
+      "px-4 pt-2 pb-2 mr-0.5",
+      "rounded-tl rounded-tr font-bold shadow-topglow-1 text-sm",
+      [active, "bg-blackLight translate-y-[4px] text-textBeige"],
+      [!active, "bg-grayLight text-black"],
+    )}
+    {...props}
+  />
+);
 
 export const TabsTrigger: FC<
   Tabs.TabsTriggerProps & React.RefAttributes<HTMLDivElement>

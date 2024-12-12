@@ -30,11 +30,7 @@ function Page() {
   const { group } = Route.useSearch();
   const navigate = Route.useNavigate();
   return (
-    <Surface
-      color="blackMedium"
-      shadow="topglow-2"
-      className="w-[960px] rounded flex gap-2 p-2"
-    >
+    <>
       <Surface color="blackDark" shadow="inset-1">
         <div>
           <GroupTabs
@@ -95,6 +91,6 @@ function Page() {
           </Surface>
         </TabsRoot>
       </Surface>
-    </Surface>
+    </>
   );
 }
