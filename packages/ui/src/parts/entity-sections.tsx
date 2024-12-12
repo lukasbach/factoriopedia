@@ -21,7 +21,7 @@ const makeSection =
     const entry = entries[props.name];
     if (type && !entry.types.includes(type)) return null;
     if (!entry) return null;
-    return <Component {...props} entity={entry} />;
+    return <Component {...props} entity={entry.merged} />;
   };
 
 const ItemInfo = makeSection(undefined, ({ entity }) => {
@@ -66,7 +66,10 @@ const Recipe = makeSection("recipe", ({ entity }) => {
 const Debug = makeSection("", ({ variant, entity }) => {
   return (
     <ContentSection variant={variant} title="Debug Data">
-      <pre className="text-xs max-h-[400px] overflow-auto">
+      <pre
+        className="text-xs max-h-[400px] overflow-auto"
+        style={{ maxWidth: "400px" }}
+      >
         {JSON.stringify(entity, null, 2)}
       </pre>
     </ContentSection>

@@ -1,22 +1,31 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useFactorioData, useFactorioDataPath } from "./data-provider";
 
 export const FactorioImage: FC<{
   image: string;
+  spritesheet?: string;
   width?: number;
-}> = ({ image, width }) => {
+}> = ({ image, width, spritesheet }) => {
   const dataPath = useFactorioDataPath();
   const data = useFactorioData();
-  const imageKey = `${image}.png`;
-  const imageData = data.spriteMap[imageKey];
-  const spritesheetSize = data.spriteMapSizes[imageData?.image];
 
-  if (!imageData || !spritesheetSize) {
-    return <FactorioImage image="signal-deny" width={width} />;
-    throw new Error(`Image data not found for ${image}`);
+  let resolvedSpritesheet = useMemo(() => {
+    if (spritesheet) return spritesheet;
+    return Object.entries(data.spriteMap).find(
+      ([key, images]) => `${image}.png` in images,
+    )?.[0];
+  }, []);
+
+  if (!resolvedSpritesheet) {
+    resolvedSpritesheet = "virtual-signal";
+    image = "signal-deny";
   }
 
-  const url = `${dataPath}${dataPath === "/" ? "" : "/"}${imageData.image}.png`;
+  const imageKey = `${resolvedSpritesheet}.png`;
+  const imageData = data.spriteMap[resolvedSpritesheet][`${image}.png`];
+  const spritesheetSize = data.spriteMapSizes[resolvedSpritesheet];
+
+  const url = `${dataPath}${dataPath === "/" ? "" : "/"}${imageKey}`;
   const scale = !width ? 1 : width / imageData.width;
 
   return (

@@ -44,9 +44,11 @@
     "@storybook/react": "8.4.7",
     "@storybook/react-vite": "8.4.7",
     "@storybook/test": "8.4.7",
+    "@types/deepmerge": "^2.2.3",
     "@types/prop-types": "^15",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.1",
+    "deepmerge": "^4.3.1",
     "prop-types": "15.8.1",
     "storybook": "8.4.7"
   }

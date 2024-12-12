@@ -17,7 +17,7 @@ import {
 } from "@factorioui/components/lib/components/tabs";
 
 const PediaSearchSchema = z.object({
-  group: z.string().optional(),
+  group: z.string().catch("logistics"),
 });
 
 export const Route = createFileRoute("/pedia/$name")({
@@ -54,12 +54,9 @@ function Page() {
             onClick={(name) =>
               navigate({ params: { name }, search: { group } })
             }
-            items={Object.values(
-              useResolveJointItemEntries({
-                group,
-                types: ["item", "tool", "recipe", "planet", "fluid"],
-              }),
-            ).map((subgroup) => subgroup.map((item) => item.name))}
+            items={useResolveJointItemEntries({
+              group,
+            }).map((subgroup) => subgroup.map((item) => item.merged.name))}
           />
         </Surface>
       </Surface>

@@ -12,7 +12,8 @@
     "outDir": "${configDir}/lib",
     "strict": true,
     "declaration": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noImplicitAny": false
   },
   "include": ["packages"]
 }

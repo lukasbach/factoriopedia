@@ -45,12 +45,10 @@ export const AllItemsInGroup = () => {
       <EntityGrid
         gridWidth={10}
         gridHeight={10}
-        items={Object.values(
-          useResolveJointItemEntries({
-            group: selectedGroup,
-            types: ["item", "tool", "recipe"],
-          }),
-        ).map((subgroup) => subgroup.map((item) => item.name))}
+        items={useResolveJointItemEntries({
+          group: selectedGroup,
+          types: ["item", "tool", "recipe"],
+        }).map((subgroup) => subgroup.map((item) => item.merged.name))}
       />
       <TooltipRoot />
     </div>

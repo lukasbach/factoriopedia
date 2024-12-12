@@ -15,16 +15,16 @@ export const GroupTabs: FC<{
       {groups.map((group) => (
         <Surface<HTMLButtonElement>
           as="button"
-          key={group.name}
+          key={group.merged.name}
           shadow="btn-large"
           color="grayLight"
           hover={{ color: "orangeDark", shadow: "orangeglow" }}
           active={{ color: "orangeLight", shadow: "deepinset" }}
           className="flex w-[80px] h-[96px] items-center justify-center"
-          isActive={selectedGroup === group.name}
-          onClick={() => onSelectGroup(group.name)}
+          isActive={selectedGroup === group.merged.name}
+          onClick={() => onSelectGroup(group.merged.name)}
         >
-          <FactorioImage image={group.name} width={64} />
+          <FactorioImage image={group.merged.name} width={64} />
         </Surface>
       ))}
     </ButtonGrid>

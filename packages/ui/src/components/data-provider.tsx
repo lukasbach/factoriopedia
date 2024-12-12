@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import { DumpType } from "@factorioui/data";
+import deepmerge from "deepmerge";
 
 const Context = createContext<{ dump: DumpType; path: string }>(null as any);
 
@@ -21,8 +22,14 @@ export const FactorioDataProvider: FC<
 
   useEffect(() => {
     fetch(`${path}${path === "/" ? "" : "/"}data.json`)
-      .then((res) => res.json())
-      .then(setData);
+      .then((res) => res.json() as Promise<DumpType>)
+      .then((dump) => {
+        for (const [key, value] of Object.entries(dump.entries)) {
+          const { types, ...rest } = value;
+          dump.entries[key].merged = deepmerge.all(Object.values(rest)) as any;
+        }
+        setData(dump);
+      });
   }, [path]);
 
   if (!data) {

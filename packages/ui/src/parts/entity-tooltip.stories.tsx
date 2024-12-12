@@ -17,21 +17,21 @@ export const ItemsTooltips = () => (
     <TooltipRoot />
     {Object.values(
       useResolveJointItemEntries({
-        types: ["planet", "space-location"],
+        group: "space",
       }),
     ).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
         {subgroup.map((item) => (
-          <EntityTooltip name={item.name}>
+          <EntityTooltip name={item.merged.name}>
             <Surface
-              key={item.name}
+              key={item.merged.name}
               shadow="btn-small"
               color="blackLight"
               hover={{ color: "orangeLight" }}
               active={{ color: "orangeDark" }}
               className="inline-block p-0.5 flex items-center justify-center rounded"
             >
-              <FactorioImage image={item.name} width={30} />
+              <FactorioImage image={item.merged.name} width={30} />
             </Surface>
           </EntityTooltip>
         ))}

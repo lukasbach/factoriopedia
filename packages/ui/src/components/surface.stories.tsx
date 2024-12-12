@@ -36,14 +36,14 @@ export const GroupButtons = () => (
   <div className="flex">
     {useEntriesOfType("item-group").map((group) => (
       <Surface
-        key={group.name}
+        key={group.merged.name}
         shadow="btn-large"
         color="grayLight"
         hover={{ color: "orangeDark", shadow: "orangeglow" }}
         active={{ color: "orangeLight", shadow: "deepinset" }}
         className="inline-block p-3 flex items-center justify-center"
       >
-        <FactorioImage image={group.name} width={64} />
+        <FactorioImage image={group.merged.name} width={64} />
       </Surface>
     ))}
   </div>
@@ -51,24 +51,22 @@ export const GroupButtons = () => (
 
 export const ItemsInGroup = () => (
   <div>
-    {Object.values(
-      useResolveJointItemEntries({
-        group: "intermediate-products",
-        types: ["item", "tool", "recipe"],
-      }),
-    ).map((subgroup) => (
+    {useResolveJointItemEntries({
+      group: "intermediate-products",
+      types: ["item", "tool", "recipe"],
+    }).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
         {subgroup.map((item) => (
           <Surface
-            key={item.name}
+            key={item.merged.name}
             shadow="btn-small"
             color="blackLight"
             hover={{ color: "orangeLight" }}
             active={{ color: "orangeDark" }}
             className="inline-block p-0.5 flex items-center justify-center rounded"
-            title={item.name}
+            title={item.merged.name}
           >
-            <FactorioImage image={item.name} width={30} />
+            <FactorioImage image={item.merged.name} width={30} />
           </Surface>
         ))}
       </div>

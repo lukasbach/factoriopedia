@@ -36,10 +36,10 @@ export const EntityTooltip: FC<PropsWithChildren<{ name: string }>> = ({
                 minutes
               </TooltipStat>
               <TooltipStat label="Solar power in atmosphere">
-                {entry.solar_power_in_space} kW
+                {entry.merged.solar_power_in_space} kW
               </TooltipStat>
               <TooltipStat label="Gravity">
-                {entry.gravity_pull} m/s²
+                {entry.merged.gravity_pull} m/s²
               </TooltipStat>
               <TooltipStat label="Pressure">
                 {entry.surface_properties?.pressure ?? 1000} hPa
