@@ -13,7 +13,7 @@ export const FactorioImage: FC<{
     if (spritesheet && data.spriteMap[spritesheet]?.[`${image}.png`])
       return spritesheet;
     return Object.entries(data.spriteMap).find(
-      ([key, images]) => `${image}.png` in images,
+      ([_, images]) => `${image}.png` in images,
     )?.[0];
   }, [data.spriteMap, image, spritesheet]);
 
