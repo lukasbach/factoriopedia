@@ -171,10 +171,39 @@ const AppearsOn = makeSection(
 
 const EquipmentGridPlaceable = makeSection(
   "Placed in equipment grid",
-  () => true,
-  ({ entry }) => {
-    const { entries } = useFactorioData();
-    return null;
+  (entry) => entry.merged.shape,
+  ({ result }) => {
+    return (
+      <ContentSectionStat label="Dimensions">
+        {result.width}x{result.height}
+      </ContentSectionStat>
+    );
+  },
+);
+
+const Electricity = makeSection(
+  "Electricity",
+  (entry) =>
+    entry.merged.energy_source?.type === "electric"
+      ? entry.merged.energy_source
+      : false,
+  ({ result, entry }) => {
+    return (
+      <>
+        <ContentSectionStat label="Energy capacity" quality>
+          {result.buffer_capacity}
+        </ContentSectionStat>
+        <ContentSectionStat label="Produces energy" quality>
+          {entry.merged.production}
+        </ContentSectionStat>
+        <ContentSectionStat label="Uses energy">
+          {entry.merged.power_input}
+        </ContentSectionStat>
+        <ContentSectionStat label="Max. output" quality>
+          {result.output_flow_limit}
+        </ContentSectionStat>
+      </>
+    );
   },
 );
 
@@ -228,4 +257,6 @@ export const EntitySection = {
   MadeIn,
   UsedIn,
   AppearsOn,
+  EquipmentGridPlaceable,
+  Electricity,
 };

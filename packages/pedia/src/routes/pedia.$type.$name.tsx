@@ -80,6 +80,8 @@ function Page() {
           <Surface color="blackLight" shadow="inset-1" className="grow p-2">
             <TabsContent value="pedia">
               <EntitySection.Main name={name} type={type} />
+              <EntitySection.EquipmentGridPlaceable name={name} type={type} />
+              <EntitySection.Electricity name={name} type={type} />
               <EntitySection.Recipe name={name} type={type} variant="flat" />
               <EntitySection.AlternativeRecipes
                 name={name}
