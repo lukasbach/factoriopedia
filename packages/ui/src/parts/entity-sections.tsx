@@ -103,6 +103,20 @@ const MadeIn = makeSection("Made In", ({ entry }) => {
   return <EntityGrid items={[machines.map((r) => r.merged)]} />;
 });
 
+const UsedIn = makeSection("Used In", ({ entry }) => {
+  const { entries } = useFactorioData();
+  const machines = useMemo(
+    () =>
+      Object.values(entries).filter((e) =>
+        e.recipe?.ingredients?.some?.(
+          (ingredient) => ingredient.name === entry.merged.name,
+        ),
+      ),
+    [entries, entry.merged.name],
+  );
+  return <EntityGrid items={[machines.map((r) => r.merged)]} />;
+});
+
 const Recipe = makeSection("Ingredients", ({ entry }) => {
   if (!entry.recipe) return null;
   return (
@@ -167,4 +181,5 @@ export const EntitySection = {
   Recipe,
   AlternativeRecipes,
   MadeIn,
+  UsedIn,
 };

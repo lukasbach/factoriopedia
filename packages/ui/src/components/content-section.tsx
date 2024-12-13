@@ -39,7 +39,7 @@ export const ContentSection: FC<
 
   if (variant === "flat") {
     return (
-      <div className="mb-2 text-white border-b-2 border-blackDark">
+      <div className="mb-2 text-white text-sm border-b-2 border-blackDark">
         {title && <div className="px-2 py-1 font-bold">{title}</div>}
         <div className="px-2 py-1 pb-2">{children}</div>
       </div>
