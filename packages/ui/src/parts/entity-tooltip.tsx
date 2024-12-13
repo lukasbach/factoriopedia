@@ -27,6 +27,10 @@ export const EntityTooltip: FC<
         useLocaleName(name),
         <>
           <TooltipSection>{useLocaleDescription(name)}</TooltipSection>
+          <TooltipSection>
+            <span className="font-bold text-textBlue">{type}</span> -{" "}
+            <span className="font-bold text-textYellow">{name}</span>
+          </TooltipSection>
           {"planet" in entries[name] && (
             <TooltipSection>
               <TooltipStat label="Day night cycle">

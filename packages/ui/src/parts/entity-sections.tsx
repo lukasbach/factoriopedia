@@ -82,7 +82,6 @@ const AlternativeRecipes = makeSection("Alternative Recipes", ({ entry }) => {
       e.recipe.results.some?.((r) => r.name === entry.merged.name),
   );
   if (!recipes.length) {
-    console.log("nope", entry.merged);
     return null;
   }
   return <EntityGrid items={[recipes.map((r) => r.merged)]} />;

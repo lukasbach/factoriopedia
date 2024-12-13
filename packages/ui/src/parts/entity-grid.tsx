@@ -25,7 +25,7 @@ export const EntityGrid: FC<{
               <EntityButton
                 name={item.name}
                 type={item.type}
-                onClick={() => onClick?.(item)}
+                onClick={onClick ? () => onClick?.(item) : undefined}
                 isActive={
                   activeItem &&
                   activeItem.name === item.name &&
