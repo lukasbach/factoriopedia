@@ -6,11 +6,12 @@ export type EntityIdentifier = { name: string; type: string };
 
 export const EntityGrid: FC<{
   items: EntityIdentifier[][];
+  subtexts?: string[][];
   activeItem?: EntityIdentifier;
   onClick?: (item: EntityIdentifier) => void;
   gridWidth?: number;
   gridHeight?: number;
-}> = ({ items, activeItem, onClick, gridHeight, gridWidth }) => {
+}> = ({ items, activeItem, onClick, gridHeight, gridWidth, subtexts }) => {
   return (
     <ButtonGrid
       gridWidth={gridWidth}
@@ -20,7 +21,7 @@ export const EntityGrid: FC<{
     >
       {items.map((group, idx) => (
         <div className="flex flex-wrap w-full" key={idx}>
-          {group.map((item) => (
+          {group.map((item, idy) => (
             <div key={`${item.type}-${item.name}`}>
               <EntityButton
                 name={item.name}
@@ -31,6 +32,7 @@ export const EntityGrid: FC<{
                   activeItem.name === item.name &&
                   activeItem.type === item.type
                 }
+                subtext={subtexts?.[idx]?.[idy]}
               />
             </div>
           ))}

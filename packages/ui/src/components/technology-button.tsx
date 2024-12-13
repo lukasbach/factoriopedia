@@ -11,7 +11,7 @@ export const TechnologyButton: FC<
     <button
       onClick={onClick}
       type="button"
-      className="group inline w-[120px] h-[180px]"
+      className="group inline w-[100px] h-[140px]"
     >
       <div className="bg-[#00c659] group-hover:bg-[#04db65] group-active:bg-[#03ad50] shadow-technology text-white font-bold">
         <div className="px-2 py-4">{children}</div>

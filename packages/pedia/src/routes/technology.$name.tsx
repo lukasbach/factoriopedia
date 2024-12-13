@@ -1,18 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  ButtonGrid,
   EntitySection,
   FactorioImage,
+  LocaleDescription,
   LocaleName,
-  useEntriesOfType,
-} from "@factorioui/components";
-import {
   TabsContent,
   TabsList,
   TabsRoot,
   TabsTrigger,
-} from "@factorioui/components/lib/components/tabs";
-import { ButtonGrid } from "@factorioui/components/src";
-import { TechnologyEntityButton } from "@factorioui/components/lib/parts/technology-entity-button";
+  TechnologyEntityButton,
+  useEntriesOfType,
+  useFactorioData,
+} from "@factorioui/components";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
 
@@ -21,12 +21,15 @@ export const Route = createFileRoute("/technology/$name")({
 });
 
 function Page() {
+  const { entries } = useFactorioData();
   const { name } = Route.useParams();
   const navigate = Route.useNavigate();
+  const technology = entries[name]?.technology;
+  if (!technology) return null;
   return (
     <TwoColumnContainer
       left={
-        <ButtonGrid itemWidth={120} itemHeight={180} gridWidth={4}>
+        <ButtonGrid itemWidth={100} itemHeight={140} gridWidth={5}>
           <div className="flex flex-wrap w-full">
             {useEntriesOfType("technology").map((tech) => (
               <TechnologyEntityButton
@@ -55,7 +58,42 @@ function Page() {
               </TabsList>
             }
           >
-            <TabsContent value="pedia">asd</TabsContent>
+            <TabsContent value="pedia">
+              <div className="flex gap-1 mb-2 min-h-[160px]">
+                <TechnologyEntityButton
+                  name={technology.name}
+                  onClick={() =>
+                    navigate({ params: { name: technology.name } })
+                  }
+                />
+                <div className="grow">
+                  <p className="mx-2">
+                    <LocaleDescription name={technology.name} />
+                  </p>
+                  <EntitySection.TechCost
+                    type="technology"
+                    name={technology.name}
+                    variant="flat"
+                  />
+                </div>
+              </div>
+
+              <EntitySection.TechUnlocksRecipes
+                type="technology"
+                name={technology.name}
+                variant="flat"
+              />
+              <EntitySection.TechPrerequisites
+                type="technology"
+                name={technology.name}
+                variant="flat"
+              />
+              <EntitySection.TechPrerequisiteFor
+                type="technology"
+                name={technology.name}
+                variant="flat"
+              />
+            </TabsContent>
             <TabsContent value="raw">
               <EntitySection.Debug name={name} type="technology" />
             </TabsContent>

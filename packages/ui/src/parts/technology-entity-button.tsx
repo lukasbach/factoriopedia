@@ -72,7 +72,7 @@ export const TechnologyEntityButton: FC<{
           )
         }
       >
-        <FactorioImage image={name} spritesheet="technology" width={100} />
+        <FactorioImage image={name} spritesheet="technology" width={80} />
       </TechnologyButton>
     </div>
   );

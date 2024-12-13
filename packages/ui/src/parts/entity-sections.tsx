@@ -39,7 +39,7 @@ const makeSection = <T,>(
     const entry = useEntry(props.name, props.type);
     if (!entry) return null;
     const result = compute(entry, data);
-    return !result ? null : (
+    return !result || (Array.isArray(result) && !result.length) ? null : (
       <ContentSection variant={props.variant} title={title}>
         <Component {...props} entry={entry} result={result} data={data} />
       </ContentSection>
@@ -207,6 +207,63 @@ const Electricity = makeSection(
   },
 );
 
+const TechCost = makeSection(
+  "Cost",
+  (entry) => entry.technology.unit?.ingredients,
+  ({ entry, result }) => {
+    return (
+      <>
+        <EntityGrid
+          items={[result.map(([name]) => ({ name, type: "recipe" }))]}
+          subtexts={[result.map(([_, amount]) => amount)]}
+        />
+        x{entry.technology.unit.count ?? entry.technology.unit.count_formula}
+      </>
+    );
+  },
+);
+
+const TechUnlocksRecipes = makeSection(
+  "Unlocks recipes",
+  (entry) =>
+    entry.technology.effects
+      ?.filter((effect) => effect.type === "unlock-recipe")
+      .map((effect) => effect.recipe),
+  ({ result }) => {
+    return (
+      <EntityGrid items={[result.map((name) => ({ name, type: "recipe" }))]} />
+    );
+  },
+);
+
+const TechPrerequisites = makeSection(
+  "Prerequisites",
+  (entry) => entry.technology.prerequisites,
+  ({ result }) => {
+    return (
+      <EntityGrid
+        items={[result.map((name) => ({ name, type: "technology" }))]}
+      />
+    );
+  },
+);
+
+const TechPrerequisiteFor = makeSection(
+  "Prerequisite for",
+  (entry, data) =>
+    data.typeMap.technology.filter((name) =>
+      data.entries[name].technology.prerequisites?.includes(entry.merged.name),
+    ),
+  ({ result }) => {
+    console.log("!!", result);
+    return (
+      <EntityGrid
+        items={[result.map((name) => ({ name, type: "technology" }))]}
+      />
+    );
+  },
+);
+
 const Dummy = makeSection(
   "",
   () => true,
@@ -259,4 +316,8 @@ export const EntitySection = {
   AppearsOn,
   EquipmentGridPlaceable,
   Electricity,
+  TechCost,
+  TechUnlocksRecipes,
+  TechPrerequisites,
+  TechPrerequisiteFor,
 };
