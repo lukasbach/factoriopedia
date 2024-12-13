@@ -15,6 +15,8 @@ import {
   TabsRoot,
   TabsTrigger,
 } from "@factorioui/components/lib/components/tabs";
+import { TwoColumnContainer } from "../components/two-column-container";
+import { TabbedContentPane } from "../components/tabbed-content-pane";
 
 const PediaSearchSchema = z.object({
   group: z.string().catch("logistics"),
@@ -30,62 +32,59 @@ function Page() {
   const { group } = Route.useSearch();
   const navigate = Route.useNavigate();
   return (
-    <>
-      <Surface
-        color="blackDark"
-        shadow="inset-1"
-        className="h-full flex flex-col"
-      >
-        <div>
-          <GroupTabs
-            gridWidth={6}
-            selectedGroup={group}
-            onSelectGroup={(group) =>
-              navigate({ params: { name, type }, search: { group } })
-            }
-          />
-        </div>
+    <TwoColumnContainer
+      left={
+        <>
+          <div>
+            <GroupTabs
+              gridWidth={6}
+              selectedGroup={group}
+              onSelectGroup={(group) =>
+                navigate({ params: { name, type }, search: { group } })
+              }
+            />
+          </div>
 
-        <Surface
-          color="blackLight"
-          shadow="topglow-1"
-          className="p-2 grow flex items-center align-middle justify-center overflow-auto"
-        >
-          <EntityGrid
-            gridWidth={12}
-            // gridHeight={14}
-            activeItem={{ name, type }}
-            onClick={({ name, type }) =>
-              navigate({ params: { name, type }, search: { group } })
-            }
-            items={useResolveJointItemEntries({
-              group,
-            }).map((subgroup) =>
-              subgroup.map(({ name, type }) => ({
-                name,
-                type,
-              })),
-            )}
-          />
-        </Surface>
-      </Surface>
-      <Surface
-        color="blackDark"
-        shadow="inset-1"
-        className="grow h-full overflow-auto"
-      >
-        <TabsRoot defaultValue="pedia" className="h-full flex flex-col">
-          <Surface shadow="deepinset">
-            <div className="py-2 px-2 text-textBeige font-bold flex items-center gap-2">
-              <FactorioImage image={name} width={24} />
-              <LocaleName name={name} />
-            </div>
-            <TabsList className="ml-2">
-              <TabsTrigger value="pedia">Entity</TabsTrigger>
-              <TabsTrigger value="raw">Raw Data</TabsTrigger>
-            </TabsList>
+          <Surface
+            color="blackLight"
+            shadow="topglow-1"
+            className="p-2 grow flex items-center align-middle justify-center overflow-auto"
+          >
+            <EntityGrid
+              gridWidth={12}
+              // gridHeight={14}
+              activeItem={{ name, type }}
+              onClick={({ name, type }) =>
+                navigate({ params: { name, type }, search: { group } })
+              }
+              items={useResolveJointItemEntries({
+                group,
+              }).map((subgroup) =>
+                subgroup.map(({ name, type }) => ({
+                  name,
+                  type,
+                })),
+              )}
+            />
           </Surface>
-          <Surface color="blackLight" shadow="inset-1" className="grow p-2">
+        </>
+      }
+      right={
+        <TabsRoot defaultValue="pedia" className="h-full">
+          <TabbedContentPane
+            title={
+              <>
+                <FactorioImage image={name} width={24} />
+                <LocaleName name={name} />
+              </>
+            }
+            tabsList={
+              <TabsList className="ml-2">
+                <TabsTrigger value="pedia">Entity</TabsTrigger>
+                <TabsTrigger value="raw">Raw Data</TabsTrigger>
+              </TabsList>
+            }
+          >
             <TabsContent value="pedia">
               <EntitySection.Main name={name} type={type} />
               <EntitySection.EquipmentGridPlaceable name={name} type={type} />
@@ -103,9 +102,9 @@ function Page() {
             <TabsContent value="raw">
               <EntitySection.Debug name={name} type={type} />
             </TabsContent>
-          </Surface>
+          </TabbedContentPane>
         </TabsRoot>
-      </Surface>
-    </>
+      }
+    />
   );
 }

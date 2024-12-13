@@ -8,11 +8,15 @@ export const TechnologyButton: FC<
   }>
 > = ({ children, right, subtext, onClick }) => {
   return (
-    <button onClick={onClick} type="button" className="group inline">
+    <button
+      onClick={onClick}
+      type="button"
+      className="group inline w-[120px] h-[180px]"
+    >
       <div className="bg-[#00c659] group-hover:bg-[#04db65] group-active:bg-[#03ad50] shadow-technology text-white font-bold">
         <div className="px-2 py-4">{children}</div>
         <div className="bg-[#01711f] h-4 text-right text-xs">{right}</div>
-        <div className="bg-[#024d07] h-6 flex justify-center items-center px-1">
+        <div className="bg-[#024d07] h-6 flex justify-center items-center px-1 overflow-hidden">
           {subtext}
         </div>
       </div>

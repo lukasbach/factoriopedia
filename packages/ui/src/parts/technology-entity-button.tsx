@@ -23,7 +23,7 @@ export const TechnologyEntityButton: FC<{
   const unlocks = useMemo(
     () =>
       tech.effects
-        .filter((effect) => effect.type === "unlock-recipe")
+        ?.filter((effect) => effect.type === "unlock-recipe")
         .map((effect) => effect.recipe),
     [tech.effects],
   );
@@ -45,10 +45,10 @@ export const TechnologyEntityButton: FC<{
                   type="recipe"
                 />
               ))}
-              x{tech.unit.count}
+              x{tech.unit.count ?? tech.unit.count_formula}
             </TooltipSection>
           )}
-          {unlocks.length > 0 && (
+          {unlocks?.length > 0 && (
             <TooltipSection>
               <ContentSectionStat label="Unlocks">
                 {unlocks.map((unlock) => (
