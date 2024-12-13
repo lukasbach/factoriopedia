@@ -5,6 +5,7 @@ import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entr
 import { Surface } from "../components/surface";
 import { GroupTabs } from "./group-tabs";
 import { TooltipRoot } from "../components/tooltip-root";
+import { EntityButton } from "./entity-button";
 
 const meta = {
   title: "Parts/Entity Grid",
@@ -57,6 +58,39 @@ export const AllItemsInGroup = () => {
         })}
       />
       <TooltipRoot />
+    </div>
+  );
+};
+
+export const EntityButtonWithSubtext = () => {
+  return (
+    <div>
+      <Surface color="blackDark" shadow="inset-1" className="p-2">
+        <EntityButton name="nauvis" type="planet" subtext="2" />
+        <EntityButton name="fulgora" type="planet" subtext="32x" />
+        <EntityButton name="vulcanus" type="planet" subtext="only" />
+        <EntityButton
+          name="nauvis"
+          type="planet"
+          subtext="2"
+          onClick={console.log}
+        />
+        <EntityButton
+          name="fulgora"
+          type="planet"
+          subtext="32x"
+          onClick={console.log}
+        />
+        <EntityButton
+          name="vulcanus"
+          type="planet"
+          subtext="only"
+          onClick={console.log}
+        />
+        <EntityButton name="nauvis" type="planet" subtext="2" dark />
+        <EntityButton name="fulgora" type="planet" subtext="32x" dark />
+        <EntityButton name="vulcanus" type="planet" subtext="only" dark />
+      </Surface>
     </div>
   );
 };

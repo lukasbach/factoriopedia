@@ -23,7 +23,8 @@ export const EntityButton: FC<{
   onClick?: () => void;
   isActive?: boolean;
   dark?: boolean;
-}> = ({ name, type, onClick, isActive, dark }) => {
+  subtext?: string;
+}> = ({ name, type, onClick, isActive, dark, subtext }) => {
   const onClickContext = useContext(EntityButtonActionContext);
   const handler =
     onClick ?? (onClickContext ? () => onClickContext(name, type) : undefined);
@@ -38,9 +39,20 @@ export const EntityButton: FC<{
         color={dark ? "blackMedium" : "blackLight"}
         hover={handler ? { color: "orangeLight" } : {}}
         active={handler ? { color: "orangeDark" } : {}}
-        className="p-0.5 m-0.5 inline-flex items-center justify-center rounded"
+        className="p-0.5 m-0.5 inline-flex items-center justify-center rounded relative"
       >
         <FactorioImage image={name} spritesheet={type} width={30} />
+        {subtext && (
+          <div
+            className="absolute bottom-0 right-0 p-0.5 rounded text-white font-bold text-xs"
+            style={{
+              textShadow:
+                "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+            }}
+          >
+            {subtext}
+          </div>
+        )}
       </Surface>
     </EntityTooltip>
   );

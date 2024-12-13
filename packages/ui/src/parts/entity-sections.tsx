@@ -10,6 +10,7 @@ import { Ingredient } from "./ingredient";
 import { useEntry } from "../hooks/use-entry";
 import { useFactorioData } from "../components/data-provider";
 import { EntityGrid } from "./entity-grid";
+import { EntityButton } from "./entity-button";
 
 type Props = {
   variant?: ContentSectionVariant;
@@ -104,6 +105,19 @@ const Recipe = makeSection("", ({ entry }) => {
         <span className="font-bold">{entry.merged.energy_required}s</span>{" "}
         Crafting time
       </div>
+      <ContentSectionStat
+        label={entry.recipe.results?.length > 1 ? "Results" : "Result"}
+      >
+        {entry.recipe.results?.map((result) => (
+          <EntityButton
+            key={result.name}
+            name={result.name}
+            type={result.type}
+            subtext={`${result.amount * (result.probability ?? 1)}`}
+            dark
+          />
+        ))}
+      </ContentSectionStat>
     </>
   );
 });
