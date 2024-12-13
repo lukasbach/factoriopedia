@@ -1,2 +1,4 @@
+import config from "../ui/tailwind.config.js";
+
 /** @type {import('tailwindcss').Config} */
-export default require("../ui/tailwind.config.js");
+export default config;

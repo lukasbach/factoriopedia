@@ -15,12 +15,14 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsc",
+    "devx": "concurrently build:watch tailwind:watch storybook",
+    "build": "tsc && yarn tailwind:build && yarn build-storybook",
     "build:watch": "tsc --watch",
     "test": "node ./__tests__/ui.test.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tailwind:watch": "tailwindcss -i \"./src/ìnput.css\" -o \"./src/output.css\" --watch"
+    "tailwind:watch": "tailwindcss -i \"./src/ìnput.css\" -o \"./src/output.css\" --watch",
+    "tailwind:build": "tailwindcss -i \"./src/ìnput.css\" -o \"./src/output.css\""
   },
   "dependencies": {
     "@factorioui/data": "^0.0.0",
@@ -28,6 +30,7 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
     "@react-hookz/web": "^24.0.4",
+    "concurrently": "^9.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-tooltip": "^5.28.0",

@@ -17,7 +17,8 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "build": "tsc"
+    "build": "lerna run build",
+    "dev": "lerna run dev,build:watch,tailwind:watch,storybook --parallel"
   },
   "eslintConfig": {
     "extends": "@lukasbach/base/react",

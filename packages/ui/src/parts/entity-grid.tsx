@@ -16,7 +16,7 @@ export const EntityGrid: FC<{
       gridWidth={gridWidth}
       gridHeight={gridHeight}
       itemWidth={38}
-      itemHeight={40}
+      itemHeight={38}
     >
       {items.map((group, idx) => (
         <div className="flex flex-wrap w-full" key={idx}>

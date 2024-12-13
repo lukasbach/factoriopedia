@@ -1,9 +1,14 @@
 import { FC, PropsWithChildren } from "react";
 import { tooltip } from "../components/tooltip";
 import { TooltipSection } from "../components/tooltip-section";
-import { useFactorioData } from "../components/data-provider";
+import {
+  StaticFactorioDataProvider,
+  useFactorioData,
+  useFactorioDataPath,
+} from "../components/data-provider";
 import { useLocaleName } from "./locale-name";
 import { useLocaleDescription } from "./locale-description";
+import { EntityButton } from "./entity-button";
 
 const TooltipStat = ({
   label,
@@ -19,18 +24,42 @@ export const EntityTooltip: FC<
   PropsWithChildren<{ name: string; type: string }>
 > = ({ name, type, children }) => {
   const { entries } = useFactorioData();
+  const description = useLocaleDescription(name);
   const entry = entries[name][type];
 
   return (
     <span
       {...tooltip(
         useLocaleName(name),
-        <>
-          <TooltipSection>{useLocaleDescription(name)}</TooltipSection>
+        <StaticFactorioDataProvider
+          data={useFactorioData()}
+          path={useFactorioDataPath()}
+        >
+          {description && <TooltipSection>{description}</TooltipSection>}
           <TooltipSection>
             <span className="font-bold text-textBlue">{type}</span> -{" "}
             <span className="font-bold text-textYellow">{name}</span>
           </TooltipSection>
+          {"recipe" in entries[name] && (
+            <TooltipSection>
+              {entries[name].recipe.ingredients?.map?.((ingredient) => (
+                <EntityButton
+                  subtext={ingredient.amount}
+                  name={ingredient.name}
+                  type={ingredient.type}
+                />
+              ))}
+              <TooltipStat label="Produces">
+                {entries[name].recipe.results?.map?.((result) => (
+                  <EntityButton
+                    subtext={`${result.amount * (result.probability ?? 1)}`}
+                    name={result.name}
+                    type={result.type}
+                  />
+                ))}
+              </TooltipStat>
+            </TooltipSection>
+          )}
           {"planet" in entries[name] && (
             <TooltipSection>
               <TooltipStat label="Day night cycle">
@@ -48,7 +77,7 @@ export const EntityTooltip: FC<
               </TooltipStat>
             </TooltipSection>
           )}
-        </>,
+        </StaticFactorioDataProvider>,
       )}
     >
       {children}

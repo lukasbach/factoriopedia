@@ -2,7 +2,7 @@ import { ReactNode, createContext, useContext } from "react";
 import ReactDOMServer from "react-dom/server";
 
 const IsInTooltipContext = createContext(false);
-const useIsInTooltip = () => useContext(IsInTooltipContext) || false;
+export const useIsInTooltip = () => useContext(IsInTooltipContext) || false;
 
 export const tooltip = (
   text: string | ReactNode | null,

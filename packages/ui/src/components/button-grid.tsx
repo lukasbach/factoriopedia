@@ -10,7 +10,7 @@ export const ButtonGrid: FC<
     gridHeight?: number;
   }>
 > = ({ children, gridWidth, gridHeight, itemWidth, itemHeight }) => {
-  const [measures, ref] = useMeasure<HTMLDivElement>(false);
+  const [measures, ref] = useMeasure<HTMLDivElement>(true);
   const actualGridWidth =
     gridWidth ?? Math.floor((measures?.width ?? 1) / itemWidth);
   const actualGridHeight =

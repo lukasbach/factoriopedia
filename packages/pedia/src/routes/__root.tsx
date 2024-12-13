@@ -39,7 +39,7 @@ function Page() {
           <Surface
             color="blackMedium"
             shadow="topglow-2"
-            className="w-[960px] rounded flex gap-2 p-2"
+            className="w-[960px] h-[80%] rounded flex gap-2 p-2"
           >
             <Outlet />
             <TanStackRouterDevtools />

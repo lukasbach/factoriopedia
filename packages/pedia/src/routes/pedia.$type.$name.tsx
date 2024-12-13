@@ -31,7 +31,11 @@ function Page() {
   const navigate = Route.useNavigate();
   return (
     <>
-      <Surface color="blackDark" shadow="inset-1">
+      <Surface
+        color="blackDark"
+        shadow="inset-1"
+        className="h-full flex flex-col"
+      >
         <div>
           <GroupTabs
             gridWidth={6}
@@ -45,11 +49,11 @@ function Page() {
         <Surface
           color="blackLight"
           shadow="topglow-1"
-          className="p-2 flex items-center align-middle justify-center"
+          className="p-2 grow flex items-center align-middle justify-center overflow-auto"
         >
           <EntityGrid
             gridWidth={12}
-            gridHeight={14}
+            // gridHeight={14}
             activeItem={{ name, type }}
             onClick={({ name, type }) =>
               navigate({ params: { name, type }, search: { group } })
@@ -65,7 +69,11 @@ function Page() {
           />
         </Surface>
       </Surface>
-      <Surface color="blackDark" shadow="inset-1" className="grow ">
+      <Surface
+        color="blackDark"
+        shadow="inset-1"
+        className="grow h-full overflow-auto"
+      >
         <TabsRoot defaultValue="pedia" className="h-full flex flex-col">
           <Surface shadow="deepinset">
             <div className="py-2 px-2 text-textBeige font-bold flex items-center gap-2">

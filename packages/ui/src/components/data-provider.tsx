@@ -40,3 +40,9 @@ export const FactorioDataProvider: FC<
     <Context.Provider value={{ dump: data, path }}>{children}</Context.Provider>
   );
 };
+
+export const StaticFactorioDataProvider: FC<
+  PropsWithChildren<{ data: DumpType; path: string }>
+> = ({ children, data, path }) => (
+  <Context.Provider value={{ dump: data, path }}>{children}</Context.Provider>
+);
