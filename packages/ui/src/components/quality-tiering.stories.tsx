@@ -15,13 +15,13 @@ export const QualityTieringExample = () => (
   <Surface shadow="topglow-2" color="blackLight" className="p-2">
     <ContentSection title="Title of section">
       <ContentSectionStat label="Just value">
-        <QualityTiering base={1000} />
+        <QualityTiering value="1000" />
       </ContentSectionStat>
       <ContentSectionStat label="Value with unit">
-        <QualityTiering base={1000} unit="kwH" />
+        <QualityTiering value="1000kwH" />
       </ContentSectionStat>
       <ContentSectionStat label="Value with custom tiering">
-        <QualityTiering base={1000} tiering={[1, 2, 3, 4, 5]} />
+        <QualityTiering value="1000" tiering={[1, 2, 3, 4, 5]} />
       </ContentSectionStat>
     </ContentSection>
     <TooltipRoot />

@@ -83,11 +83,16 @@ function Page() {
             className="grow overflow-auto p-2"
           >
             <TabsContent value="pedia">
-              <EntitySection.Main name={name} />
-              <EntitySection.Recipe name={name} />
+              <EntitySection.Main name={name} type={type} />
+              <EntitySection.Recipe name={name} type={type} variant="flat" />
+              <EntitySection.AlternativeRecipes
+                name={name}
+                type={type}
+                variant="flat"
+              />
             </TabsContent>
             <TabsContent value="raw">
-              <EntitySection.Debug name={name} />
+              <EntitySection.Debug name={name} type={type} />
             </TabsContent>
           </Surface>
         </TabsRoot>

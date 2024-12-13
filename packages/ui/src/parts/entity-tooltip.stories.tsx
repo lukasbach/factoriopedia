@@ -21,17 +21,17 @@ export const ItemsTooltips = () => (
       }),
     ).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
-        {subgroup.map((item) => (
-          <EntityTooltip name={item.merged.name}>
+        {subgroup.map(({ entry }) => (
+          <EntityTooltip name={entry.merged.name} type={entry.merged.type}>
             <Surface
-              key={item.merged.name}
+              key={entry.merged.name}
               shadow="btn-small"
               color="blackLight"
               hover={{ color: "orangeLight" }}
               active={{ color: "orangeDark" }}
               className="inline-block p-0.5 flex items-center justify-center rounded"
             >
-              <FactorioImage image={item.merged.name} width={30} />
+              <FactorioImage image={entry.merged.name} width={30} />
             </Surface>
           </EntityTooltip>
         ))}

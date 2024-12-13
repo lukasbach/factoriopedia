@@ -56,17 +56,17 @@ export const ItemsInGroup = () => (
       types: ["item", "tool", "recipe"],
     }).map((subgroup) => (
       <div className="flex flex-wrap gap-0.5">
-        {subgroup.map((item) => (
+        {subgroup.map(({ entry }) => (
           <Surface
-            key={item.merged.name}
+            key={entry.merged.name}
             shadow="btn-small"
             color="blackLight"
             hover={{ color: "orangeLight" }}
             active={{ color: "orangeDark" }}
             className="inline-block p-0.5 flex items-center justify-center rounded"
-            title={item.merged.name}
+            title={entry.merged.name}
           >
-            <FactorioImage image={item.merged.name} width={30} />
+            <FactorioImage image={entry.merged.name} width={30} />
           </Surface>
         ))}
       </div>

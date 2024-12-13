@@ -1,13 +1,17 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { tooltip } from "./tooltip";
 import { ContentSectionStat } from "./content-section";
 import { TooltipSection } from "./tooltip-section";
 
 export const QualityTiering: FC<{
-  base: number;
-  unit?: string;
+  value: string;
   tiering?: [number, number, number, number, number];
-}> = ({ unit, base, tiering = [1, 1.3, 1.6, 1.9, 2.5] }) => {
+}> = ({ value, tiering = [1, 1.3, 1.6, 1.9, 2.5] }) => {
+  const [_, baseStr, unit] = useMemo(
+    () => /^(\d+)(.*)$/.exec(value) ?? [value, ""],
+    [value],
+  );
+  const base = Number.parseFloat(baseStr);
   return (
     <span
       {...tooltip(

@@ -12,9 +12,9 @@ export const ItemEntitySections = () => {
   const { entries } = useFactorioData();
   return (
     <div>
-      <EntitySection.Main name="fusion-reactor" />
-      <EntitySection.Recipe name="fusion-reactor" />
-      <EntitySection.Debug name="fusion-reactor" />
+      <EntitySection.Main name="fusion-reactor" type="item" />
+      <EntitySection.Recipe name="fusion-reactor" type="item" />
+      <EntitySection.Debug name="fusion-reactor" type="item" />
     </div>
   );
 };

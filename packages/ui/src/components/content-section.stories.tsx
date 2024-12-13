@@ -35,8 +35,8 @@ export const Stats = () => (
       <ContentSectionStat label="Label">Value</ContentSectionStat>
       <ContentSectionStat label="Label">Value</ContentSectionStat>
       <ContentSectionStat label="Label">
-        <EntityButton name="fulgora" />
-        <EntityButton name="vulcanus" />
+        <EntityButton type="planet" name="fulgora" />
+        <EntityButton type="planet" name="vulcanus" />
       </ContentSectionStat>
     </ContentSection>
   </Surface>

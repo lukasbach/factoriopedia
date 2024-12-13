@@ -8,7 +8,7 @@ export const Ingredient: FC<{ name: string; count: number }> = ({
 }) => {
   return (
     <div className="flex items-center gap-2">
-      <EntityButton name={name} dark />
+      <EntityButton name={name} type="item" dark />
       <div className="text-white">
         <span className="font-bold">{count} x</span> <LocaleName name={name} />
       </div>

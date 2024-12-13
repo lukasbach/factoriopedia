@@ -18,6 +18,9 @@ export const ignoredProperties = [
   /_tint$/,
   /trigger/,
   /transition/,
-  /^pictures$/,
+  /pictures?$/,
+  /position$/,
+  /shadow$/,
+  /frozen$/,
   /select$/,
 ];

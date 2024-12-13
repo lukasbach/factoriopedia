@@ -15,14 +15,15 @@ export const FactorioImage: FC<{
     return Object.entries(data.spriteMap).find(
       ([key, images]) => `${image}.png` in images,
     )?.[0];
-  }, []);
+  }, [data.spriteMap, image, spritesheet]);
 
   if (
     !resolvedSpritesheet ||
     !data.spriteMap[resolvedSpritesheet][`${image}.png`]
   ) {
-    resolvedSpritesheet = "virtual-signal";
-    image = "signal-deny";
+    resolvedSpritesheet = "quality";
+    // eslint-disable-next-line no-param-reassign
+    image = "quality-unknown";
   }
 
   const imageData = data.spriteMap[resolvedSpritesheet][`${image}.png`];

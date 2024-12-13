@@ -90,6 +90,7 @@ const sprites = [
   "item-group/*.png",
   "quality/*.png",
   "equipment/*.png",
+  "entity/*.png",
   "fluid/*.png",
   "achievement/*.png",
   "ammo-category/*.png",
