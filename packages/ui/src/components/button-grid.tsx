@@ -20,7 +20,7 @@ export const ButtonGrid: FC<
       ref={ref}
       className="h-full"
       style={{
-        width: gridWidth ? `${gridWidth * itemWidth + 17}px` : "",
+        width: gridWidth ? `${gridWidth * itemWidth + 4}px` : "",
         height: gridHeight ? `${gridHeight * itemHeight}px` : "",
       }}
     >
@@ -32,7 +32,7 @@ export const ButtonGrid: FC<
         <div className="relative flex flex-wrap content-start z-[2]">
           {children}
         </div>
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap z-[1]">
+        <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-wrap z-[1] content-start">
           {Array.from({ length: actualGridWidth * actualGridHeight }).map(
             (_, index) => (
               <div
