@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, memo } from "react";
 import { DumpType } from "@factorioui/data";
 import {
   ContentSection,
@@ -18,23 +18,35 @@ type Props = {
   type: string;
 };
 
-const makeSection =
-  (
-    title: string | undefined,
-    Component: FC<Props & { entry: DumpType["entries"][string] }>,
-  ) =>
-  (props: Props) => {
+const showAlways = () => true;
+
+const makeSection = <T,>(
+  title: string | undefined,
+  compute: (
+    entry: DumpType["entries"][string],
+    data: DumpType,
+  ) => T | false | null,
+  Component: FC<
+    Props & {
+      entry: DumpType["entries"][string];
+      result: T;
+      data: DumpType;
+    }
+  >,
+) =>
+  memo((props: Props) => {
+    const data = useFactorioData();
     const entry = useEntry(props.name, props.type);
     if (!entry) return null;
-    const result = <Component {...props} entry={entry} />;
-    return !result.type({ ...props, entry }) ? null : (
+    const result = compute(entry, data);
+    return !result ? null : (
       <ContentSection variant={props.variant} title={title}>
-        <Component {...props} entry={entry} />
+        <Component {...props} entry={entry} result={result} data={data} />
       </ContentSection>
     );
-  };
+  });
 
-const ItemInfo = makeSection(undefined, ({ entry }) => (
+const ItemInfo = makeSection(undefined, showAlways, ({ entry }) => (
   <>
     <ContentSectionStat label="Type">
       {entry.types.join(", ")}
@@ -74,52 +86,45 @@ const ItemInfo = makeSection(undefined, ({ entry }) => (
   </>
 ));
 
-const AlternativeRecipes = makeSection("Alternative Recipes", ({ entry }) => {
-  const { entries } = useFactorioData();
-  const recipes = Object.values(entries).filter(
-    (e) =>
-      e.merged.type === "recipe" &&
-      e.recipe.name !== entry.merged.name &&
-      e.recipe.results.some?.((r) => r.name === entry.merged.name),
-  );
-  if (!recipes.length) {
-    return null;
-  }
-  return <EntityGrid items={[recipes.map((r) => r.merged)]} />;
-});
+const AlternativeRecipes = makeSection(
+  "Alternative Recipes",
+  (entry, data) =>
+    Object.values(data.entries).filter(
+      (e) =>
+        e.merged.type === "recipe" &&
+        e.recipe.name !== entry.merged.name &&
+        e.recipe.results.some?.((r) => r.name === entry.merged.name),
+    ),
+  ({ result }) => <EntityGrid items={[result.map((r) => r.merged)]} />,
+);
 
-const MadeIn = makeSection("Made In", ({ entry }) => {
-  const { entries } = useFactorioData();
-  if (!entry.recipe?.category) return null;
-  const machines = useMemo(
-    () =>
-      Object.values(entries).filter((e) =>
-        e["assembling-machine"]?.crafting_categories?.includes(
-          entry.recipe.category,
-        ),
+const MadeIn = makeSection(
+  "Made In",
+  (entry, data) =>
+    entry.recipe?.category &&
+    Object.values(data.entries).filter((e) =>
+      e["assembling-machine"]?.crafting_categories?.includes(
+        entry.recipe.category,
       ),
-    [entries, entry.recipe.category],
-  );
-  return <EntityGrid items={[machines.map((r) => r.merged)]} />;
-});
+    ),
+  ({ result }) => <EntityGrid items={[result.map((r) => r.merged)]} />,
+);
 
-const UsedIn = makeSection("Used In", ({ entry }) => {
-  const { entries } = useFactorioData();
-  const machines = useMemo(
-    () =>
-      Object.values(entries).filter((e) =>
-        e.recipe?.ingredients?.some?.(
-          (ingredient) => ingredient.name === entry.merged.name,
-        ),
+const UsedIn = makeSection(
+  "Used In",
+  (entry, data) =>
+    Object.values(data.entries).filter((e) =>
+      e.recipe?.ingredients?.some?.(
+        (ingredient) => ingredient.name === entry.merged.name,
       ),
-    [entries, entry.merged.name],
-  );
-  return <EntityGrid items={[machines.map((r) => r.merged)]} />;
-});
+    ),
+  ({ result }) => <EntityGrid items={[result.map((r) => r.merged)]} />,
+);
 
-const Recipe = makeSection("Ingredients", ({ entry }) => {
-  if (!entry.recipe) return null;
-  return (
+const Recipe = makeSection(
+  "Ingredients",
+  (entry) => entry.recipe,
+  ({ entry }) => (
     <>
       {entry.recipe.ingredients?.map((ingredient) => (
         <Ingredient
@@ -147,33 +152,73 @@ const Recipe = makeSection("Ingredients", ({ entry }) => {
         ))}
       </ContentSectionStat>
     </>
-  );
-});
+  ),
+);
 
-const Debug = makeSection("Debug Data", ({ entry }) => {
-  return (
-    <pre
-      className="text-xs max-h-[400px] overflow-auto"
-      style={{ maxWidth: "400px" }}
-    >
-      {JSON.stringify(entry, null, 2)}
-    </pre>
-  );
-});
+const AppearsOn = makeSection(
+  "Appears on",
+  (entry, data) =>
+    Object.values(data.entries ?? {}).filter((e) =>
+      Object.keys(
+        e.planet?.map_gen_settings?.autoplace_controls ?? {},
+      ).includes(entry.merged.name),
+    ),
+  ({ result }) => {
+    // TODO doesnt work great
+    return <EntityGrid items={[result.map((r) => r.merged)]} />;
+  },
+);
 
-const Main = makeSection(undefined, ({ entry }) => {
-  return (
-    <>
-      <LocaleDescription name={entry.merged.name} />
-      <hr className="border-blackLight my-2" />
-      <ItemInfo
-        name={entry.merged.name}
-        type={entry.merged.type}
-        variant="inside"
-      />
-    </>
-  );
-});
+const EquipmentGridPlaceable = makeSection(
+  "Placed in equipment grid",
+  () => true,
+  ({ entry }) => {
+    const { entries } = useFactorioData();
+    return null;
+  },
+);
+
+const Dummy = makeSection(
+  "",
+  () => true,
+  ({ entry }) => {
+    const { entries } = useFactorioData();
+    return null;
+  },
+);
+
+const Debug = makeSection(
+  "Debug Data",
+  () => true,
+  ({ entry }) => {
+    return (
+      <pre
+        className="text-xs max-h-[400px] overflow-auto"
+        style={{ maxWidth: "400px" }}
+      >
+        {JSON.stringify(entry, null, 2)}
+      </pre>
+    );
+  },
+);
+
+const Main = makeSection(
+  undefined,
+  () => true,
+  ({ entry }) => {
+    return (
+      <>
+        <LocaleDescription name={entry.merged.name} />
+        <hr className="border-blackLight my-2" />
+        <ItemInfo
+          name={entry.merged.name}
+          type={entry.merged.type}
+          variant="inside"
+        />
+      </>
+    );
+  },
+);
 
 export const EntitySection = {
   Main,
@@ -182,4 +227,5 @@ export const EntitySection = {
   AlternativeRecipes,
   MadeIn,
   UsedIn,
+  AppearsOn,
 };

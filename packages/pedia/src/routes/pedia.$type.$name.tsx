@@ -77,11 +77,7 @@ function Page() {
               <TabsTrigger value="raw">Raw Data</TabsTrigger>
             </TabsList>
           </Surface>
-          <Surface
-            color="blackLight"
-            shadow="inset-1"
-            className="grow overflow-auto p-2"
-          >
+          <Surface color="blackLight" shadow="inset-1" className="grow p-2">
             <TabsContent value="pedia">
               <EntitySection.Main name={name} type={type} />
               <EntitySection.Recipe name={name} type={type} variant="flat" />
@@ -92,6 +88,7 @@ function Page() {
               />
               <EntitySection.MadeIn name={name} type={type} variant="flat" />
               <EntitySection.UsedIn name={name} type={type} variant="flat" />
+              <EntitySection.AppearsOn name={name} type={type} variant="flat" />
             </TabsContent>
             <TabsContent value="raw">
               <EntitySection.Debug name={name} type={type} />
