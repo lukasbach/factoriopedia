@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { DumpType } from "@factorioui/data";
 import {
   ContentSection,
@@ -88,11 +88,25 @@ const AlternativeRecipes = makeSection("Alternative Recipes", ({ entry }) => {
   return <EntityGrid items={[recipes.map((r) => r.merged)]} />;
 });
 
-const Recipe = makeSection("", ({ entry }) => {
+const MadeIn = makeSection("Made In", ({ entry }) => {
+  const { entries } = useFactorioData();
+  if (!entry.recipe?.category) return null;
+  const machines = useMemo(
+    () =>
+      Object.values(entries).filter((e) =>
+        e["assembling-machine"]?.crafting_categories?.includes(
+          entry.recipe.category,
+        ),
+      ),
+    [entries, entry.recipe.category],
+  );
+  return <EntityGrid items={[machines.map((r) => r.merged)]} />;
+});
+
+const Recipe = makeSection("Ingredients", ({ entry }) => {
   if (!entry.recipe) return null;
   return (
     <>
-      <p className="mb-2 font-bold">Ingredients</p>
       {entry.recipe.ingredients?.map((ingredient) => (
         <Ingredient
           key={ingredient.name}
@@ -147,4 +161,10 @@ const Main = makeSection(undefined, ({ entry }) => {
   );
 });
 
-export const EntitySection = { Main, Debug, Recipe, AlternativeRecipes };
+export const EntitySection = {
+  Main,
+  Debug,
+  Recipe,
+  AlternativeRecipes,
+  MadeIn,
+};

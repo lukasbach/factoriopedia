@@ -90,6 +90,7 @@ function Page() {
                 type={type}
                 variant="flat"
               />
+              <EntitySection.MadeIn name={name} type={type} variant="flat" />
             </TabsContent>
             <TabsContent value="raw">
               <EntitySection.Debug name={name} type={type} />
