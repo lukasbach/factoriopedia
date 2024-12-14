@@ -1,4 +1,9 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import {
+  Link,
+  Outlet,
+  createRootRoute,
+  useMatchRoute,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import {
   EntityButtonActionProvider,
@@ -16,11 +21,20 @@ export const Route = createRootRoute({
 function Page() {
   const navigate = PediaRoute.useNavigate();
   const search = Route.useSearch();
+  const matchRoute = useMatchRoute();
   return (
     <FactorioDataProvider path="/" loader={<>Loading...</>}>
       <EntityButtonActionProvider
         onClick={(name, type) => {
-          navigate({ params: { name, type }, search });
+          if (type === "technology") {
+            navigate({ params: { name }, to: "/technology/$name" });
+          } else {
+            navigate({
+              params: { name, type },
+              search,
+              to: "/pedia/$type/$name",
+            });
+          }
         }}
       >
         <Surface
@@ -28,9 +42,23 @@ function Page() {
           color="blackDark"
         >
           <div className="w-[960px] px-4 min-h-7">
-            <TabsTriggerVisual href="#" active>
-              Factoriopedia
-            </TabsTriggerVisual>
+            <Link
+              to="/pedia/$type/$name"
+              params={{ type: "item", name: "transport-belt" }}
+            >
+              <TabsTriggerVisual
+                active={!!matchRoute({ to: "/pedia/$type/$name" })}
+              >
+                Factoriopedia
+              </TabsTriggerVisual>
+            </Link>
+            <Link to="/technology/$name" params={{ name: "steam-power" }}>
+              <TabsTriggerVisual
+                active={!!matchRoute({ to: "/technology/$name" })}
+              >
+                Technologies
+              </TabsTriggerVisual>
+            </Link>
             <TabsTriggerVisual href="#">Tools</TabsTriggerVisual>
             <TabsTriggerVisual href="#">Guides</TabsTriggerVisual>
             <TabsTriggerVisual href="#">About</TabsTriggerVisual>

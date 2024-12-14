@@ -1,12 +1,11 @@
-import { Link, createLazyFileRoute } from "@tanstack/react-router";
+import { Navigate, createLazyFileRoute } from "@tanstack/react-router";
 
 const Page = () => {
   return (
-    <div className="p-2">
-      <Link to="/pedia" className="[&.active]:font-bold">
-        Home
-      </Link>
-    </div>
+    <Navigate
+      to="/pedia/$type/$name"
+      params={{ name: "transport-belt", type: "item" }}
+    />
   );
 };
 
