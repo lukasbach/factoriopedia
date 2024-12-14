@@ -67,10 +67,15 @@ function Page() {
                   }
                 />
                 <div className="grow">
-                  <p className="mx-2">
+                  <p className="mx-2 mb-2">
                     <LocaleDescription name={technology.name} />
                   </p>
                   <EntitySection.TechCost
+                    type="technology"
+                    name={technology.name}
+                    variant="flat"
+                  />
+                  <EntitySection.TechResearchTrigger
                     type="technology"
                     name={technology.name}
                     variant="flat"

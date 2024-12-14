@@ -255,10 +255,82 @@ const TechPrerequisiteFor = makeSection(
       data.entries[name].technology.prerequisites?.includes(entry.merged.name),
     ),
   ({ result }) => {
-    console.log("!!", result);
     return (
       <EntityGrid
         items={[result.map((name) => ({ name, type: "technology" }))]}
+      />
+    );
+  },
+);
+
+const TechResearchTrigger = makeSection(
+  "Researched by",
+  (entry) => entry.technology.research_trigger,
+  ({ result }) => {
+    return (
+      <>
+        <ContentSectionStat
+          label="Crafting item"
+          skip={result.type !== "craft-item"}
+        >
+          <EntityButton
+            name={result.item}
+            type="recipe"
+            subtext={result.count}
+          />
+        </ContentSectionStat>
+        <ContentSectionStat
+          label="Mining resource"
+          skip={result.type !== "mine-entity"}
+        >
+          <EntityButton
+            name={result.entity}
+            type="item"
+            subtext={result.count}
+          />
+        </ContentSectionStat>
+        <ContentSectionStat
+          label="Completion"
+          skip={result.type !== "create-space-platform"}
+        >
+          Creating space platform
+        </ContentSectionStat>
+        <ContentSectionStat
+          label="Completion"
+          skip={result.type !== "capture-spawner"}
+        >
+          Capturing spawner
+        </ContentSectionStat>
+      </>
+    );
+  },
+);
+const TechResearchTriggerMine = makeSection(
+  "Triggered by mining",
+  (entry) =>
+    entry.technology.research_trigger
+      ?.filter((t) => t.type === "mine-entity")
+      .map((t) => t.entity),
+  ({ result }) => {
+    return (
+      <EntityGrid
+        items={[result.map((name) => ({ name, type: "resource" }))]}
+      />
+    );
+  },
+);
+
+const TechResearchTriggerCraft = makeSection(
+  "Triggered by crafting",
+  (entry) =>
+    entry.technology.research_trigger
+      ?.filter((t) => t.type === "craft-item")
+      .map((t) => t.entity),
+  ({ result }) => {
+    return (
+      <EntityGrid
+        items={[result.map((t) => ({ name: t.entity, type: "recipe" }))]}
+        subtexts={[result.map((t) => t.count)]}
       />
     );
   },
@@ -320,4 +392,5 @@ export const EntitySection = {
   TechUnlocksRecipes,
   TechPrerequisites,
   TechPrerequisiteFor,
+  TechResearchTrigger,
 };

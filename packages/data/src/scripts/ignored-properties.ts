@@ -16,7 +16,7 @@ export const ignoredProperties = [
   /graphics_set$/,
   /animation$/,
   /_tint$/,
-  /trigger/,
+  /.*(?<!research_)trigger$/,
   /transition/,
   /pictures?$/,
   /position$/,
