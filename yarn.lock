@@ -673,6 +673,7 @@ __metadata:
     "@storybook/react": "npm:8.4.7"
     "@storybook/react-vite": "npm:8.4.7"
     "@storybook/test": "npm:8.4.7"
+    "@tanstack/react-table": "npm:^8.20.6"
     "@types/deepmerge": "npm:^2.2.3"
     "@types/prop-types": "npm:^15"
     "@types/react": "npm:18.3.1"
@@ -2849,6 +2850,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-table@npm:^8.20.6":
+  version: 8.20.6
+  resolution: "@tanstack/react-table@npm:8.20.6"
+  dependencies:
+    "@tanstack/table-core": "npm:8.20.5"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 3213dc146f647fbd571f4e347007b969320819e588439b2ee95dd3a65efcbe30d097c24426dd82617041ed1e186182a5b303382bcebed5d61a1c6045a55c58d3
+  languageName: node
+  linkType: hard
+
 "@tanstack/router-devtools@npm:^1.87.7":
   version: 1.87.7
   resolution: "@tanstack/router-devtools@npm:1.87.7"
@@ -2916,6 +2929,13 @@ __metadata:
   version: 0.6.0
   resolution: "@tanstack/store@npm:0.6.0"
   checksum: 72fbd772b757b53885d628ed486e00d75d16cac2002111bf0fed18382f62f4d3bd936e5c5fbc053af5752910d8c8b2aaec6de48cacc2f17c9fefc8929c153840
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.20.5":
+  version: 8.20.5
+  resolution: "@tanstack/table-core@npm:8.20.5"
+  checksum: 3c27b5debd61b6bd9bfbb40bfc7c5d5af90873ae1a566b20e3bf2d2f4f2e9a78061c081aacc5259a00e256f8df506ec250eb5472f5c01ff04baf9918b554982b
   languageName: node
   linkType: hard
 

@@ -35,6 +35,7 @@ export type SurfaceProps<T = HTMLDivElement> = PropsWithChildren<
     active?: SurfaceProperties;
     isActive?: boolean;
     as?: string;
+    useGroup?: boolean;
   } & SurfaceProperties &
     HTMLProps<T>
 >;
@@ -46,10 +47,12 @@ export function Surface<T = HTMLDivElement>({
   active,
   isActive,
   as,
+  useGroup,
   ...props
 }: SurfaceProps<T>) {
   const currentProps = isActive && active ? active : { shadow, color };
   const Comp = (as ?? "div") as any;
+  const grpref = useGroup ? "group-" : "";
   return (
     <Comp
       {...props}
@@ -57,10 +60,13 @@ export function Surface<T = HTMLDivElement>({
         props.className ?? "",
         [!!currentProps.shadow, `shadow-${currentProps.shadow}`],
         [!!currentProps.color, `bg-${currentProps.color}`],
-        [!isActive && !!hover?.color, `hover:bg-${hover?.color}`],
-        [!isActive && !!hover?.shadow, `hover:shadow-${hover?.shadow}`],
-        [!!active?.color, `active:bg-${active?.color}`],
-        [!!active?.shadow, `active:shadow-${active?.shadow}`],
+        [!isActive && !!hover?.color, `${grpref}hover:bg-${hover?.color}`],
+        [
+          !isActive && !!hover?.shadow,
+          `${grpref}hover:shadow-${hover?.shadow}`,
+        ],
+        [!!active?.color, `${grpref}active:bg-${active?.color}`],
+        [!!active?.shadow, `${grpref}active:shadow-${active?.shadow}`],
       )}
     />
   );

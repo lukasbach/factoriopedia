@@ -23,7 +23,7 @@ const colors = {
   textBeige: "#e8d2b0",
   textBlue: "#77bcda"
 };
-const variants = ["hover", "active"];
+const variants = ["hover", "active", "group-hover", "group-active"];
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
