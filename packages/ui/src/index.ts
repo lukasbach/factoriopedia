@@ -6,6 +6,7 @@ export * from "./components/tooltip";
 export * from "./components/tooltip-section";
 export * from "./components/tooltip-root";
 export * from "./components/tabs";
+export * from "./components/table";
 export * from "./components/content-section";
 export * from "./components/technology-button";
 

@@ -12,7 +12,11 @@ export const TabbedContentPane: FC<
         </div>
         {tabsList}
       </Surface>
-      <Surface color="blackLight" shadow="inset-1" className="grow p-2">
+      <Surface
+        color="blackLight"
+        shadow="inset-1"
+        className="grow p-2 overflow-auto"
+      >
         {children}
       </Surface>
     </div>

@@ -716,6 +716,7 @@ __metadata:
     "@factorioui/components": "workspace:^"
     "@factorioui/data": "workspace:^"
     "@tanstack/react-router": "npm:^1.87.7"
+    "@tanstack/react-table": "npm:^8.20.6"
     "@tanstack/router-devtools": "npm:^1.87.7"
     "@tanstack/router-plugin": "npm:^1.87.7"
     "@types/react": "npm:^18.3.12"

@@ -12,6 +12,7 @@
     "@factorioui/components": "workspace:^",
     "@factorioui/data": "workspace:^",
     "@tanstack/react-router": "^1.87.7",
+    "@tanstack/react-table": "^8.20.6",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "react": "^18.3.1",

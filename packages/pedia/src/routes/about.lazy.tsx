@@ -1,13 +1,11 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from '@tanstack/react-router'
 
-const Page = () => {
-  return (
-    <div className="p-2">
-      <h3>About</h3>
-    </div>
-  );
-};
+import { TwoColumnContainer } from '../components/two-column-container'
 
-export const Route = createLazyFileRoute("/about")({
+export const Route = createLazyFileRoute('/about')({
   component: Page,
-});
+})
+
+function Page() {
+  return <TwoColumnContainer left={<>Hello</>} right={<>There</>} />
+}

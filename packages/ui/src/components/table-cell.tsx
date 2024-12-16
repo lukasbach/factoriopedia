@@ -1,21 +1,22 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, HTMLAttributes, PropsWithChildren } from "react";
 import { combine } from "../utils";
 import { Surface } from "./surface";
 
 export const TableCell: FC<
-  PropsWithChildren<{
-    sorting?: "asc" | "desc";
-    onClick?: (e: unknown) => void;
-    isTitle?: boolean;
-    isActive?: boolean;
-  }>
-> = ({ onClick, sorting, isTitle, isActive, children }) => {
+  PropsWithChildren<
+    {
+      sorting?: "asc" | "desc";
+      onClick?: (e: unknown) => void;
+      isTitle?: boolean;
+      isActive?: boolean;
+    } & HTMLAttributes<HTMLTableDataCellElement>
+  >
+> = ({ onClick, sorting, isTitle, isActive, children, ...props }) => {
   return (
-    <Surface
-      as="td"
+    <Surface<HTMLTableDataCellElement>
+      as={isTitle ? "th" : "td"}
       useGroup
       shadow="btn-small"
-      color="blackDark"
       hover={onClick && { color: "orangeDark", shadow: "btn-large" }}
       active={
         onClick || isActive
@@ -27,8 +28,11 @@ export const TableCell: FC<
         "text-white px-2 py-0.5",
         [!!onClick, "group-hover:text-black cursor-pointer"],
         [isTitle, "font-bold"],
+        [isActive, "!text-black"],
       )}
       onClick={onClick}
+      {...props}
+      color="blackDark"
     >
       {sorting && (
         <span className="mr-1 text-orangeDark text-xs">

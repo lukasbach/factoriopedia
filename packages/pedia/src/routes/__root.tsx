@@ -59,7 +59,11 @@ function Page() {
                 Technologies
               </TabsTriggerVisual>
             </Link>
-            <TabsTriggerVisual href="#">Tools</TabsTriggerVisual>
+            <Link to="/tool/$tool" params={{ tool: "xxx" }}>
+              <TabsTriggerVisual active={!!matchRoute({ to: "/tool/$tool" })}>
+                Tools
+              </TabsTriggerVisual>
+            </Link>
             <TabsTriggerVisual href="#">Guides</TabsTriggerVisual>
             <TabsTriggerVisual href="#">About</TabsTriggerVisual>
           </div>

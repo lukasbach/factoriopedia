@@ -1,10 +1,15 @@
 import { useMemo } from "react";
+import { DumpType } from "@factorioui/data";
 import { useFactorioData } from "../components/data-provider";
 
-export const useEntriesOfType = (type: string) => {
+export const useEntriesOfType = (
+  type: string,
+  filter?: (entry: DumpType["entries"][string]) => boolean,
+) => {
   const { entries, typeMap } = useFactorioData();
   return useMemo(
-    () => typeMap[type].map((name) => entries[name]),
+    () =>
+      typeMap[type].map((name) => entries[name]).filter(filter ?? (() => true)),
     [entries, type, typeMap],
   );
 };
