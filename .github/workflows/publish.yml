@@ -19,7 +19,7 @@ jobs:
       - run: yarn download
       - run: yarn build
       - run: yarn lint
-      - run: mv packages/ui/storybook-static packages/pedia/public/storybook
+      - run: mv packages/ui/storybook-static packages/pedia/dist/storybook
       - uses: actions/upload-pages-artifact@v3
         id: artifact
         with:
