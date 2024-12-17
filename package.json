@@ -26,7 +26,8 @@
       "project": "./tsconfig.lint.json"
     },
     "rules": {
-      "react/destructuring-assignment": "off"
+      "react/destructuring-assignment": "off",
+      "@typescript-eslint/ no-use-before-define": "off"
     },
     "ignorePatterns": [
       "lib",

@@ -13,6 +13,7 @@ import {
   TooltipRoot,
 } from "@factorioui/components";
 import { Route as PediaRoute } from "./pedia.$type.$name";
+import { urls } from "../urls.ts";
 
 export const Route = createRootRoute({
   component: Page,
@@ -41,7 +42,7 @@ function Page() {
           className="h-full flex flex-col items-center justify-center"
           color="blackDark"
         >
-          <div className="w-[960px] px-4 min-h-7">
+          <div className="w-[960px] px-4 min-h-7 flex">
             <Link
               to="/pedia/$type/$name"
               params={{ type: "item", name: "transport-belt" }}
@@ -59,13 +60,20 @@ function Page() {
                 Technologies
               </TabsTriggerVisual>
             </Link>
-            <Link to="/tool/$tool" params={{ tool: "xxx" }}>
+            <Link to="/tool/$tool" params={{ tool: "fuels" }}>
               <TabsTriggerVisual active={!!matchRoute({ to: "/tool/$tool" })}>
                 Tools
               </TabsTriggerVisual>
             </Link>
-            <TabsTriggerVisual href="#">Guides</TabsTriggerVisual>
-            <TabsTriggerVisual href="#">About</TabsTriggerVisual>
+            <Link to="/about">
+              <TabsTriggerVisual active={!!matchRoute({ to: "/about" })}>
+                About
+              </TabsTriggerVisual>
+            </Link>
+            <div className="flex-grow" />
+            <Link to={urls.repo as any} target="_blank">
+              <TabsTriggerVisual>Star on Github</TabsTriggerVisual>
+            </Link>
           </div>
 
           <Surface

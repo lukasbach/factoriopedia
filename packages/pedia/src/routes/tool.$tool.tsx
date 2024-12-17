@@ -4,7 +4,7 @@ import { FactorioImage, Table } from "@factorioui/components";
 import { createColumnHelper } from "@tanstack/react-table";
 import { FC } from "react";
 import { TwoColumnContainer } from "../components/two-column-container";
-import { TabbedContentPane } from "../components/tabbed-content-pane.tsx";
+import { TabbedContentPane } from "../components/tabbed-content-pane";
 import * as tools from "../tools";
 
 export const Route = createFileRoute("/tool/$tool")({
