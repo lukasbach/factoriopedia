@@ -1,4 +1,5 @@
 import type { Meta } from "@storybook/react";
+import { useState } from "react";
 import { Surface } from "./surface";
 import { FactorioImage } from "./factorio-image";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
@@ -10,6 +11,45 @@ const meta = {
 } satisfies Meta<typeof Surface>;
 
 export default meta;
+
+const shadows = [
+  "btn-small",
+  "orangeglow",
+  "deepinset",
+  "btn-large",
+  "topglow-1",
+  "topglow-2",
+  "inset-1",
+];
+const colors = [
+  "blackDark",
+  "blackMedium",
+  "blackLight",
+  "grayLight",
+  "orangeDark",
+  "orangeLight",
+];
+
+export const AllSurfaces = () => (
+  <>
+    {colors.map((color) => (
+      <div className="flex">
+        {shadows.map((shadow) => (
+          <Surface
+            key={`${color}-${shadow}`}
+            shadow={shadow as any}
+            color={color as any}
+            className="w-64 p-1 px-2 m-3 text-white"
+          >
+            color = {color}
+            <br />
+            shadow = {shadow}
+          </Surface>
+        ))}
+      </div>
+    ))}
+  </>
+);
 
 export const ItemPlates = () => (
   <div className="flex gap-1">
@@ -73,3 +113,31 @@ export const ItemsInGroup = () => (
     ))}
   </div>
 );
+
+export const ClickableBoxes = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  return (
+    <Surface
+      as="button"
+      className="cursor-pointer flex text-white hover:text-black text-xs p-1 items-center justify-between w-[64px] h-[48px] p"
+      active={{
+        color: "orangeDark",
+        shadow: "deepinset",
+      }}
+      hover={{ color: "orangeLight", shadow: "orangeglow" }}
+      shadow="btn-large"
+      color="blackLight"
+      isActive={isActive}
+      onClick={() => setIsActive(!isActive)}
+    >
+      <div className="flex-grow">
+        <FactorioImage image="fusion-reactor" width={20} />
+      </div>
+      <div className="text-right">
+        <div>123</div>
+        <div>600%</div>
+      </div>
+    </Surface>
+  );
+};

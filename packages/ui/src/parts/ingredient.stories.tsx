@@ -14,5 +14,10 @@ export const Ingredients = () => (
     <Ingredient name="iron-plate" count={10} />
     <Ingredient name="copper-plate" count={1} />
     <Ingredient name="copper-wire" count={2000} />
+    <Ingredient
+      name="copper-wire"
+      count="100/s"
+      label="Custom label and count"
+    />
   </Surface>
 );
