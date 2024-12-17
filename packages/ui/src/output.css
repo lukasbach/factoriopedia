@@ -1551,3 +1551,9 @@ video {
   --tw-text-opacity: 1;
   color: rgb(232 210 176 / var(--tw-text-opacity, 1));
 }
+
+.data-\[state\=inactive\]\:hover\:shadow-orangeglow:hover[data-state="inactive"] {
+  --tw-shadow: inset 0px -2px 3px 0px rgba(0,0,0,0.7), 0px 1px 3px 2px rgba(255,171,0,0.3), inset 0px 1px 2px 0px rgba(255,255,255,0.8);;
+  --tw-shadow-colored: inset 0px -2px 3px 0px var(--tw-shadow-color), 0px 1px 3px 2px var(--tw-shadow-color), inset 0px 1px 2px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
