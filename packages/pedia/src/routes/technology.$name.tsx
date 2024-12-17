@@ -25,13 +25,14 @@ function Page() {
   const { name } = Route.useParams();
   const navigate = Route.useNavigate();
   const technology = entries[name]?.technology;
+  const techs = useEntriesOfType("technology");
   if (!technology) return null;
   return (
     <TwoColumnContainer
       left={
         <ButtonGrid itemWidth={100} itemHeight={140} gridWidth={5}>
           <div className="flex flex-wrap w-full">
-            {useEntriesOfType("technology").map((tech) => (
+            {techs.map((tech) => (
               <TechnologyEntityButton
                 name={tech.technology.name}
                 onClick={() =>

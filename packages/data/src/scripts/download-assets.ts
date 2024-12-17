@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import tarInstall from "tar-install";
 import * as fs from "fs-extra";
 import path from "node:path";

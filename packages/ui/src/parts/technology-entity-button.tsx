@@ -63,13 +63,10 @@ export const TechnologyEntityButton: FC<{
       <TechnologyButton
         onClick={onClick}
         subtext={
-          tech.unit && (
-            <>
-              {tech.unit.ingredients?.map(([ingredient]) => (
-                <FactorioImage image={ingredient} width={18} />
-              ))}
-            </>
-          )
+          tech.unit &&
+          tech.unit.ingredients?.map(([ingredient]) => (
+            <FactorioImage image={ingredient} width={18} />
+          ))
         }
       >
         <FactorioImage image={name} spritesheet="technology" width={80} />

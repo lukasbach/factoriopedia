@@ -10,6 +10,6 @@ export const useEntriesOfType = (
   return useMemo(
     () =>
       typeMap[type].map((name) => entries[name]).filter(filter ?? (() => true)),
-    [entries, type, typeMap],
+    [entries, filter, type, typeMap],
   );
 };

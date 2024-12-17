@@ -47,6 +47,7 @@ export const ButtonGrid: FC<
           {Array.from({ length: actualGridWidth * actualGridHeight }).map(
             (_, index) => (
               <div
+                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 style={{ width: itemWidth, height: itemHeight }}
                 className={itemWidth > 40 ? "p-3" : "p-1"}

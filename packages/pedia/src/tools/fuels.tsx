@@ -6,7 +6,7 @@ import {
   useEntriesOfType,
 } from "@factorioui/components";
 import { createColumnHelper } from "@tanstack/react-table";
-import { Tool } from "../routes/tool.$tool.tsx";
+import { Tool } from "../routes/tool.$tool";
 
 const columnHelper = createColumnHelper<any>();
 const columns = [

@@ -7,5 +7,6 @@ export const useLocaleDescription = (name: string) =>
 export const LocaleDescription: FC<{
   name: string;
 }> = ({ name }) => (
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   <>{useFactorioData().locales.descriptions?.[name] ?? "No description"}</>
 );

@@ -20,6 +20,7 @@ export const EntityGrid: FC<{
       itemHeight={40}
     >
       {items.map((group, idx) => (
+        // eslint-disable-next-line react/no-array-index-key
         <div className="flex flex-wrap w-full" key={idx}>
           {group.map((item, idy) => (
             <div key={`${item.type}-${item.name}`}>

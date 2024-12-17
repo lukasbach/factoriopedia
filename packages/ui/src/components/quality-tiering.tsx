@@ -7,6 +7,7 @@ export const QualityTiering: FC<{
   value: string;
   tiering?: [number, number, number, number, number];
 }> = ({ value, tiering = [1, 1.3, 1.6, 1.9, 2.5] }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/naming-convention
   const [_, baseStr, unit] = useMemo(
     () => /^(\d+)(.*)$/.exec(value) ?? [value, ""],
     [value],

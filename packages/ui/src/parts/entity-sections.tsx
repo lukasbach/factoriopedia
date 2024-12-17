@@ -215,6 +215,7 @@ const TechCost = makeSection(
       <>
         <EntityGrid
           items={[result.map(([name]) => ({ name, type: "recipe" }))]}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           subtexts={[result.map(([_, amount]) => amount)]}
         />
         x{entry.technology.unit.count ?? entry.technology.unit.count_formula}
@@ -305,6 +306,9 @@ const TechResearchTrigger = makeSection(
     );
   },
 );
+
+// TODO
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TechResearchTriggerMine = makeSection(
   "Triggered by mining",
   (entry) =>
@@ -320,6 +324,8 @@ const TechResearchTriggerMine = makeSection(
   },
 );
 
+// TODO
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TechResearchTriggerCraft = makeSection(
   "Triggered by crafting",
   (entry) =>
@@ -333,15 +339,6 @@ const TechResearchTriggerCraft = makeSection(
         subtexts={[result.map((t) => t.count)]}
       />
     );
-  },
-);
-
-const Dummy = makeSection(
-  "",
-  () => true,
-  ({ entry }) => {
-    const { entries } = useFactorioData();
-    return null;
   },
 );
 

@@ -1,6 +1,5 @@
 import type { Meta } from "@storybook/react";
 import { EntitySection } from "../parts/entity-sections";
-import { useFactorioData } from "../parts/data-provider";
 
 const meta = {
   title: "Parts/Entity Sections",
@@ -9,7 +8,6 @@ const meta = {
 export default meta;
 
 export const ItemEntitySections = () => {
-  const { entries } = useFactorioData();
   return (
     <div>
       <EntitySection.Main name="fusion-reactor" type="item" />

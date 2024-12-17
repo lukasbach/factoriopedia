@@ -4,6 +4,7 @@ import {
   createRootRoute,
   useMatchRoute,
 } from "@tanstack/react-router";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import {
   EntityButtonActionProvider,
@@ -13,7 +14,7 @@ import {
   TooltipRoot,
 } from "@factorioui/components";
 import { Route as PediaRoute } from "./pedia.$type.$name";
-import { urls } from "../urls.ts";
+import { urls } from "../urls";
 
 export const Route = createRootRoute({
   component: Page,

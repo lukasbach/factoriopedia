@@ -18,6 +18,7 @@ export const TabsList: FC<
 export const TabsTriggerVisual: FC<
   PropsWithChildren<React.HTMLProps<HTMLAnchorElement> & { active?: boolean }>
 > = ({ active, ...props }) => (
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
   <a
     className={combine(
       "px-4 pt-2 pb-2 mr-0.5",

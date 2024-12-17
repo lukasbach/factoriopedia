@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Tool } from "../routes/tool.$tool.tsx";
+import { Tool } from "../routes/tool.$tool";
 
 const ToolRender: FC = () => {
   return <div>Hello</div>;

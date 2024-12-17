@@ -74,7 +74,7 @@ function Page() {
               {tool?.title}
             </>
           }
-          tabsList={<></>}
+          tabsList={null}
         >
           <ToolComp />
         </TabbedContentPane>

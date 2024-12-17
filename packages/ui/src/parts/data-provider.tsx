@@ -5,6 +5,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { DumpType } from "@factorioui/data";
@@ -26,23 +27,28 @@ export const FactorioDataProvider: FC<
       .then((dump) => {
         for (const [key, value] of Object.entries(dump.entries)) {
           const { types, ...rest } = value;
+          // eslint-disable-next-line no-param-reassign
           dump.entries[key].merged = deepmerge.all(Object.values(rest)) as any;
         }
         setData(dump);
       });
   }, [path]);
+  const value = useMemo(
+    () => (data ? { dump: data, path } : undefined),
+    [data, path],
+  );
 
-  if (!data) {
+  if (!value) {
     return loader;
   }
 
-  return (
-    <Context.Provider value={{ dump: data, path }}>{children}</Context.Provider>
-  );
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
 export const StaticFactorioDataProvider: FC<
   PropsWithChildren<{ data: DumpType; path: string }>
 > = ({ children, data, path }) => (
-  <Context.Provider value={{ dump: data, path }}>{children}</Context.Provider>
+  <Context.Provider value={useMemo(() => ({ dump: data, path }), [data, path])}>
+    {children}
+  </Context.Provider>
 );
