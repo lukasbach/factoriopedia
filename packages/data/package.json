@@ -17,7 +17,8 @@
     "data"
   ],
   "scripts": {
-    "build": "tsc && tsx ./src/scripts/reparse.ts",
+    "build": "tsc",
+    "reparse": "tsx ./src/scripts/reparse.ts",
     "prepack": "yarn build",
     "download": "tsx ./src/scripts/download-assets.ts"
   },

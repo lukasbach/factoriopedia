@@ -40,8 +40,7 @@ to run, which is not included in the repo. You can
 
 - Run a JSON data + locales + assets export with the Factorio binary,
   place the data in the `packages/data/script-output` folder and
-  run `yarn build` in the `packages/data` folder to generate the
-  data, or
+  run `yarn reparse` to generate the data, or
 - Run `yarn download-data` to download the latest data from the
   NPM data package.
 
