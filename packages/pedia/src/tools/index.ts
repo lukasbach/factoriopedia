@@ -2,4 +2,4 @@ export * from "./heatlist";
 export * from "./unithealth";
 // export * from "./solarratio";
 export * from "./fuels";
-export * from "./fusionratio";
+// TODO export * from "./fusionratio";
