@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 import { tooltip } from "../components/tooltip";
 import { Surface } from "../components/surface";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "../parts/factorio-image";
 import { TooltipSection } from "../components/tooltip-section";
 import { TooltipRoot } from "../components/tooltip-root";
 

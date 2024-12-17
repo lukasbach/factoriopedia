@@ -17,7 +17,7 @@ const preview: Preview = {
 };
 
 import "../src/output.css";
-import {FactorioDataProvider} from "../src/components/data-provider";
+import {FactorioDataProvider} from "../src/parts/data-provider";
 document.body.style.background = "#242324";
 
 export default preview;

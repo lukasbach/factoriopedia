@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useFactorioData } from "../components/data-provider";
+import { useFactorioData } from "../parts/data-provider";
 
 type ResolvementProps = {
   group: string;

@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 import { EntitySection } from "../parts/entity-sections";
-import { useFactorioData } from "../components/data-provider";
+import { useFactorioData } from "../parts/data-provider";
 
 const meta = {
   title: "Parts/Entity Sections",

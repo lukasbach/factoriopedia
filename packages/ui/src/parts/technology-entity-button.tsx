@@ -3,9 +3,9 @@ import {
   StaticFactorioDataProvider,
   useFactorioData,
   useFactorioDataPath,
-} from "../components/data-provider";
+} from "./data-provider";
 import { TechnologyButton } from "../components/technology-button";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "./factorio-image";
 import { tooltip } from "../components/tooltip";
 import { useLocaleName } from "./locale-name";
 import { TooltipSection } from "../components/tooltip-section";

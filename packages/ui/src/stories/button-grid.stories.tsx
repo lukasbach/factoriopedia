@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "../parts/factorio-image";
 import { ButtonGrid } from "../components/button-grid";
 import { Surface } from "../components/surface";
 

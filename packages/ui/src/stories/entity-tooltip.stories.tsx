@@ -2,7 +2,7 @@ import type { Meta } from "@storybook/react";
 import { EntityTooltip } from "../parts/entity-tooltip";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 import { Surface } from "../components/surface";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "../parts/factorio-image";
 import { TooltipRoot } from "../components/tooltip-root";
 
 const meta = {

@@ -1,4 +1,4 @@
-import { useFactorioData } from "../components/data-provider";
+import { useFactorioData } from "../parts/data-provider";
 
 export const useEntry = (name: string, type?: string) => {
   const data = useFactorioData();

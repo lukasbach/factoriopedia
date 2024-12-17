@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, createContext, useContext } from "react";
 import { EntityTooltip } from "./entity-tooltip";
 import { Surface } from "../components/surface";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "./factorio-image";
 import { useIsInTooltip } from "../components/tooltip";
 
 const EntityButtonActionContext = createContext<

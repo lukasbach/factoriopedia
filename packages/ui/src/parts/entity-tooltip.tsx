@@ -5,7 +5,7 @@ import {
   StaticFactorioDataProvider,
   useFactorioData,
   useFactorioDataPath,
-} from "../components/data-provider";
+} from "./data-provider";
 import { useLocaleName } from "./locale-name";
 import { useLocaleDescription } from "./locale-description";
 import { EntityButton } from "./entity-button";

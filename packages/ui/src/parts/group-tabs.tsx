@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Surface } from "../components/surface";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "./factorio-image";
 import { ButtonGrid } from "../components/button-grid";
 import { useEntriesOfType } from "../hooks/use-entries-of-type";
 

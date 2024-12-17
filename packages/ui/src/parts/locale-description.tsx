@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useFactorioData } from "../components/data-provider";
+import { useFactorioData } from "./data-provider";
 
 export const useLocaleDescription = (name: string) =>
   useFactorioData().locales.descriptions?.[name];

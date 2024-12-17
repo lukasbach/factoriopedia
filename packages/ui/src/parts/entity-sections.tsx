@@ -8,7 +8,7 @@ import {
 import { LocaleDescription } from "./locale-description";
 import { Ingredient } from "./ingredient";
 import { useEntry } from "../hooks/use-entry";
-import { useFactorioData } from "../components/data-provider";
+import { useFactorioData } from "./data-provider";
 import { EntityGrid } from "./entity-grid";
 import { EntityButton } from "./entity-button";
 

@@ -1,0 +1,42 @@
+import {Meta, Source, Stories, Story} from '@storybook/blocks';
+import * as DataHooksStories from './data-hooks.stories';
+
+<Meta  title="Documentation/Data Hooks" />
+# Data Hooks
+
+The library exposes a few utility hooks that can be used for interacting with Factorio data.
+
+# `useFactorioData`
+
+This hook is used to access the Factorio data dump. It is a wrapper around the `useContext` hook and returns the data dump.
+
+<Source of={DataHooksStories.LoadingFactorioData} />
+<Story of={DataHooksStories.LoadingFactorioData} />
+
+# `useFactorioDataPath`
+
+Exposes the path to the Factorio data dump.
+
+<Source of={DataHooksStories.LoadingFactorioDataPath} />
+<Story of={DataHooksStories.LoadingFactorioDataPath} />
+
+# `useEntriesOfType`
+
+Returns a list of all entries in the data dump of a certain type.
+
+<Source of={DataHooksStories.UseEntriesOfType} />
+<Story of={DataHooksStories.UseEntriesOfType} />
+
+# `useEntry`
+
+Returns a single entry from the data dump.
+
+<Source of={DataHooksStories.UseEntry} />
+<Story of={DataHooksStories.UseEntry} />
+
+# `UseResolvedJointItemEntries`
+
+Returns a list of all entries in the data dump of a group, divided by subgroups.
+
+<Source of={DataHooksStories.UseResolvedJointItemEntries} />
+<Story of={DataHooksStories.UseResolvedJointItemEntries} />

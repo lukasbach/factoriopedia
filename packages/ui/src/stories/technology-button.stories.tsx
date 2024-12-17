@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 import { TechnologyButton } from "../components/technology-button";
-import { FactorioImage } from "../components/factorio-image";
+import { FactorioImage } from "../parts/factorio-image";
 
 const meta = {
   title: "Components/Technology Button",

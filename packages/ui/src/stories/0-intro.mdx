@@ -1,0 +1,67 @@
+import {Meta, Source, Story} from '@storybook/blocks';
+import * as SurfaceStories from './surface.stories';
+import * as EntityButtonStories from './entity-button.stories';
+
+<Meta  title="Documentation/Introduction" />
+# Introduction
+
+This library provides components to build Factorio-related tools. It exposes both a Factorio Data Dump in the
+frontend that can be consumed by components and React hooks, as well as visual components that resemble the
+Factorio UI.
+
+This library is not associated or maintained by Wube, but is a fan project.
+
+# Get Started
+
+Install the library with npm:
+
+```bash
+npm install @factorioui/components
+```
+
+You can then use the components in your React application:
+
+```jsx
+import { FactorioDataProvider } from "@factorioui/components";
+
+(
+  <FactorioDataProvider path="/" loader={<>Loading...</>}>
+    <EntityButton type="item" name="fusion-reactor" onClick={console.log} />
+    <TooltipRoot />
+  </FactorioDataProvider>
+);
+```
+
+<Story of={EntityButtonStories.Sample} />
+
+When using tooltips, make sure to include the `TooltipRoot` component somewhere in your app.
+
+# Factorio Data Dump
+
+The data-related part components of this library require a `FactorioDataProvider` to work. This in turn needs the
+JSON data file as well as Factorio assets to be available on a server. This data, exported and generated on Factorio Space Age,
+is available as part of the `@factorioui/data` package, which will be included as dependency of this library.
+
+Make sure to host it as static data with your server. The data will be available in `node_modules/@factorioui/data/data/`.
+
+When using vite, you can load that data like this in your vite config:
+
+```ts
+export default defineConfig({
+  publicDir: "node_modules/@factorioui/data/data",
+  plugins: [react()],
+});
+```
+
+# Structure of this library
+
+On the left of this storybook instance, all available components are listed. They are structured as follows:
+
+- **Components**: Visual components that are just a UI-based implementation and can be used out of the box.
+- **Parts**: Components bound to the Factorio Data dump. They need a `FactorioDataProvider` to work.
+
+
+
+
+
+<Source of={SurfaceStories.ClickableBoxes} />
