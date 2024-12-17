@@ -1,11 +1,11 @@
 import type { Meta } from "@storybook/react";
 import React, { useState } from "react";
-import { EntityGrid } from "./entity-grid";
+import { EntityGrid } from "../parts/entity-grid";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 import { Surface } from "../components/surface";
-import { GroupTabs } from "./group-tabs";
+import { GroupTabs } from "../parts/group-tabs";
 import { TooltipRoot } from "../components/tooltip-root";
-import { EntityButton } from "./entity-button";
+import { EntityButton } from "../parts/entity-button";
 
 const meta = {
   title: "Parts/Entity Grid",

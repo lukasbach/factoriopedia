@@ -1,8 +1,8 @@
 import type { Meta } from "@storybook/react";
 import { ColumnDef } from "@tanstack/react-table";
-import { Table } from "./table";
-import { Surface } from "./surface";
-import { TableCell } from "./table-cell";
+import { Table } from "../components/table";
+import { Surface } from "../components/surface";
+import { TableCell } from "../components/table-cell";
 
 const meta = {
   title: "Components/Table",

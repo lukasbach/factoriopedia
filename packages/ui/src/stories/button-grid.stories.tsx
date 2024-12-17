@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
-import { FactorioImage } from "./factorio-image";
-import { ButtonGrid } from "./button-grid";
-import { Surface } from "./surface";
+import { FactorioImage } from "../components/factorio-image";
+import { ButtonGrid } from "../components/button-grid";
+import { Surface } from "../components/surface";
 
 const meta = {
   title: "Components/Button Grid",

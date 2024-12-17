@@ -1,8 +1,11 @@
 import type { Meta } from "@storybook/react";
-import { Surface } from "./surface";
-import { ContentSection, ContentSectionStat } from "./content-section";
-import { QualityTiering } from "./quality-tiering";
-import { TooltipRoot } from "./tooltip-root";
+import { Surface } from "../components/surface";
+import {
+  ContentSection,
+  ContentSectionStat,
+} from "../components/content-section";
+import { QualityTiering } from "../components/quality-tiering";
+import { TooltipRoot } from "../components/tooltip-root";
 
 const meta = {
   title: "Components/Quality Tiering",

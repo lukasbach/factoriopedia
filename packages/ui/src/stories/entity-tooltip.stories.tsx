@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react";
-import { EntityTooltip } from "./entity-tooltip";
+import { EntityTooltip } from "../parts/entity-tooltip";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 import { Surface } from "../components/surface";
 import { FactorioImage } from "../components/factorio-image";

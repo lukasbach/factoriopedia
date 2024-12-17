@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react";
-import { EntitySection } from "./entity-sections";
+import { EntitySection } from "../parts/entity-sections";
 import { useFactorioData } from "../components/data-provider";
 
 const meta = {

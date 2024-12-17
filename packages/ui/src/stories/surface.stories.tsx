@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 import { useState } from "react";
-import { Surface } from "./surface";
-import { FactorioImage } from "./factorio-image";
+import { Surface } from "../components/surface";
+import { FactorioImage } from "../components/factorio-image";
 import { useResolveJointItemEntries } from "../hooks/use-resolve-joint-item-entries";
 import { useEntriesOfType } from "../hooks/use-entries-of-type";
 

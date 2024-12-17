@@ -1,6 +1,9 @@
 import type { Meta } from "@storybook/react";
-import { Surface } from "./surface";
-import { ContentSection, ContentSectionStat } from "./content-section";
+import { Surface } from "../components/surface";
+import {
+  ContentSection,
+  ContentSectionStat,
+} from "../components/content-section";
 import { EntityButton } from "../parts/entity-button";
 
 const meta = {

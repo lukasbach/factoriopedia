@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 import { Surface } from "../components/surface";
-import { Ingredient } from "./ingredient";
+import { Ingredient } from "../parts/ingredient";
 
 const meta = {
   title: "Parts/Ingredient",

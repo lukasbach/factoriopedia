@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 import React, { useState } from "react";
-import { GroupTabs } from "./group-tabs";
+import { GroupTabs } from "../parts/group-tabs";
 import { Surface } from "../components/surface";
 
 const meta = {

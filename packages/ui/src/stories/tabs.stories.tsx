@@ -1,6 +1,11 @@
 import type { Meta } from "@storybook/react";
-import { Surface } from "./surface";
-import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "./tabs";
+import { Surface } from "../components/surface";
+import {
+  TabsContent,
+  TabsList,
+  TabsRoot,
+  TabsTrigger,
+} from "../components/tabs";
 
 const meta = {
   title: "Components/Tabs",

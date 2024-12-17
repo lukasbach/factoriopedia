@@ -1,9 +1,9 @@
 import type { Meta } from "@storybook/react";
-import { tooltip } from "./tooltip";
-import { Surface } from "./surface";
-import { FactorioImage } from "./factorio-image";
-import { TooltipSection } from "./tooltip-section";
-import { TooltipRoot } from "./tooltip-root";
+import { tooltip } from "../components/tooltip";
+import { Surface } from "../components/surface";
+import { FactorioImage } from "../components/factorio-image";
+import { TooltipSection } from "../components/tooltip-section";
+import { TooltipRoot } from "../components/tooltip-root";
 
 const meta = {
   title: "Components/Tooltip",
