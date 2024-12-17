@@ -1,7 +1,7 @@
 {
   "name": "@factorioui/data",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Data Dump of Factorio Space Age, reusable for Factorio Fan Projects",
   "author": "Lukas Bach <contact@lukasbach.com>",
