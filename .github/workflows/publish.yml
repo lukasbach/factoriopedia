@@ -1,0 +1,29 @@
+name: Publish
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
+      - run: yarn install
+      - run: yarn download
+      - run: yarn build
+      - run: yarn lint
+      - run: mv packages/ui/storybook-static packages/pedia/public/storybook
+      - uses: actions/upload-pages-artifact@v3
+        id: artifact
+        with:
+          path: packages/pedia/public
+      - uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages

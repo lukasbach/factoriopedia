@@ -18,6 +18,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "lerna run build --ignore @factorioui/data",
+    "build:ci": "lerna run build,build-storybook --ignore @factorioui/data",
     "dev": "lerna run dev,build:watch,tailwind:watch,storybook --parallel",
     "download": "lerna run download"
   },
