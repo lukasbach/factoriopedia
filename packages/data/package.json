@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc && tsx ./src/scripts/reparse.ts",
     "prepack": "yarn build",
-    "download": "tsx ./src/scripts/download.ts"
+    "download": "tsx ./src/scripts/download-assets.ts"
   },
   "dependencies": {
     "zod": "^3.23.8"
@@ -35,6 +35,7 @@
     "fs-extra": "^11.2.0",
     "glob": "^11.0.0",
     "spritesmith": "^3.5.1",
+    "tar-install": "^0.2.2",
     "tsx": "^4.19.2",
     "typescript": "latest"
   },

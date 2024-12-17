@@ -32,4 +32,18 @@ used by the community for other projects. You can find out more about that
 ## Contributing
 
 Install volta, then call `yarn` to install all dependencies.
-Use `yarn build` 
+Use `yarn build` to build all packages, and `yarn dev` to start
+the local dev server and storybook.
+
+You will need the Factorio data included in the repo for the app
+to run, which is not included in the repo. You can
+
+- Run a JSON data + locales + assets export with the Factorio binary,
+  place the data in the `packages/data/script-output` folder and
+  run `yarn build` in the `packages/data` folder to generate the
+  data, or
+- Run `yarn download-data` to download the latest data from the
+  NPM data package.
+
+Before contributing a PR, please run `yarn lint` to ensure your
+code matches the linting rules.
