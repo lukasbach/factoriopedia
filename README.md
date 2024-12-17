@@ -1,6 +1,6 @@
 # Factoriopedia
 
-[TODO link]
+Visit now at [factoriopedia.lukasbach.com](https://factoriopedia.lukasbach.com/)!
 
 This is a recreation of the Factoriopedia utility in the PC Game Factorio
 Space Age, as well as several other tools that are included that may be helpful
@@ -11,7 +11,7 @@ The app is built on a data dump of the game, created by the Factorio binary.
 This repo also contains the tooling to create the data dump, as well as the
 UI components used for Factoriopedia as reusable React components that can be
 used by the community for other projects. You can find out more about that
-[TODO] here.
+[here](https://factoriopedia.lukasbach.com/storybook/?path=/docs/documentation-introduction--docs).
 
 ## App Screenshots
 
