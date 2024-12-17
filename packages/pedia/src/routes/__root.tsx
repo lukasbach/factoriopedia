@@ -5,7 +5,6 @@ import {
   useMatchRoute,
 } from "@tanstack/react-router";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import {
   EntityButtonActionProvider,
   FactorioDataProvider,
@@ -83,7 +82,6 @@ function Page() {
             className="w-[960px] h-[80%] rounded flex gap-2 p-2"
           >
             <Outlet />
-            <TanStackRouterDevtools />
           </Surface>
         </Surface>
         <TooltipRoot />
