@@ -17,9 +17,9 @@
   ],
   "scripts": {
     "devx": "concurrently build:watch tailwind:watch storybook",
+    "prepack": "yarn build",
     "build": "tsc && yarn tailwind:build && yarn build-storybook",
     "build:watch": "tsc --watch",
-    "test": "node ./__tests__/ui.test.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "tailwind:watch": "tailwindcss -i \"./src/ìnput.css\" -o \"./src/output.css\" --watch",
