@@ -23,7 +23,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         id: artifact
         with:
-          path: packages/pedia/public
+          path: packages/pedia/dist
       - uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages
