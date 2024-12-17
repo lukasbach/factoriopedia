@@ -15,8 +15,6 @@ used by the community for other projects. You can find out more about that
 
 ## App Screenshots
 
-https://imgur.com/a/Fvr1qTz
-
 ![Screenshot](https://imgur.com/M2FE87V.png)
 
 ![Screenshot](https://imgur.com/BfZFguK.png)
