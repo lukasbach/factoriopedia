@@ -22,7 +22,7 @@ const scriptOutputFolder = path.join(
 );
 
 if (!(await fs.pathExists(scriptOutputFolder))) {
-  console.log("Script output folder not found");
+  console.log("Script output folder not found.");
   process.exit(1);
 }
 
