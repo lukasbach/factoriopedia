@@ -38,5 +38,21 @@
   },
   "volta": {
     "node": "22.12.0"
+  },
+  "funding": "https://github.com/sponsors/lukasbach",
+  "keywords": [
+    "factorio",
+    "game",
+    "tool",
+    "util",
+    "data",
+    "dump",
+    "export",
+    "spaceage"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukasbach/factoriopedia.git",
+    "directory": "packages/data"
   }
 }
