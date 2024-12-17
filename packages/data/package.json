@@ -2,7 +2,8 @@
   "name": "@factorioui/data",
   "type": "module",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "private": false,
+  "description": "Data Dump of Factorio Space Age, reusable for Factorio Fan Projects",
   "author": "Lukas Bach <contact@lukasbach.com>",
   "homepage": "",
   "license": "MIT",
@@ -13,10 +14,12 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "data"
   ],
   "scripts": {
-    "build": "tsc && tsx ./src/scripts/reparse.ts"
+    "build": "tsc && tsx ./src/scripts/reparse.ts",
+    "prepack": "yarn build"
   },
   "dependencies": {
     "zod": "^3.23.8"

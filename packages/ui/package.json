@@ -1,7 +1,8 @@
 {
   "name": "@factorioui/components",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "UI components based on the Factorio UI, reusable for Factorio Fan Projects",
+  "private": false,
   "author": "Lukas Bach <contact@lukasbach.com>",
   "homepage": "",
   "license": "ISC",

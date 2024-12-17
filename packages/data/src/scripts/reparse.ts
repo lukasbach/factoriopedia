@@ -1,4 +1,4 @@
-/* eslint-disable no-continue */
+/* eslint-disable no-continue,import/no-extraneous-dependencies */
 import fs from "fs-extra";
 import path from "node:path";
 import * as url from "node:url";
@@ -20,6 +20,11 @@ const scriptOutputFolder = path.join(
   "..",
   "script-output",
 );
+
+if (!(await fs.pathExists(scriptOutputFolder))) {
+  console.log("Script output folder not found");
+  process.exit(1);
+}
 
 await fs.ensureDir(targetFolder);
 
