@@ -54,5 +54,9 @@
     "type": "git",
     "url": "https://github.com/lukasbach/factoriopedia.git",
     "directory": "packages/data"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
