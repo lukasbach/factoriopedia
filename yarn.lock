@@ -661,7 +661,7 @@ __metadata:
   resolution: "@factorioui/components@workspace:packages/ui"
   dependencies:
     "@chromatic-com/storybook": "npm:3.2.2"
-    "@factorioui/data": "npm:^0.0.0"
+    "@factorioui/data": "npm:^0.0.3"
     "@radix-ui/react-dropdown-menu": "npm:^2.1.2"
     "@radix-ui/react-separator": "npm:^1.1.0"
     "@radix-ui/react-tabs": "npm:^1.1.1"
@@ -691,14 +691,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@factorioui/data@npm:^0.0.0, @factorioui/data@workspace:^, @factorioui/data@workspace:packages/data":
+"@factorioui/data@npm:^0.0.3, @factorioui/data@workspace:^, @factorioui/data@workspace:packages/data":
   version: 0.0.0-use.local
   resolution: "@factorioui/data@workspace:packages/data"
   dependencies:
+    "@types/cross-zip": "npm:^4.0.2"
     "@types/deepmerge": "npm:^2.2.3"
     "@types/fs-extra": "npm:^11.0.4"
     "@types/node": "npm:^22.10.1"
     "@types/spritesmith": "npm:^3.4.5"
+    cross-zip: "npm:^4.0.1"
     deepmerge: "npm:^4.3.1"
     fs-extra: "npm:^11.2.0"
     glob: "npm:^11.0.0"
@@ -3061,6 +3063,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cross-zip@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@types/cross-zip@npm:4.0.2"
+  checksum: 8ffc935e6b4164d2c706c0182fd17787fb985933c671d9cced5c3edb28738c3df09c0f2487cc38fa1f1372045558b8f9814b58ab0cee6ecd16eaeb6c8810513e
+  languageName: node
+  linkType: hard
+
 "@types/deepmerge@npm:^2.2.3":
   version: 2.2.3
   resolution: "@types/deepmerge@npm:2.2.3"
@@ -4830,6 +4839,13 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
+  languageName: node
+  linkType: hard
+
+"cross-zip@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "cross-zip@npm:4.0.1"
+  checksum: 06d737481854ee61376f2d6f80ce758cf543ef6a753300e45141f3d424e6790c2db19ccc86d07e10416bfdf3e1b30e5b3b8084619204b9931c7a0e694f54436c
   languageName: node
   linkType: hard
 

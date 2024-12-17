@@ -17,8 +17,9 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "build": "lerna run build",
-    "dev": "lerna run dev,build:watch,tailwind:watch,storybook --parallel"
+    "build": "lerna run build --ignore @factorioui/data",
+    "dev": "lerna run dev,build:watch,tailwind:watch,storybook --parallel",
+    "download": "lerna run download"
   },
   "eslintConfig": {
     "extends": "@lukasbach/base/react",

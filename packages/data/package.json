@@ -2,7 +2,6 @@
   "name": "@factorioui/data",
   "type": "module",
   "version": "0.0.3",
-  "private": false,
   "description": "Data Dump of Factorio Space Age, reusable for Factorio Fan Projects",
   "author": "Lukas Bach <contact@lukasbach.com>",
   "homepage": "",
@@ -19,16 +18,19 @@
   ],
   "scripts": {
     "build": "tsc && tsx ./src/scripts/reparse.ts",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "download": "tsx ./src/scripts/download.ts"
   },
   "dependencies": {
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/cross-zip": "^4.0.2",
     "@types/deepmerge": "^2.2.3",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.1",
     "@types/spritesmith": "^3.4.5",
+    "cross-zip": "^4.0.1",
     "deepmerge": "^4.3.1",
     "fs-extra": "^11.2.0",
     "glob": "^11.0.0",

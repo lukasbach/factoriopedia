@@ -28,3 +28,8 @@ used by the community for other projects. You can find out more about that
 ![Screenshot](https://imgur.com/xam62go.png)
 
 ![Screenshot](https://imgur.com/nB8Y2WJ.png)
+
+## Contributing
+
+Install volta, then call `yarn` to install all dependencies.
+Use `yarn build` 
