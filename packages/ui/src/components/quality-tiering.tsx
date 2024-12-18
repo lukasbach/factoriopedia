@@ -4,12 +4,14 @@ import { ContentSectionStat } from "./content-section";
 import { TooltipSection } from "./tooltip-section";
 
 export const QualityTiering: FC<{
-  value: string;
+  value: string | string[];
   tiering?: [number, number, number, number, number];
 }> = ({ value, tiering = [1, 1.3, 1.6, 1.9, 2.5] }) => {
+  const unifiedValue = Array.isArray(value) ? value.join("") : value;
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/naming-convention
   const [_, baseStr, unit] = useMemo(
-    () => /^([\d.]+)(.*)$/.exec(value) ?? [value, ""],
+    () => /^([\d.]+)(.*)$/.exec(`${unifiedValue}`) ?? [value, ""],
     [value],
   );
   const base = Number.parseFloat(baseStr);

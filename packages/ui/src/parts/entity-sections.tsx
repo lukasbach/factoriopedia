@@ -86,6 +86,43 @@ const ItemInfo = makeSection(undefined, showAlways, ({ entry }) => (
   </>
 ));
 
+const CanBurnIn = makeSection(
+  "Can burn in",
+  (entry, data) =>
+    entry.item.fuel_category
+      ? Object.values(data.entries).filter((e) =>
+          e.merged.energy_source?.fuel_categories?.includes(
+            entry.item.fuel_category,
+          ),
+        )
+      : [],
+  ({ result }) => (
+    <EntityGrid
+      items={[result.map((e) => ({ name: e.merged.name, type: "item" }))]}
+    />
+  ),
+);
+
+const FuelDetails = makeSection(
+  "Fuel",
+  (entry) => !!entry.item?.fuel_category,
+  ({ entry, name, type }) => (
+    <>
+      <ContentSectionStat label="Fuel Value">
+        {entry.item.fuel_value} GJ
+      </ContentSectionStat>
+      <ContentSectionStat label="Vehicle acceleration" quality>
+        {Math.round(entry.item.fuel_acceleration_multiplier * 100)}%
+      </ContentSectionStat>
+      <ContentSectionStat label="Vehicle top speed" quality>
+        {Math.round(entry.item.fuel_top_speed_multiplier * 100)}%
+      </ContentSectionStat>
+      <ContentSectionStat label="Can burn in"> </ContentSectionStat>
+      <CanBurnIn name={name} type={type} variant="inside" />
+    </>
+  ),
+);
+
 const AlternativeRecipes = makeSection(
   "Alternative Recipes",
   (entry, data) =>
@@ -95,7 +132,11 @@ const AlternativeRecipes = makeSection(
         e.recipe.name !== entry.merged.name &&
         e.recipe.results.some?.((r) => r.name === entry.merged.name),
     ),
-  ({ result }) => <EntityGrid items={[result.map((r) => r.merged)]} />,
+  ({ result }) => (
+    <EntityGrid
+      items={[result.map((e) => ({ name: e.merged.name, type: "recipe" }))]}
+    />
+  ),
 );
 
 const MadeIn = makeSection(
@@ -107,7 +148,11 @@ const MadeIn = makeSection(
         entry.recipe.category,
       ),
     ),
-  ({ result }) => <EntityGrid items={[result.map((r) => r.merged)]} />,
+  ({ result }) => (
+    <EntityGrid
+      items={[result.map((e) => ({ name: e.merged.name, type: "recipe" }))]}
+    />
+  ),
 );
 
 const UsedIn = makeSection(
@@ -118,7 +163,11 @@ const UsedIn = makeSection(
         (ingredient) => ingredient.name === entry.merged.name,
       ),
     ),
-  ({ result }) => <EntityGrid items={[result.map((r) => r.merged)]} />,
+  ({ result }) => (
+    <EntityGrid
+      items={[result.map((e) => ({ name: e.merged.name, type: "recipe" }))]}
+    />
+  ),
 );
 
 const Recipe = makeSection(
@@ -167,7 +216,11 @@ const AppearsOn = makeSection(
     ),
   ({ result }) => {
     // TODO doesnt work great
-    return <EntityGrid items={[result.map((r) => r.merged)]} />;
+    return (
+      <EntityGrid
+        items={[result.map((e) => ({ name: e.merged.name, type: "planet" }))]}
+      />
+    );
   },
 );
 
@@ -399,7 +452,7 @@ const CanCraftItemList = makeSection(
         items={result.map((category) =>
           Object.values(data.entries)
             .filter((e) => e.merged.category === category)
-            .map((e) => e.merged),
+            .map((e) => ({ name: e.merged.name, type: "recipe" })),
         )}
       />
     );
@@ -456,4 +509,5 @@ export const EntitySection = {
   TechResearchTrigger,
   CanCraft,
   CanCraftItemList,
+  FuelDetails,
 };
