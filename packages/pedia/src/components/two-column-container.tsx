@@ -12,14 +12,14 @@ export const TwoColumnContainer: FC<{ left: ReactNode; right: ReactNode }> = ({
       <Surface
         color="blackDark"
         shadow="inset-1"
-        className={`h-full md:flex flex-col ${isMenuOpen ? "block" : "hidden"}`}
+        className={`md:flex flex-col max-h-[750px] ${isMenuOpen ? "flex" : "hidden"}`}
       >
         {left}
       </Surface>
       <Surface
         color="blackDark"
         shadow="inset-1"
-        className={`grow h-full overflow-auto md:block ${isMenuOpen ? "hidden" : "block"}`}
+        className={`grow max-h-[750px] overflow-auto md:block ${isMenuOpen ? "hidden" : "block"}`}
       >
         {right}
       </Surface>

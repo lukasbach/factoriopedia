@@ -118,7 +118,7 @@ function Page() {
             <Surface
               color="blackMedium"
               shadow="topglow-2"
-              className="md:w-[960px] w-[500px] h-[80%] rounded flex gap-2 p-2 m-auto"
+              className="md:w-[960px] w-[500px] rounded flex gap-2 p-2 m-auto"
             >
               <Outlet />
             </Surface>
