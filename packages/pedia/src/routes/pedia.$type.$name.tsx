@@ -87,9 +87,15 @@ function Page() {
           >
             <TabsContent value="pedia">
               <EntitySection.Main name={name} type={type} />
+              <EntitySection.CanCraft name={name} type={type} />
               <EntitySection.EquipmentGridPlaceable name={name} type={type} />
               <EntitySection.Electricity name={name} type={type} />
               <EntitySection.Recipe name={name} type={type} variant="flat" />
+              <EntitySection.CanCraftItemList
+                name={name}
+                type={type}
+                variant="flat"
+              />
               <EntitySection.AlternativeRecipes
                 name={name}
                 type={type}

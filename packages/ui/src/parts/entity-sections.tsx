@@ -344,6 +344,59 @@ const TechResearchTriggerCraft = makeSection(
   },
 );
 
+const CanCraft = makeSection(
+  "Can Craft",
+  (entry) =>
+    entry.types.includes("assembling-machine") ||
+    entry.types.includes("furnace"),
+  ({ entry }) => {
+    return (
+      <>
+        <ContentSectionStat label="Crafting Speed">
+          {entry.merged.crafting_speed || 1}x
+        </ContentSectionStat>
+        <ContentSectionStat label="Module Slots">
+          {entry.merged.module_slots}
+        </ContentSectionStat>
+        <ContentSectionStat label="Allowed effects">
+          {entry.merged.allowed_effects.includes("productivity") && (
+            <EntityButton name="productivity-module-3" type="item" />
+          )}
+          {entry.merged.allowed_effects.includes("speed") && (
+            <EntityButton name="speed-module-3" type="item" />
+          )}
+          {entry.merged.allowed_effects.includes("consumption") && (
+            <EntityButton name="efficiency-module-3" type="item" />
+          )}
+          {entry.merged.allowed_effects.includes("quality") && (
+            <EntityButton name="quality-module-3" type="item" />
+          )}
+        </ContentSectionStat>
+      </>
+    );
+  },
+);
+
+const CanCraftItemList = makeSection(
+  "Can Craft Items",
+  (entry) =>
+    entry.types.includes("assembling-machine") ||
+    entry.types.includes("furnace")
+      ? entry.merged.crafting_categories
+      : undefined,
+  ({ result, data }) => {
+    return (
+      <EntityGrid
+        items={result.map((category) =>
+          Object.values(data.entries)
+            .filter((e) => e.merged.category === category)
+            .map((e) => e.merged),
+        )}
+      />
+    );
+  },
+);
+
 const Debug = makeSection(
   "Debug Data",
   () => true,
@@ -392,4 +445,6 @@ export const EntitySection = {
   TechPrerequisites,
   TechPrerequisiteFor,
   TechResearchTrigger,
+  CanCraft,
+  CanCraftItemList,
 };
