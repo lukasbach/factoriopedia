@@ -57,10 +57,10 @@ function Page() {
           }}
         >
           <Surface
-            className="h-full flex flex-col items-center justify-center"
+            className="flex-col items-center justify-center"
             color="blackDark"
           >
-            <div className="md:w-[960px] w-[480px] md:px-4 min-h-7 flex">
+            <div className="md:w-[960px] w-[480px] md:px-4 min-h-7 flex m-auto mt-16">
               <div className="md:hidden mr-4 cursor-pointer">
                 <TabsTriggerVisual
                   active={isMenuOpen}
@@ -118,7 +118,7 @@ function Page() {
             <Surface
               color="blackMedium"
               shadow="topglow-2"
-              className="md:w-[960px] w-[500px] h-[80%] rounded flex gap-2 p-2"
+              className="md:w-[960px] w-[500px] h-[80%] rounded flex gap-2 p-2 m-auto"
             >
               <Outlet />
             </Surface>
