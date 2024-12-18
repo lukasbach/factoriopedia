@@ -11,10 +11,11 @@ export const QualityTiering: FC<{
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/naming-convention
   const [_, baseStr, unit] = useMemo(
-    () => /^([\d.]+)(.*)$/.exec(`${unifiedValue}`) ?? [value, ""],
-    [value],
+    () => /^-?([\d.]+)(.*)$/.exec(`${unifiedValue}`) ?? [value, ""],
+    [unifiedValue, value],
   );
-  const base = Number.parseFloat(baseStr);
+  const base =
+    (unifiedValue?.startsWith?.("-") ? -1 : 1) * Number.parseFloat(baseStr);
   return (
     <span
       {...tooltip(

@@ -94,6 +94,7 @@ function Page() {
               <EntitySection.EquipmentGridPlaceable name={name} type={type} />
               <EntitySection.Electricity name={name} type={type} />
               <EntitySection.FuelDetails name={name} type={type} />
+              <EntitySection.ModuleDetails name={name} type={type} />
               <EntitySection.Recipe name={name} type={type} variant="flat" />
               <EntitySection.CanCraftItemList
                 name={name}

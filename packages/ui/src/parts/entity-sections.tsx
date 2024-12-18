@@ -139,6 +139,38 @@ const AlternativeRecipes = makeSection(
   ),
 );
 
+const ModuleDetails = makeSection(
+  "Module Effects",
+  (entry) => entry.module?.effect,
+  ({ result }) => (
+    <>
+      <ContentSectionStat label="Speed" skip={!result.speed} quality>
+        {result.speed * 100}%
+      </ContentSectionStat>
+      <ContentSectionStat
+        label="Consumption"
+        skip={!result.consumption}
+        quality
+      >
+        {result.consumption * 100}%
+      </ContentSectionStat>
+      <ContentSectionStat label="Pollution" skip={!result.pollution} quality>
+        {result.pollution * 100}%
+      </ContentSectionStat>
+      <ContentSectionStat
+        label="Productivity"
+        skip={!result.productivity}
+        quality
+      >
+        {result.productivity * 100}%
+      </ContentSectionStat>
+      <ContentSectionStat label="Quality" skip={!result.quality} quality>
+        {result.quality * 100}%
+      </ContentSectionStat>
+    </>
+  ),
+);
+
 const MadeIn = makeSection(
   "Made In",
   (entry, data) =>
@@ -510,4 +542,5 @@ export const EntitySection = {
   CanCraft,
   CanCraftItemList,
   FuelDetails,
+  ModuleDetails,
 };
