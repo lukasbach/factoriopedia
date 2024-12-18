@@ -1,4 +1,4 @@
-import { Link, createLazyFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createLazyFileRoute } from "@tanstack/react-router";
 
 import { Table } from "@factorioui/components";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -41,7 +41,6 @@ const columns = [
 ];
 
 function Page() {
-  const navigate = useNavigate();
   return (
     <TwoColumnContainer
       left={
@@ -49,9 +48,7 @@ function Page() {
           <Table
             columns={columns}
             onClickCell={(row) => {
-              navigate({
-                to: row.original.url,
-              });
+              window.open(row.original.url, "_blank");
             }}
             data={data}
           />
