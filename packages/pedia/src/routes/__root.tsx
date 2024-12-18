@@ -109,7 +109,7 @@ function Page() {
               <Link
                 to={urls.repo as any}
                 target="_blank"
-                className="hidden md:display"
+                className="md:block hidden"
               >
                 <TabsTriggerVisual>Star on Github</TabsTriggerVisual>
               </Link>
