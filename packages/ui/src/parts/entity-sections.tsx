@@ -135,7 +135,9 @@ const Recipe = makeSection(
       ))}
       <hr className="border-blackDark my-2 ml-12" />
       <div className="ml-12">
-        <span className="font-bold">{entry.merged.energy_required}s</span>{" "}
+        <span className="font-bold">
+          {entry.merged.energy_required || "0.5"}s
+        </span>{" "}
         Crafting time
       </div>
       <ContentSectionStat
