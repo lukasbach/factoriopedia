@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Surface } from "@factorioui/components";
-import { useMobileMenu } from "./mobile-menu-provider.tsx";
+import { useMobileMenu } from "./mobile-menu-provider";
 
 export const TwoColumnContainer: FC<{ left: ReactNode; right: ReactNode }> = ({
   left,

@@ -6,7 +6,7 @@ import { FC } from "react";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
 import * as tools from "../tools";
-import { useMobileMenu } from "../components/mobile-menu-provider.tsx";
+import { useMobileMenu } from "../components/mobile-menu-provider";
 
 export const Route = createFileRoute("/tool/$tool")({
   component: Page,

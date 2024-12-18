@@ -17,7 +17,7 @@ import {
 } from "@factorioui/components/lib/components/tabs";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
-import { useMobileMenu } from "../components/mobile-menu-provider.tsx";
+import { useMobileMenu } from "../components/mobile-menu-provider";
 
 const PediaSearchSchema = z.object({
   group: z.string().catch("logistics"),

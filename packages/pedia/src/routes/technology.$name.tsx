@@ -15,7 +15,7 @@ import {
 } from "@factorioui/components";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
-import { useMobileMenu } from "../components/mobile-menu-provider.tsx";
+import { useMobileMenu } from "../components/mobile-menu-provider";
 
 export const Route = createFileRoute("/technology/$name")({
   component: Page,

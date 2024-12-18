@@ -3,7 +3,7 @@ import { Surface } from "@factorioui/components";
 export const App = () => {
   return (
     <Surface
-      className="h-full flex items-center justify-center"
+      className="h-full inline-flex items-center justify-center"
       color="blackDark"
     >
       <Surface
