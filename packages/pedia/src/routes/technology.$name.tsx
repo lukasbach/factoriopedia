@@ -15,6 +15,7 @@ import {
 } from "@factorioui/components";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
+import { useMobileMenu } from "../components/mobile-menu-provider.tsx";
 
 export const Route = createFileRoute("/technology/$name")({
   component: Page,
@@ -26,6 +27,7 @@ function Page() {
   const navigate = Route.useNavigate();
   const technology = entries[name]?.technology;
   const techs = useEntriesOfType("technology");
+  const { closeMenu } = useMobileMenu();
   if (!technology) return null;
   return (
     <TwoColumnContainer
@@ -35,9 +37,10 @@ function Page() {
             {techs.map((tech) => (
               <TechnologyEntityButton
                 name={tech.technology.name}
-                onClick={() =>
-                  navigate({ params: { name: tech.technology.name } })
-                }
+                onClick={() => {
+                  navigate({ params: { name: tech.technology.name } });
+                  closeMenu();
+                }}
               />
             ))}
           </div>

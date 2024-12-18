@@ -17,6 +17,7 @@ import {
 } from "@factorioui/components/lib/components/tabs";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
+import { useMobileMenu } from "../components/mobile-menu-provider.tsx";
 
 const PediaSearchSchema = z.object({
   group: z.string().catch("logistics"),
@@ -31,6 +32,7 @@ function Page() {
   const { name, type } = Route.useParams();
   const { group } = Route.useSearch();
   const navigate = Route.useNavigate();
+  const { closeMenu } = useMobileMenu();
   return (
     <TwoColumnContainer
       left={
@@ -54,9 +56,10 @@ function Page() {
               gridWidth={12}
               // gridHeight={14}
               activeItem={{ name, type }}
-              onClick={({ name, type }) =>
-                navigate({ params: { name, type }, search: { group } })
-              }
+              onClick={({ name, type }) => {
+                navigate({ params: { name, type }, search: { group } });
+                closeMenu();
+              }}
               items={useResolveJointItemEntries({
                 group,
               }).map((subgroup) =>

@@ -6,6 +6,7 @@ import { FC } from "react";
 import { TwoColumnContainer } from "../components/two-column-container";
 import { TabbedContentPane } from "../components/tabbed-content-pane";
 import * as tools from "../tools";
+import { useMobileMenu } from "../components/mobile-menu-provider.tsx";
 
 export const Route = createFileRoute("/tool/$tool")({
   component: Page,
@@ -42,6 +43,7 @@ const columns = [
 function Page() {
   const params = Route.useParams();
   const navigate = Route.useNavigate();
+  const { closeMenu } = useMobileMenu();
   const tool = (tools as any)[params.tool] as Tool;
   const ToolComp =
     tool?.render || (() => <div>Select a tool on the left.</div>);
@@ -56,6 +58,7 @@ function Page() {
                 to: "/tool/$tool",
                 params: { tool: row.original.id },
               });
+              closeMenu();
             }}
             isRowActive={(row) => row.original.id === params.tool}
             data={toolList}

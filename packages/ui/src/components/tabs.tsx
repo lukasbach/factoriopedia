@@ -20,6 +20,7 @@ export const TabsTriggerVisual: FC<
 > = ({ active, ...props }) => (
   // eslint-disable-next-line jsx-a11y/anchor-has-content
   <a
+    {...props}
     className={combine(
       "px-4 pt-2 pb-2 mr-0.5",
       "rounded-tl rounded-tr font-bold shadow-topglow-1 text-sm",
@@ -28,8 +29,8 @@ export const TabsTriggerVisual: FC<
         !active,
         "bg-grayLight text-black hover:bg-orangeDark hover:shadow-orangeglow",
       ],
+      [props.className || ""],
     )}
-    {...props}
   />
 );
 
