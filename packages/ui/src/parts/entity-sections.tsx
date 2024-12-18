@@ -199,10 +199,19 @@ const Electricity = makeSection(
           {entry.merged.production}
         </ContentSectionStat>
         <ContentSectionStat label="Uses energy">
-          {entry.merged.power_input}
+          {entry.merged.power_input || entry.merged.energy_usage}
         </ContentSectionStat>
         <ContentSectionStat label="Max. output" quality>
           {result.output_flow_limit}
+        </ContentSectionStat>
+        <ContentSectionStat label="Drain" quality>
+          {result.drain}
+        </ContentSectionStat>
+        <ContentSectionStat label="Energy per movement" quality>
+          {entry.merged.energy_per_movement}
+        </ContentSectionStat>
+        <ContentSectionStat label="Energy per rotation" quality>
+          {entry.merged.energy_per_rotation}
         </ContentSectionStat>
       </>
     );
